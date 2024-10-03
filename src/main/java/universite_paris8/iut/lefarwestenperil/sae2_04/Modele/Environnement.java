@@ -81,11 +81,7 @@ public class Environnement {
         for (int i = 0; i < nombreEnnemis; i++) {
             int x, y, largeurImage, hauteurImage;
             Ennemi ennemi;
-            if (typeEnnemi.equals("Cowboy")) {
-                ennemi = new Cowboy(terrain, this);
-            } else {
-                ennemi = new Dragon(terrain, this);
-            }
+            ennemi = typeEnnemi.equals("Cowboy") ? new Cowboy(terrain, this) : new Dragon(terrain, this);
             largeurImage = ennemi.getLargeurImage();
             hauteurImage = ennemi.getHauteurImage();
 
@@ -120,7 +116,7 @@ public class Environnement {
             e.seDeplacer(link);
             e.getBarreDeVie().setX(e.getX());
             e.getBarreDeVie().setY(e.getY());
-            e.getBarreDeVie().setVie(e.getPointVie());
+            e.getBarreDeVie().setVieActuelle(e.getPointVie());
             e.getBarreDeVie().miseAJourVieTotale();
             if (!e.estVivant()) {
                 ennemis.remove(i);
