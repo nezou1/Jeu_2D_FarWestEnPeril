@@ -15,6 +15,7 @@ public abstract class Arme {
     }
 
     public int getRayon() {
+        System.out.println(rayon);
         return rayon;
     }
 
