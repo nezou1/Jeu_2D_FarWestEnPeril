@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorAffichage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" styleClass="fondImage" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.lefarwestenperil.sae2_04.Controleur.ControleurMenu">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="68.0" layoutY="521.0" prefHeight="200.0" prefWidth="167.0" spacing="10.0" styleClass="vboxMenu" stylesheets="@menu.css">
+         <children>
+            <Button fx:id="boutonJouer" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#reactionBoutonJouer" prefHeight="41.0" prefWidth="167.0" styleClass="boutonMenu" stylesheets="@menu.css" text="Jouer" textFill="WHITE">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
+               <font>
+                  <Font name="Lato Black Italic" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="boutonCommandes" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#reactionBoutonCommandes" prefHeight="41.0" prefWidth="167.0" styleClass="boutonMenu" text="Commandes" textFill="WHITE">
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
+               <font>
+                  <Font name="Lato Black Italic" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="boutonObjectif" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#reactionBoutonObjectif" prefHeight="41.0" prefWidth="167.0" styleClass="boutonMenu" text="Objectif" textFill="WHITE">
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
+               <font>
+                  <Font name="Lato Black Italic" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
