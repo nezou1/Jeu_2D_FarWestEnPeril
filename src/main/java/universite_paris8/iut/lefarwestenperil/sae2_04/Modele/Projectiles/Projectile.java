@@ -60,22 +60,6 @@ public abstract class Projectile {
         return env;
     }
 
-    public int getCibleX() {
-        return cibleX;
-    }
-
-    public int getCibleY() {
-        return cibleY;
-    }
-
-    public int getDegats() {
-        return degats;
-    }
-
-    public int getVitesse() {
-        return vitesse;
-    }
-
     public abstract void deplacer();
 
     public void infligerDegats(Personnage cible) {

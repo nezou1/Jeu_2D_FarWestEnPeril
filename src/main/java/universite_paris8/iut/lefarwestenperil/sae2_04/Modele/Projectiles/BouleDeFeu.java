@@ -5,7 +5,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
 public class BouleDeFeu extends Projectile {
-    private int creationTour;
+    private final int creationTour;
     private boolean active;
 
     public BouleDeFeu(int x, int y, int cibleX, int cibleY, int degats, Environnement env) {
