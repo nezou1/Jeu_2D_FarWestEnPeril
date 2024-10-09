@@ -27,14 +27,12 @@ public class Link extends Personnage {
     }
 
     private boolean estCorrect(int newX, int newY) {
-        int tileX = newX / tailleTuile;
-        int tileY = newY / tailleTuile;
-        int tileXRight = (newX + 25) / tailleTuile;
-        int tileYBottom = (newY + 21) / tailleTuile;
+        int tileXRight = (newX + 25) ;
+        int tileYBottom = (newY + 21) ;
 
-        return getTerrain().estMarchable(tileY, tileX) &&
-                getTerrain().estMarchable(tileY, tileXRight) &&
-                getTerrain().estMarchable(tileYBottom, tileX) &&
+        return getTerrain().estMarchable(newY, newX) &&
+                getTerrain().estMarchable(newY, tileXRight) &&
+                getTerrain().estMarchable(tileYBottom, newX) &&
                 getTerrain().estMarchable(tileYBottom, tileXRight);
     }
 
