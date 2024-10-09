@@ -150,6 +150,9 @@ public class Environnement {
     public ObservableList<Fleche> getFleches() {
         return fleches;
     }
+    public void removeFleche(Fleche f) {
+        fleches.remove(f);
+    }
 
     public ObservableList<BouleDeFeu> getBoulesDeFeu() {
         return boulesDeFeu;
