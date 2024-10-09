@@ -15,7 +15,6 @@ public abstract class Arme {
     }
 
     public int getRayon() {
-        System.out.println(rayon);
         return rayon;
     }
 
@@ -23,7 +22,7 @@ public abstract class Arme {
         return this.pointAttaque;
     }
 
-    public abstract void attaquer(Personnage att, List<Ennemi> cibles);
+    public abstract void attaquer(Personnage att);
 
     public String toString() {
         return "Arme :  pointAttaque " + pointAttaque;

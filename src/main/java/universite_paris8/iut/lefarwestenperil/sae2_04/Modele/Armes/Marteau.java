@@ -14,7 +14,7 @@ public class Marteau extends Arme {
         super(pointAttaque, rayon);
         this.env = env;
     }
-
+/*
     @Override
     public void attaquer(Personnage att, List<Ennemi> cibles) {
         Link link = env.getLink();
@@ -44,6 +44,13 @@ public class Marteau extends Arme {
         if (terrain.getTab()[y][x] == 3) {
             terrain.getTab()[y][x] = 0;
         }
+    }
+
+ */
+
+    @Override
+    public void attaquer(Personnage att) {
+        System.out.println("ça doit faire un truc askip");
     }
 
     public String toString() {

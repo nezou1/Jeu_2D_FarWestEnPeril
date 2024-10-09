@@ -13,29 +13,31 @@ public class Tomahawk extends Arme {
 
 
     @Override
-    public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
-        int direction = attaquant.getDirection();
-        int attaquantX = attaquant.getX();
-        int attaquantY = attaquant.getY();
-        int rayon = 32;
+    public void attaquer(Personnage attaquant) {
 
+        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(),attaquant);
+
+
+    }
+
+    public void danslaDirectionEnnemis(List<Ennemi> cibles,Personnage p){
         for (Personnage cible : cibles) {
             int cibleX = cible.getX();
             int cibleY = cible.getY();
             boolean dansLaDirection = false;
 
-            switch (direction) {
+            switch (p.getDirection()) {
                 case 0:
-                    dansLaDirection = (cibleX > attaquantX) && (Math.abs(cibleY - attaquantY) < rayon);
+                    dansLaDirection = (cibleX > p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
                     break;
                 case 1:
-                    dansLaDirection = (cibleY > attaquantY) && (Math.abs(cibleX - attaquantX) < rayon);
+                    dansLaDirection = (cibleY > p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
                     break;
                 case 2:
-                    dansLaDirection = (cibleX < attaquantX) && (Math.abs(cibleY - attaquantY) < rayon);
+                    dansLaDirection = (cibleX < p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
                     break;
                 case 3:
-                    dansLaDirection = (cibleY < attaquantY) && (Math.abs(cibleX - attaquantX) < rayon);
+                    dansLaDirection = (cibleY < p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
                     break;
             }
 
@@ -45,6 +47,8 @@ public class Tomahawk extends Arme {
             }
         }
     }
+
+
 
     public String toString() {
         return "Tomahawk : " + super.toString();

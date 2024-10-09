@@ -20,7 +20,7 @@ public class Lasso extends Arme {
 
 
     @Override
-    public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
+    public void attaquer(Personnage attaquant) {
         Link link = env.getLink();
         double distance = Math.sqrt(Math.pow(link.getX() - attaquant.getX(), 2) + Math.pow(link.getY() - attaquant.getY(), 2));
         if (distance <= range) {

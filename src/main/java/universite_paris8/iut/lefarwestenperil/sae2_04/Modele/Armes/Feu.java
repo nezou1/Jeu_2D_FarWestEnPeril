@@ -17,7 +17,7 @@ public class Feu extends Arme {
     }
 
     @Override
-    public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
+    public void attaquer(Personnage attaquant) {
         // la on prend link on crée une boule de feu et on la fait deplacer jusqua link mdrrr weee
         Link link = env.getLink();
         BouleDeFeu bouleDeFeu = new BouleDeFeu(attaquant.getX(), attaquant.getY(), link.getX(), link.getY(), getPointAttaque(), env);

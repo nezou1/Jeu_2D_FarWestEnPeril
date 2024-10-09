@@ -53,7 +53,7 @@ public class Bombe extends Arme {
     }
 
     @Override
-    public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
+    public void attaquer(Personnage attaquant) {
         if (enCours) {
             System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
             return;
@@ -62,10 +62,8 @@ public class Bombe extends Arme {
         enCours = true;
 
         int direction = attaquant.getDirection();
-        x = attaquant.getX();
-        y = attaquant.getY();
-        impactX = x;
-        impactY = y;
+        impactX = attaquant.getX();
+        impactY = attaquant.getY();
 
         switch (direction) {
             case 0:
@@ -86,15 +84,7 @@ public class Bombe extends Arme {
         bombeVue.creerBombe(this);
 
         Timeline explosionDelay = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
-            for (Ennemi cible : cibles) {
-                double centreCibleX = cible.getX() + cible.getLargeurImage() / 2;
-                double centreCibleY = cible.getY() + cible.getHauteurImage() / 2;
-                double distance = Math.sqrt(Math.pow(centreCibleX - impactX, 2) + Math.pow(centreCibleY - impactY, 2));
-                if (distance <= 64) {
-                    cible.recevoirDegats(getPointAttaque());
-                    System.out.println("Bombe inflige " + getPointAttaque() + " dégâts à " + cible);
-                }
-            }
+            cibleProche(attaquant.getEnv().getEnnemis());
         }));
         explosionDelay.setOnFinished(event -> {
             Timeline cooldown = new Timeline(new KeyFrame(Duration.seconds(3), cooldownEvent -> {
@@ -103,6 +93,18 @@ public class Bombe extends Arme {
             cooldown.play();
         });
         explosionDelay.play();
+    }
+
+    public void cibleProche(List<Ennemi> cibles){
+        for (Ennemi cible : cibles) {
+            double centreCibleX = cible.getX() + (double) cible.getLargeurImage() / 2;
+            double centreCibleY = cible.getY() + (double) cible.getHauteurImage() / 2;
+            double distance = Math.sqrt(Math.pow(centreCibleX - impactX, 2) + Math.pow(centreCibleY - impactY, 2));
+            if (distance <= 64) {
+                cible.recevoirDegats(getPointAttaque());
+                System.out.println("Bombe inflige " + getPointAttaque() + " dégâts à " + cible);
+            }
+        }
     }
 
     @Override

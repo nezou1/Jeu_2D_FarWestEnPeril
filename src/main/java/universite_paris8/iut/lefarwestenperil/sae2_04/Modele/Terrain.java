@@ -49,6 +49,7 @@ public class Terrain {
     }
 
     public boolean estMarchable(int y, int x) {
+
         if (x >= 0 && x < getLargeur() && y >= 0 && y < getHauteur()) {
             return tab[y][x] == 0 || tab[y][x] == 12;
         }

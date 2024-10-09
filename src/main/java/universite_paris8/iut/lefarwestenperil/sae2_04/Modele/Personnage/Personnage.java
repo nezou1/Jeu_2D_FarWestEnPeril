@@ -10,23 +10,32 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personnage {
+public abstract class Personnage {
+
+
     protected int tailleTuile = 32;
+
     private int pointVie;
     private int pointAttaque;
     private int pointDefense;
-    private Environnement env;
-    private int vitesseDeplacement;
+    private int pointVieMax;
+
+    private boolean brule;
+    private static int compteurBrulure;
+
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
+
+
     private IntegerProperty x, y;
+    private int vitesseDeplacement;
+    protected int direction;
 
     private Terrain terrain;
-    private boolean brule;
-    protected int direction;
-    private static int compteurBrulure;
-    private int pointVieMax;
+    private Environnement env;
+
+
 
 
     public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
@@ -120,7 +129,7 @@ public class Personnage {
                     return;
                 }
             }
-            armeActuelle.attaquer(this, cibles);
+            armeActuelle.attaquer(this);
         } else {
             System.out.println("Aucune arme pour l'attaque directionnelle.");
         }
