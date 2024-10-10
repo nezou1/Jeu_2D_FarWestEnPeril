@@ -278,7 +278,7 @@ public abstract class Ennemi extends Personnage {
     public boolean detectionLink(Link link) {
         double distance = Math.sqrt(Math.pow(link.getX() - getX() , 2) + Math.pow(link.getY() - getY(), 2));
         if(distance <= portee) {
-            this.chemin = BFS.bfs(getTerrain().getTab(),new Point((getX()+8)/32, (getY()+10)/32), new Point(link.getX()/32, link.getY()/32));
+            this.chemin = BFS.bfs(getTerrain().getDonneeTerrain(),new Point((getX()+8)/32, (getY()+10)/32), new Point(link.getX()/32, link.getY()/32));
             for (Point tuile : chemin) {
                 System.out.println(tuile);
             }

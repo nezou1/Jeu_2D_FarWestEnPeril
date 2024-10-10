@@ -21,12 +21,14 @@ class EnvironnementTest  {
     private Environnement environnement;
     private Terrain terrain;
     private Link link;
+    private GestionEnnemi gestionEnnemi;
 
     @BeforeEach
     void setUp() {
         terrain = new Terrain(); // Supposons que le terrain est 20x20
         link = new Link(terrain);
         environnement = new Environnement(terrain, link);
+        gestionEnnemi = new GestionEnnemi(terrain,environnement);
     }
 
     @Test
@@ -68,7 +70,7 @@ class EnvironnementTest  {
         ennemi2.setX(100);
         ennemi2.setY(100);
         environnement.getEnnemis().addAll(ennemi1, ennemi2);
-        List<Ennemi> ennemisDansRayon = environnement.getEnnemisDansRayon(10, 10, 20);
+        List<Ennemi> ennemisDansRayon = gestionEnnemi.getEnnemisDansRayon(10, 10, 20);
         assertEquals(1, ennemisDansRayon.size());
         assertEquals(ennemi1, ennemisDansRayon.get(0));
     }
@@ -90,7 +92,7 @@ class EnvironnementTest  {
     void testVerifierVictoire() {
         link.setX(32);
         link.setY(32);
-        terrain.getTab()[1][1] = 12;
+        terrain.getDonneeTerrain()[1][1] = 12;
         assertTrue(environnement.verifierVictoire());
     }
 }

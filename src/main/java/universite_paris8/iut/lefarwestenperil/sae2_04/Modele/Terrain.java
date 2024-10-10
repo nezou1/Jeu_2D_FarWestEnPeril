@@ -1,17 +1,20 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Initialise le terrain en chargeant les données depuis le fichier choisis.
+ */
+
 public class Terrain {
 
-    private int tailleTuile = 32;
+    private final int tailleTuile = 32;
 
-    private int [][] tab;
+    private int [][] donneeTerrain;
 
     public Terrain() {
         chargerTerrain();
@@ -31,36 +34,34 @@ public class Terrain {
                 lignes.add(ligneTab);
                 ligne= reader.readLine();
             }
-            tab = lignes.toArray(new int[0][]); 
+            donneeTerrain = lignes.toArray(new int[0][]);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(tab.length+"  "+ tab[0].length);
+        System.out.println(donneeTerrain.length+"  "+ donneeTerrain[0].length);
     }
-    public int[][] getTab() {
-        return this.tab;
+
+    
+    public int[][] getDonneeTerrain() {
+        return this.donneeTerrain;
     }
 
     public int getHauteur() {
-        return tab.length;
+        return donneeTerrain.length;
     }
 
     public int getLargeur() {
-        return tab[0].length;
+        return donneeTerrain[0].length;
     }
 
     public boolean estMarchable(int y, int x) {
         int tileX = x / tailleTuile;
         int tileY = y / tailleTuile;
         if (tileX >= 0 && tileX < getLargeur() && tileY >= 0 && tileY < getHauteur()) {
-            return tab[tileY][tileX] == 0 || tab[tileY][tileX] == 12;
+            return donneeTerrain[tileY][tileX] == 0 || donneeTerrain[tileY][tileX] == 12;
         }
         return false;
-    }
-
-    public int getTailleTuile(){
-        return tailleTuile;
     }
 
 }
