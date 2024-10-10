@@ -15,14 +15,19 @@ import java.util.*;
  */
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
+    private IntegerProperty nombreEnnemis;
+    private ObservableList<Gardien> gardiens;
+    private Link link;
+
     private ObservableList<BarreDeVie> barreDeVies;
+
     private ObservableList<Fleche> fleches;
     private ObservableList<BouleDeFeu> boulesDeFeu;
-    private IntegerProperty nombreEnnemis;
-    private Link link;
+
     private int tours;
+
     private Terrain terrain;
-    private ObservableList<Gardien> gardiens;
+
 
     public Environnement(Terrain terrain, Link link) {
         this.terrain = terrain;
@@ -73,6 +78,10 @@ public class Environnement {
     }
 
     public void ajouterEnnemisAleatoirement(int nombreEnnemis) {
+
+        /**
+         * Cette methode permet d'ajouter aleatoirement dans le terrain les ennemis
+         */
         Map<String, Integer> repartitionEnnemis = calculerRepartitionEnnemis(nombreEnnemis);
         placerEnnemisRegion(repartitionEnnemis.get("CowboysHautGauche"), Cowboy.class, 0, terrain.getHauteur() / 2, 0, terrain.getLargeur() / 2);
         placerEnnemisRegion(repartitionEnnemis.get("DragonsHautGauche"), Dragon.class, 0, terrain.getHauteur() / 2, 0, terrain.getLargeur() / 2);
@@ -83,6 +92,10 @@ public class Environnement {
     }
 
     private Map<String, Integer> calculerRepartitionEnnemis(int nombreEnnemis) {
+        /**
+         * Cette methode permet de calculer le pourcentage de presence d'un type d'ennemi dans coté choisi
+         * du terrain
+         */
         Map<String, Integer> repartition = new HashMap<>();
         repartition.put("CowboysHautGauche", (int) (nombreEnnemis * 0.25));
         repartition.put("DragonsHautGauche", (int) (nombreEnnemis * 0.10));
