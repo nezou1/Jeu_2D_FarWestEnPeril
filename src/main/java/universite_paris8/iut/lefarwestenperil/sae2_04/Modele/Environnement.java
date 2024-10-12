@@ -92,7 +92,7 @@ public class Environnement {
             do {
                 x = minX * 32 + rand.nextInt((maxX - minX) * 32);
                 y = minY * 32 + rand.nextInt((maxY - minY) * 32);
-            } while (!terrain.estMarchable(y / 32, x / 32) || !terrain.estMarchable((y + hauteurImage - 1) / 32, (x + largeurImage - 1) / 32));
+            } while (!terrain.estMarchable(y , x ) || !terrain.estMarchable((y + hauteurImage - 1) , (x + largeurImage - 1) ));
 
             ennemi.setX(x);
             ennemi.setY(y);
@@ -120,7 +120,7 @@ public class Environnement {
             e.seDeplacer(link);
             e.getBarreDeVie().setX(e.getX());
             e.getBarreDeVie().setY(e.getY());
-            e.getBarreDeVie().setVie(e.getPointVie());
+            e.getBarreDeVie().setVieActuelle(e.getPointVie());
             e.getBarreDeVie().miseAJourVieTotale();
             if (!e.estVivant()) {
                 ennemis.remove(i);

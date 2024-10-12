@@ -3,6 +3,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Feu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+//La classe Dragon est un type d'ennemi qui hérite de Ennemi.
+//Elle initialise ses caractéristiques via son constructeur et lui attribue une arme de feu.
 
 public class Dragon extends Ennemi {
 

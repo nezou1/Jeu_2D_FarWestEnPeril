@@ -10,6 +10,8 @@ import java.util.List;
 public class Terrain {
 
     private int [][] tab;
+    protected int tailleTuile = 32;
+
 
     public Terrain() {
         chargerTerrain();
@@ -52,10 +54,15 @@ public class Terrain {
     }
 
     public boolean estMarchable(int y, int x) {
-        if (x >= 0 && x < getLargeur() && y >= 0 && y < getHauteur()) {
-            return tab[y][x] == 0 || tab[y][x] == 12;
+        int tileX = x / tailleTuile;
+        int tileY = y / tailleTuile;
+        if (tileX >= 0 && tileX< getLargeur() && tileY >= 0 && tileY < getHauteur()) {
+            return tab[tileY][tileX] == 0 || tab[tileY][tileX] == 12;
         }
         return false;
     }
 
+    public int getTailleTuile() {
+        return tailleTuile;
+    }
 }

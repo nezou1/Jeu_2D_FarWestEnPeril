@@ -5,34 +5,34 @@ import javafx.beans.property.*;
 public class BarreDeVie  {
 
     private IntegerProperty x, y;
-    private DoubleProperty vieTotale;
-    private Double vie;
+    private DoubleProperty vieRestante;
+    private Double vieActuelle;
     private Double vieMax;
     private String id;
 
     public BarreDeVie(int vie, int vieMax, String id, int x, int y){
         this.x = new SimpleIntegerProperty(x-5);
         this.y = new SimpleIntegerProperty(y-5);
-        this.vie= (double) vie;
+        this.vieActuelle = (double) vie;
         this.vieMax = (double)vieMax;
         this.id = id;
-        this.vieTotale = new SimpleDoubleProperty(vie/vieMax);
+        this.vieRestante = new SimpleDoubleProperty(vie/vieMax);
     }
 
-    public double getVieTotale() {
-        return vieTotale.getValue();
+    public double getVieRestante() {
+        return vieRestante.getValue();
     }
 
-    public DoubleProperty vieTotaleProperty() {
-        return vieTotale;
+    public DoubleProperty vieRestanteProperty() {
+        return vieRestante;
     }
 
     public void miseAJourVieTotale() {
-        this.vieTotale.setValue((double) vie/ vieMax);
+        this.vieRestante.setValue((double) vieActuelle / vieMax);
     }
 
-    public void setVie(double vie) {
-        this.vie = vie;
+    public void setVieActuelle(double vieActuelle) {
+        this.vieActuelle = vieActuelle;
     }
 
     public IntegerProperty xProperty() {

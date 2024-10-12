@@ -1,4 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
+//La classe Personnage est une classe abstraite représentant les personnages du jeux mis a part le Gardien.
+//Elle gère les points de vie, d'attaque et de défense, ainsi que la position et l'inventaire d'armes.
+//Elle permet également de gérer les attaques et la réception de dégâts.
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -10,23 +13,29 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personnage {
-    protected int tailleTuile = 32;
+public abstract class Personnage {
+    //protected int tailleTuile = 32;
+
     private int pointVie;
     private int pointAttaque;
     private int pointDefense;
-    private Environnement env;
+    private int pointVieMax;
     private int vitesseDeplacement;
+
+    private Environnement env;
+    private Terrain terrain;
+    //protected int tailleTuile = 32;
+
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
-    private IntegerProperty x, y;
 
-    private Terrain terrain;
-    private boolean brule;
+    private IntegerProperty x, y;
     protected int direction;
+
+
+    private boolean brule;
     private static int compteurBrulure;
-    private int pointVieMax;
 
 
     public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
@@ -86,13 +95,13 @@ public class Personnage {
         this.pointVieMax = pointVieMax;
     }
 
-    public void changerArmeSuivante() {
+   /* public void changerArmeSuivante() {
         if (!armes.isEmpty()) {
             indexArmeActuelle = (indexArmeActuelle + 1) % armes.size();
             armeActuelle = armes.get(indexArmeActuelle);
         }
         System.out.println("Armes: " + armes);
-        System.out.println("Arme actuelle après changement suivant: " + getArmeActuelle());
+        System.out.println("Arme actuelle après changement suivant: " + armeActuelle);
     }
 
     public void changerArmePrecedente() {
@@ -102,9 +111,30 @@ public class Personnage {
         }
         System.out.println("Armes: " + armes);
         System.out.println("Arme actuelle après changement précédent: " + armeActuelle);
+    }*/
+   private void changerArmeActuel(int n) {
+       if (!armes.isEmpty()) {
+           indexArmeActuelle = (indexArmeActuelle + n + armes.size()) % armes.size();
+           armeActuelle = armes.get(indexArmeActuelle);
+       }
+   }
+    private void afficherInformations(String direction) {
+        System.out.println("Armes: " + armes);
+        System.out.println("Arme actuelle après changement " + direction + ": " + armeActuelle);
+    }
+    public void changerArmeSuivante() {
+        changerArmeActuel(1);
+        afficherInformations("suivant");
     }
 
+    public void changerArmePrecedente() {
+        changerArmeActuel(-1);
+        afficherInformations("précédent");
+    }
 
+    public int getTailleTuile() {
+        return terrain.getTailleTuile();
+    }
 
     public int getDirection() {
         return direction;
@@ -138,9 +168,7 @@ public class Personnage {
         return new SimpleIntegerProperty(pointVie);
     }
 
-    public int getTailleTuile() {
-        return tailleTuile;
-    }
+
 
     public int getPointVie() {
         return pointVie;

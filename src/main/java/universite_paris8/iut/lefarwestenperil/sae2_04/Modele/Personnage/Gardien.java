@@ -4,18 +4,26 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 import java.util.List;
+//La classe Gardien représente un personnage non-joueur dans le jeu qui pose des questions au joueur.
+//Elle gère la position du gardien, la question posée, les choix de réponse, la bonne réponse, et les messages de réussite ou d'échec.
+//La classe inclut également un système de récompense pour le joueur (Link) en cas de bonne réponse, pouvant être soit une nouvelle arme, soit des points de vie supplémentaires.
 
 public class Gardien {
     private int x;
     private int y;
+
     private String question;
+
     private List<String> choix;
     private String bonneReponse;
+
     private String messageReussite;
     private String messageEchec;
+
     private boolean repondu;
     private long dernierInterrogatoire;
     private int recompense;
+
     private Environnement env;
 
     public Gardien(int x, int y, String question, List<String> choix, String bonneReponse, String messageReussite, int recompense, Environnement env) {

@@ -13,22 +13,31 @@ import java.util.List;
  * Un ennemi est un personnage qui peut se déplacer sur le terrain.
  */
 public abstract class Ennemi extends Personnage {
-    private int vitesse;
+
     public static int compteurId = 0;
+    private int compteur;
     private String id;
-    private int tuileActuel;
-    private BarreDeVie barreDeVie;
+
+
+
     private int pixelsParcourus;
     private int directionActuelle;
+    private boolean peutTraverserObstacles;
+    //private int tuileActuel;
+
     private int portee;
     private int porteeAttaque;
+    private int vitesse;
+
     private int largeurImage;
     private int hauteurImage;
+
     private BFS bfs;
     private List<Point> chemin;
-    private boolean peutTraverserObstacles;
+
     private Environnement environnement;
-    private int compteur;
+    private BarreDeVie barreDeVie;
+
     private final int tempsAttente;
 
 
@@ -83,9 +92,9 @@ public abstract class Ennemi extends Personnage {
         return compteurId;
     }
 
-    public int getTuileActuel() {
+    /*public int getTuileActuel() {
         return tuileActuel;
-    }
+    }*/
 
     public BarreDeVie getBarreDeVie() {
         return barreDeVie;
@@ -230,26 +239,13 @@ public abstract class Ennemi extends Personnage {
             chemin.remove(chemin.size() - 1);
         }
     }
-    // c bon vous etes la ?ouii//OUI
-    // Les ennemis chaque tours ils vont utiliser cette méthode et
+
 
     public void seDeplacer(Link link) {
-        if (detectionLink(link)) {    // du coup si link est detectet
-            parcoursBFS(); // on trouve le chemin quii mene vers link et on se deplace vers lui
+        if (detectionLink(link)) {
+            parcoursBFS();
             if (getEnvironnement().getTours() - getCompteur() >= tempsAttente && linkACote()) {
-                // Si link est assez proche et que lecart entre les 2 coups est respécté bah on attaque
-                // vous avez capté ? le if ? JE VOUS PARL euhhhhh att
-                // jatt ? okkok c bonnnn  je continue ? vous avez compris c quand il attaque ? oui on a capté
-                //  je parle de lattaqu des ennemis en general la
-                //c'est bon j'ai capté
                 getArme().attaquer(this, null);
-                // du coup on va rentrer dans lattaque on commence par lequelle ? lasso et tomahawk
-                // c basique il verifie juste si link il est a la portée on fait boule de feu ?
-                // Aller go on fait boule de feu (Je comprend les profs qui parle tout seul maintenant)
-                // mais on lis juste tu nous laisse pas le temps de repondre ta meme pads fini ta phrase que tu trepond tout seul
-                // vous etes en decaler alors parceque moi je laisse une minute
-                //une minute ???? ya meme pas 3seconde wee we c la meme du coup suivée moi les 2005
-
                 setCompteur(getEnvironnement().getTours());
             }
         } else {
