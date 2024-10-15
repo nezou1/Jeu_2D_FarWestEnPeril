@@ -20,7 +20,7 @@ public class GestionProjectile {
     }
 
     public void ajouterProjectile(Fleche fleche) {
-        fleches.add(fleche);
+         fleches.add(fleche);
     }
 
     public void ajouterProjectile(BouleDeFeu bouleDeFeu) {
