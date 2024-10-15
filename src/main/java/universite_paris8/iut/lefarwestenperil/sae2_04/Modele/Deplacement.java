@@ -14,8 +14,9 @@ public class Deplacement {
         this.tailleTuile = tailleTuile;
     }
 
-    public Deplacement(int x, int y) {
-        this(x, y, 32);
+    public Deplacement(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
     public void setPosition(int x, int y) {
