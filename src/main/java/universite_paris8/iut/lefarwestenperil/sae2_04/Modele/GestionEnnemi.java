@@ -93,5 +93,19 @@ public class GestionEnnemi{
         }
         return ennemisDansRayon;
     }
+
+    public void miseAjour(){
+        for (int i = 0; i < ennemis.size(); i++) {
+            Ennemi e = ennemis.get(i);
+            e.getBarreDeVie().setX(e.getX());
+            e.getBarreDeVie().setY(e.getY());
+            e.getBarreDeVie().setVieActuelle(e.getPointVie());
+            e.getBarreDeVie().miseAJourVieTotale();
+            if (!e.estVivant()) {
+                ennemis.remove(i);
+                i--;
+            }
+        }
+    }
 }
 
