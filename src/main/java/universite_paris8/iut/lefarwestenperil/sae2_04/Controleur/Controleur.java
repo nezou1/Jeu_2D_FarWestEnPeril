@@ -95,7 +95,7 @@ public class Controleur implements Initializable {
         ListChangeListener<BouleDeFeu> listenBF = new ListObsFeu(panneauDeJeu);
         env.getBoulesDeFeu().addListener(listenBF);
 
-        //env.ajouterQuestionGardien();
+        env.ajouterQuestionGardien();
 
         this.env.ajouterEnnemisAleatoirement(50);
         panneauDeJeu.sceneProperty().addListener((obs, oldScene, newScene) -> {

@@ -14,7 +14,7 @@ import java.util.Random;
  */
 
 public class GestionEnnemi{
-    private ObservableList<Ennemi> ennemis;
+    private  ObservableList<Ennemi> ennemis;
     private Terrain terrain;
     private Environnement environnement;
 
@@ -80,6 +80,7 @@ public class GestionEnnemi{
         } while (!terrain.estMarchable(y , x ) || !terrain.estMarchable((y + hauteurImage - 1) , (x + largeurImage - 1) ));
         ennemi.setX(x);
         ennemi.setY(y);
+
     }
 
     public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {

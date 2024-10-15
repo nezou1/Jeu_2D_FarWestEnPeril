@@ -237,19 +237,8 @@ public abstract class Ennemi extends Personnage {
         if (detectionLink(link)) {    // du coup si link est detectet
             parcoursBFS(); // on trouve le chemin quii mene vers link et on se deplace vers lui
             if (getEnvironnement().getTours() - getCompteur() >= tempsAttente && linkACote()) {
-                // Si link est assez proche et que lecart entre les 2 coups est respécté bah on attaque
-                // vous avez capté ? le if ? JE VOUS PARL euhhhhh att
-                // jatt ? okkok c bonnnn  je continue ? vous avez compris c quand il attaque ? oui on a capté
-                //  je parle de lattaqu des ennemis en general la
-                //c'est bon j'ai capté
-                getArme().attaquer(this, null);
-                // du coup on va rentrer dans lattaque on commence par lequelle ? lasso et tomahawk
-                // c basique il verifie juste si link il est a la portée on fait boule de feu ?
-                // Aller go on fait boule de feu (Je comprend les profs qui parle tout seul maintenant)
-                // mais on lis juste tu nous laisse pas le temps de repondre ta meme pads fini ta phrase que tu trepond tout seul
-                // vous etes en decaler alors parceque moi je laisse une minute
-                //une minute ???? ya meme pas 3seconde wee we c la meme du coup suivée moi les 2005
 
+                getArme().attaquer(this, null);
                 setCompteur(getEnvironnement().getTours());
             }
         } else {
