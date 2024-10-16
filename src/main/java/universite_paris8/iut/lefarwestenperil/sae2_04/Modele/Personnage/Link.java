@@ -35,7 +35,7 @@ public class Link extends Personnage {
        int newX = getX() + dx;
        int newY = getY() + dy;
 
-       if (estCorrect(newX, newY)) {
+       if (estPositionValide(newX, newY)) {
            setX(newX);
            setY(newY);
            if (dx > 0) direction = 0;
@@ -60,7 +60,7 @@ public class Link extends Personnage {
                 getTerrain().estMarchable(tileYBottom, tileX) &&
                 getTerrain().estMarchable(tileYBottom, tileXRight);
     }*/
-   private boolean estCorrect(int newX, int newY) {
+   private boolean estPositionValide(int newX, int newY) {
        int tileXRight = (newX + this.largeur);
        int tileYBottom = (newY + this.hauteur);
 
@@ -69,6 +69,15 @@ public class Link extends Personnage {
                getTerrain().estMarchable(tileYBottom,newX) &&
                getTerrain().estMarchable(tileYBottom, tileXRight);
    }
+   /* private boolean estCorrect(int newX, int newY) {
+       int tileXRight = (newX + this.largeur);
+       int tileYBottom = (newY + this.hauteur);'"
+
+       return getTerrain().estMarchable(newY, newX) &&
+               getTerrain().estMarchable(newY, tileXRight) &&
+               getTerrain().estMarchable(tileYBottom,newX) &&
+               getTerrain().estMarchable(tileYBottom, tileXRight);
+   }*/
     public void deplacerHaut() {
         deplacer(0, -10);
     }

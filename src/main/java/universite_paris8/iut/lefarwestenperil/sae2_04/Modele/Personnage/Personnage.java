@@ -24,7 +24,6 @@ public abstract class Personnage {
 
     private Environnement env;
     private Terrain terrain;
-    //protected int tailleTuile = 32;
 
     private List<Arme> armes;
     private Arme armeActuelle;
