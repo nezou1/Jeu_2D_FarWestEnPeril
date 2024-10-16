@@ -41,7 +41,7 @@ public class BouleDeFeuTest {
 
     @Test
     public void testExplosion() {
-        bouleDeFeu.explose();
+        bouleDeFeu.disparait();
         assertFalse(bouleDeFeu.enTrainDeBouger());
     }
 
