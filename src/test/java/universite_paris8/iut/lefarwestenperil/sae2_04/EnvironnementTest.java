@@ -52,7 +52,7 @@ class EnvironnementTest  {
 
     @Test
     void testAjouterBouleDeFeu() {
-        BouleDeFeu bouleDeFeu = new BouleDeFeu(1,2,3,4,1,environnement);
+        BouleDeFeu bouleDeFeu = new BouleDeFeu(1,2,1,environnement);
         environnement.ajouterBouleDeFeu(bouleDeFeu);
         ObservableList<BouleDeFeu> boulesDeFeu = environnement.getBoulesDeFeu();
         assertEquals(1, boulesDeFeu.size());

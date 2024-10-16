@@ -1,60 +1,32 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
-public class BouleDeFeu extends Projectile {
-    private final int creationTour;
-    private boolean active;
+/**
+ * Classe BouleDeFeu:
+ *      Cette classe est une sous-classe de Munitions qui s'occupe de la gestion des boules de feux de l'arme Feu
+ *      Son objectif est de poursuivre Link pour lui infliger des brûlures
+ *      Elle doit :
+ *          - pouvoir faire les mêmes choses que sa classe parente + redéfinir ses methodes abstraites
+ *          - brûler Link en le touchant (modification de la méthode infligerDegats())
+ *          - avoir une vitesse de 4
+ *          - infliger 7 points de dégats (pour l'instant c'est mal fait)
+ */
 
-    public BouleDeFeu(int x, int y, int cibleX, int cibleY, int degats, Environnement env) {
-        super(x, y, cibleX, cibleY, degats, 4, env);
-        this.creationTour = env.getTours();
-        this.active = true;
-    }
+public class BouleDeFeu extends Munition {
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public int getCreationTour() {
-        return creationTour;
-    }
-
-    public void explosion() {
-        active = false;
+    public BouleDeFeu(int x, int y, int degats, Environnement env) {
+        super(x, y, degats, 4, env);
+        setBouge(true);
     }
 
     @Override
     public void deplacer() {
-        if (!active) return;
-
-        Link link = getEnv().getLink();
-        cibleX = link.getX();
-        cibleY = link.getY();
-
-        int x = getX();
-        int y = getY();
-
-        if (cibleX > x) {
-            x += vitesse;
-        } else if (cibleX < x) {
-            x -= vitesse;
-        }
-
-        if (cibleY > y) {
-            y += vitesse;
-        } else if (cibleY < y) {
-            y -= vitesse;
-        }
-
-        setX(x);
-        setY(y);
-
-        if (Math.abs(x - cibleX) < vitesse && Math.abs(y - cibleY) < vitesse) {
-            infligerDegats(link);
-            explosion();
+        updatePos();
+        if (hasTouched()) {
+            infligerDegats(getEnv().getLink());
+            disparait();
         }
     }
 
@@ -62,5 +34,22 @@ public class BouleDeFeu extends Projectile {
     public void infligerDegats(Personnage cible) {
         super.infligerDegats(cible);
         getEnv().ajouterBrulure();
+    }
+
+    @Override
+    public void updatePos(){
+        int cibleX = getEnv().getLink().getX();
+        int cibleY = getEnv().getLink().getY();
+        int newX = (cibleX > getX()) ? getX() + getVitesse() : getX() - getVitesse();
+        int newY = (cibleY > getY()) ? getY() + getVitesse() : getY() - getVitesse();
+        setX(newX);
+        setY(newY);
+    }
+
+    @Override
+    public boolean hasTouched() {
+        int cibleX = getEnv().getLink().getX();
+        int cibleY = getEnv().getLink().getY();
+        return Math.abs(getX() - cibleX) < getVitesse() && Math.abs(getY() - cibleY) < getVitesse();
     }
 }

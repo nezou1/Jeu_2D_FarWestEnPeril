@@ -19,15 +19,15 @@ public class BouleDeFeuTest {
         Terrain terrain = new Terrain();
         link = new Link(terrain);
         env = new Environnement(terrain, link);
-        bouleDeFeu = new BouleDeFeu(0, 0, link.getX(), link.getY(), 10, env);
+        bouleDeFeu = new BouleDeFeu(0, 0, 10, env);
     }
 
     @Test
     public void testBouleDeFeuInitialisation() {
         assertEquals(0, bouleDeFeu.getX());
         assertEquals(0, bouleDeFeu.getY());
-        assertEquals(env.getTours(), bouleDeFeu.getCreationTour());
-        assertTrue(bouleDeFeu.isActive());
+        assertEquals(env.getTours(), bouleDeFeu.getTourDeCreation());
+        assertTrue(bouleDeFeu.enTrainDeBouger());
     }
 
     @Test
@@ -41,8 +41,8 @@ public class BouleDeFeuTest {
 
     @Test
     public void testExplosion() {
-        bouleDeFeu.explosion();
-        assertFalse(bouleDeFeu.isActive());
+        bouleDeFeu.explose();
+        assertFalse(bouleDeFeu.enTrainDeBouger());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class BouleDeFeuTest {
         link.setX(4);
         link.setY(4);
         bouleDeFeu.deplacer();
-        assertFalse(bouleDeFeu.isActive());
+        assertFalse(bouleDeFeu.enTrainDeBouger());
         assertTrue(link.getPointVie() < 1600); // assuming initial HP of Link is 1600
     }
 }
