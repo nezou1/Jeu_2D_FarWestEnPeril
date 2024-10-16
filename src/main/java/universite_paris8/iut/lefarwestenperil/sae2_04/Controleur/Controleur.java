@@ -63,23 +63,21 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        terrain = new Terrain();
-        link = new Link(terrain);
 
-        env = new Environnement(terrain, link);
+        env = new Environnement();
 
-        tv = new TerrainVue(terrain, tuile);
+        tv = new TerrainVue(env.getTerrain(), tuile);
         linkVue = new LinkVue(panneauDeJeu);
         messageVue = new MessageVue();
 
         tv.creerCarte();
-        linkVue.creerLink(link);
+        linkVue.creerLink(env.getLink());
 
         BombeVue bombeVue = new BombeVue(panneauDeJeu);
         bombe = new Bombe(panneauDeJeu, bombeVue);
 
-        link.ramasserArme(new Tomahawk());
-        link.ramasserArme(new TireALArc(env));
+        env.getLink().ramasserArme(new Tomahawk());
+        env.getLink().ramasserArme(new TireALArc(env));
 
         ListChangeListener<Ennemi> listenE = new ListObsEnnemis(panneauDeJeu);
         env.getEnnemis().addListener(listenE);
@@ -107,10 +105,10 @@ public class Controleur implements Initializable {
         panneauDeJeu.getTransforms().add(scaleTransform);
 
 
-        scaleTransform.setPivotX(link.getX()-200);
-        scaleTransform.setPivotY(link.getY()-200);
+        scaleTransform.setPivotX(env.getLink().getX()-200);
+        scaleTransform.setPivotY(env.getLink().getY()-200);
 
-        coeurVue = new ListCoeurVue(link, vieBox);
+        coeurVue = new ListCoeurVue(env.getLink(), vieBox);
 
 
         initAnimation();
@@ -132,59 +130,59 @@ public class Controleur implements Initializable {
         System.out.println("Touche pressée: " + event.getCode());
         switch (event.getCode()) {
             case Z:
-                link.deplacerHaut();
-                linkVue.updateImage("HAUT", link.getArme());
+                env.getLink().deplacerHaut();
+                linkVue.updateImage("HAUT", env.getLink().getArme());
                 break;
             case Q:
-                link.deplacerGauche();
-                linkVue.updateImage("GAUCHE", link.getArme());
+                env.getLink().deplacerGauche();
+                linkVue.updateImage("GAUCHE", env.getLink().getArme());
                 break;
             case S:
-                link.deplacerBas();
-                linkVue.updateImage("BAS", link.getArme());
+                env.getLink().deplacerBas();
+                linkVue.updateImage("BAS", env.getLink().getArme());
                 break;
             case D:
-                link.deplacerDroite();
-                linkVue.updateImage("DROITE", link.getArme());
+                env.getLink().deplacerDroite();
+                linkVue.updateImage("DROITE", env.getLink().getArme());
                 break;
             case I:
-                if(link.getArme() != null) {
-                    List<Ennemi> cibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                    link.attaque(cibles);
-                    if( link.getArme() instanceof Marteau){
-                        tv = new TerrainVue(terrain, tuile);
+                if(env.getLink().getArme() != null) {
+                    List<Ennemi> cibles = env.getEnnemisDansRayon(env.getLink().getX(), env.getLink().getY(), env.getLink().getArme().getRayon());
+                    env.getLink().attaque(cibles);
+                    if( env.getLink().getArme() instanceof Marteau){
+                        tv = new TerrainVue(env.getTerrain(), tuile);
                         tv.creerCarte();
                     }
                 }
                 break;
             case K:
-                link.changerArmeSuivante();
-                System.out.println("Arme actuelle : " + link.getArme());
+                env.getLink().changerArmeSuivante();
+                System.out.println("Arme actuelle : " + env.getLink().getArme());
                 break;
             case J:
-                link.changerArmePrecedente();
-                System.out.println("Arme actuelle : " + link.getArme());
+                env.getLink().changerArmePrecedente();
+                System.out.println("Arme actuelle : " + env.getLink().getArme());
                 break;
             case L:
-                Arme armeActuelle =  link.getArme();
-                link.setArmeActuelle(bombe);
-                List<Ennemi> bombCibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                link.attaque(bombCibles);
-                link.setArmeActuelle(armeActuelle);
+                Arme armeActuelle =  env.getLink().getArme();
+                env.getLink().setArmeActuelle(bombe);
+                List<Ennemi> bombCibles = env.getEnnemisDansRayon(env.getLink().getX(), env.getLink().getY(), env.getLink().getArme().getRayon());
+                env.getLink().attaque(bombCibles);
+                env.getLink().setArmeActuelle(armeActuelle);
                 break;
             default:
                 return;
         }
         miseAJourZoom();
         verifierRencontreGardien();
-        System.out.println("Position du personnage: x=" + link.getX() + ", y=" + link.getY());
+        System.out.println("Position du personnage: x=" + env.getLink().getX() + ", y=" + env.getLink().getY());
     }
 
 
     public void verifierRencontreGardien() {
         Gardien g = env.verifierRencontreLinkGardien();
         if (g != null) {
-                messageVue.afficherDialogueGardien(g, link);
+                messageVue.afficherDialogueGardien(g, env.getLink());
         }
     }
 
@@ -192,8 +190,8 @@ public class Controleur implements Initializable {
     public void miseAJourZoom(){
         double paneWidth = panneauDeJeu.getWidth();
         double paneHeight = panneauDeJeu.getHeight();
-        double linkX = link.getX();
-        double linkY = link.getY();
+        double linkX = env.getLink().getX();
+        double linkY = env.getLink().getY();
 
         panneauDeJeu.setTranslateX(-linkX * scaleTransform.getX() + paneWidth / 2);
         panneauDeJeu.setTranslateY(-linkY * scaleTransform.getY() + paneHeight / 2);
@@ -210,7 +208,7 @@ public class Controleur implements Initializable {
                     env.unTour();
                     miseAJourZoom();
 
-                    coeurVue.mettreAJourCoeurs(link.getPointVie());
+                    coeurVue.mettreAJourCoeurs(env.getLink().getPointVie());
                     mettreAJourEtatJeu(); // Appel de la méthode pour mettre à jour l'état du jeu
 
                 }
@@ -219,7 +217,7 @@ public class Controleur implements Initializable {
     }
     public void mettreAJourEtatJeu() {
         // Vérifier si la vie de Link est égale à 0
-        if (link.getPointVie() == 0) {
+        if (env.getLink().getPointVie() == 0) {
             Main.stopMusicFond();
             afficherEcranGameOver();
             gameLoop.stop();

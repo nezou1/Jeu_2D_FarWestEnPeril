@@ -45,7 +45,7 @@ public abstract class Ennemi extends Personnage {
      * * @param hauteurImage la hauteur de l'image de l'ennemi
      */
     public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
-        super(x, y, pointVie, pointAttaque, pointDefense, terrain);
+        super(x, y, pointVie, pointAttaque, pointDefense, terrain,env);
         this.vitesse = vitesse;
         this.id = "E" + compteurId;
         compteurId++;

@@ -29,15 +29,15 @@ public class Environnement {
     private ObservableList<Gardien> gardiens;
 
 
-    public Environnement(Terrain terrain, Link link) {
+    public Environnement() {
         this.ennemis = FXCollections.observableArrayList();
         this.barreDeVies = FXCollections.observableArrayList();
         this.fleches = FXCollections.observableArrayList();
         this.boulesDeFeu = FXCollections.observableArrayList();
         this.tours = 0;
-        this.terrain = terrain;
+        this.terrain = new Terrain();
         this.nombreEnnemis = new SimpleIntegerProperty(0);
-        this.link = link;
+        this.link = new Link(terrain,this);
         this.gardiens = FXCollections.observableArrayList();
     }
 

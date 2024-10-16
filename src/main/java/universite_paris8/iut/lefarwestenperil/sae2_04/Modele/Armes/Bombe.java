@@ -58,7 +58,7 @@ public class Bombe extends Arme {
             System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
             return;
         }
-
+        System.out.println(attaquant.getEnv());
         enCours = true;
 
         int direction = attaquant.getDirection();

@@ -38,7 +38,7 @@ public abstract class Personnage {
 
 
 
-    public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
+    public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain,Environnement env) {
         this.pointVie = pointVie;
         this.pointVieMax = pointVie;
         this.pointAttaque = pointAttaque;
@@ -51,6 +51,7 @@ public abstract class Personnage {
         this.vitesseDeplacement=4;
         this.indexArmeActuelle = 0;
         this.brule = false;
+        this.env = env;
         this.compteurBrulure = 0;
     }
 
