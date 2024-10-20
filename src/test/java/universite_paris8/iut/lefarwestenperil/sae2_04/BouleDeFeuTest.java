@@ -19,45 +19,43 @@ public class BouleDeFeuTest {
         Terrain terrain = new Terrain();
         link = new Link(terrain);
         env = new Environnement(terrain, link);
-        bouleDeFeu = new BouleDeFeu(0, 0, 10, env);
+        bouleDeFeu = new BouleDeFeu(0, 0, 0,1, env);//va vers le bas
     }
 
     @Test
     public void testBouleDeFeuInitialisation() {
         assertEquals(0, bouleDeFeu.getX());
         assertEquals(0, bouleDeFeu.getY());
-        assertEquals(env.getTours(), bouleDeFeu.getTourDeCreation());
-        assertTrue(bouleDeFeu.enTrainDeBouger());
     }
 
     @Test
     public void testDeplacerVersCible() {
         link.setX(100);
         link.setY(100);
-        bouleDeFeu.deplacer();
+        bouleDeFeu.agit();
         assertTrue(bouleDeFeu.getX() > 0);
         assertTrue(bouleDeFeu.getY() > 0);
     }
 
     @Test
     public void testExplosion() {
-        bouleDeFeu.disparait();
-        assertFalse(bouleDeFeu.enTrainDeBouger());
+        bouleDeFeu.meurt();
+        assertFalse(bouleDeFeu.estEnVie());
     }
 
     @Test
     public void testInfligerDegats() {
         int initialPV = link.getPointVie();
         bouleDeFeu.infligerDegats(link);
-        assertEquals(initialPV - 10, link.getPointVie());
+        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDefense(), link.getPointVie());
     }
 
     @Test
     public void testDeplacerEtExplosion() {
         link.setX(4);
         link.setY(4);
-        bouleDeFeu.deplacer();
-        assertFalse(bouleDeFeu.enTrainDeBouger());
+        bouleDeFeu.agit();
+        assertFalse(bouleDeFeu.estEnVie());
         assertTrue(link.getPointVie() < 1600); // assuming initial HP of Link is 1600
     }
 }

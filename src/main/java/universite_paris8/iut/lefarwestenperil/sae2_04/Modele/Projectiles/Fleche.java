@@ -5,57 +5,46 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 /**
  * Classe Fleche:
- *      Cette classe est une sous-classe de Munitions qui s'occupe de la gestion des flèches du Tir à l'arc
- *      Elle doit :
- *          - pouvoir faire les mêmes choses que sa classe parente + redéfinir ses methodes abstraites
- *          - avoir une vitesse de 10
- *          - infliger 6 points de dégats
+ *      Cette classe est une sous-clsse de Projectile qui s'occupe de la gestion des flèches
+ *      Elle a :
+ *          - 10 points de vitesses
+ *          - 15 points de vie
+ *          - 6 points de dégats
  */
 
-public class Fleche extends Munition {
+public class Fleche extends Projectile {
 
-    private final int direction;
-
-    public Fleche(int x, int y, int direction, Environnement env) {
-        super(x, y + 10, 6, 10, env);
-        this.direction = direction;
-    }
-
-    public int getDirection() {
-        return direction;
+    public Fleche(int x, int y, int dx, int dy, Environnement env) {
+        super(x, y + 10, dx, dy, 10, 15,6,env);
     }
 
     @Override
-    public void deplacer() {
-        super.deplacer();
-        if (hasTouched()) {
-            getEnv().removeFleche(this);
-            disparait();
+    public void agit() {
+        seDeplace();
+        Ennemi e = chercheEnnemi();
+        if (e != null) {
+            infligerDegats(e);
+            meurt();
         }
-//        System.out.println("Flèche se déplace à (" + getX() + ", " + getY() + ")");
+        System.out.println("Flèche se déplace à (" + getX() + ", " + getY() + ")");
+        decrementerPv();
     }
 
-    @Override
-    public void updatePos() {
-        switch (direction) {
-            case 0: setX(getX() + getVitesse());break;
-            case 1: setY(getY() + getVitesse());break;
-            case 2: setX(getX() - getVitesse());break;
-            case 3: setY(getY() - getVitesse());break;
+    // retourne un ennemi si celui-ci se trouve à 10 pixels devant lui
+    private Ennemi chercheEnnemi(){
+        Ennemi ennemi = null;
+        for (Ennemi e : getEnv().getEnnemis()) {
+            assert false;
+            double centreCibleX = e.getX() + (double) e.getLargeurImage() / 2;
+            double centreCibleY = e.getY() + (double) e.getHauteurImage() / 2;
+            if (distanceAvec(centreCibleX,centreCibleY) <= 10)// mettre la valeur 10 dans une constante
+                ennemi = e;
         }
+        return ennemi;
     }
 
-    @Override
-    public boolean hasTouched() {
-        for (Ennemi ennemi : getEnv().getEnnemis()) {
-            double centreCibleX = ennemi.getX() + (double) ennemi.getLargeurImage() / 2;
-            double centreCibleY = ennemi.getY() + (double) ennemi.getHauteurImage() / 2;
-            double distance = Math.sqrt(Math.pow(centreCibleX - getX(), 2) + Math.pow(centreCibleY - getY(), 2));
-            if (distance <= 10 || (getX() == centreCibleX && getY() == centreCibleY)){
-                ennemi.recevoirDegats(this.getDegats());
-                return true;
-            }
-        }
-        return false;
+    // retoune la distance (en double) entre la flèche et les coordonnées de l'ennemi
+    private double distanceAvec(double x, double y){
+        return Math.sqrt(Math.pow(x - getX(), 2) + Math.pow(y - getY(), 2));
     }
 }

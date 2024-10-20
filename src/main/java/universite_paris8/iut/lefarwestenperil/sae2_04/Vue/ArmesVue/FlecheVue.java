@@ -36,7 +36,7 @@ public class FlecheVue {
         flecheImageView = new ImageView(imageFleche);
         flecheImageView.setId(fleche.getId());
 
-        switch (fleche.getDirection()) {
+        switch (fleche.getDx()) {   // TODO
             case 0:
                 flecheImageView.setRotate(0);
                 break;

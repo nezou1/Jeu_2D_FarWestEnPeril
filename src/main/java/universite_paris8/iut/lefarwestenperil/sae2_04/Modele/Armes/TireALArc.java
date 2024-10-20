@@ -17,9 +17,9 @@ public class TireALArc extends Arme {
 
     @Override
     public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
-        Fleche fleche = new Fleche(attaquant.getX(), attaquant.getY(), attaquant.getDirection(), env);
-        env.ajouterFleche(fleche);
-        fleche.deplacer();
+//        Fleche fleche = new Fleche(attaquant.getX(), attaquant.getY()/*attaquant.getDx(), attaquant.getDy()*/, attaquant.getDirection(), env);
+//        env.ajouterFleche(fleche);
+//        fleche.agit();
         System.out.println("Tire à l'arc touche et inflige " + getPointAttaque() + " dégâts.");
     }
 

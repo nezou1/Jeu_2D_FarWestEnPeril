@@ -126,24 +126,20 @@ public class Environnement {
 
         for (int i = 0; i < boulesDeFeu.size(); i++) {
             BouleDeFeu bdf = boulesDeFeu.get(i);
-            if (bdf.enTrainDeBouger()) {
-                bdf.deplacer();
-                if (tours - bdf.getTourDeCreation() >= 50) {
-                    bdf.disparait();
-                }
+            if (bdf.estEnVie()) {
+                bdf.agit();
             }else{
+                bdf.meurt();
                 boulesDeFeu.remove(bdf);
             }
         }
 
         for (int i = 0; i < fleches.size(); i++) {
             Fleche f = fleches.get(i);
-            if (f.enTrainDeBouger()) {
-                f.deplacer();
-                if (tours - f.getTourDeCreation() >= 15) {
-                    f.disparait();
-                }
+            if (f.estEnVie()) {
+                f.agit();
             }else{
+                f.meurt();
                 fleches.remove(f);
             }
         }
