@@ -28,7 +28,7 @@ public class BouleDeFeu extends Projectile {
 
     @Override
     public void agit() {
-        this.updatePos();
+        this.updateDir();
         seDeplace();
         if (aToucheLink()) {
             infligerDegats(link);
@@ -44,7 +44,7 @@ public class BouleDeFeu extends Projectile {
     }
 
     // met à jour la direction de la boule de feu
-    private void updatePos(){
+    private void updateDir(){
         int newDx = Integer.compare(link.getX(), getX()); // compare les coordonnées de la cible et de la boule de feu => val possibles : 1, 0, -1
         int newDy = Integer.compare(link.getY(), getY());// idem
         setDx(newDx);
