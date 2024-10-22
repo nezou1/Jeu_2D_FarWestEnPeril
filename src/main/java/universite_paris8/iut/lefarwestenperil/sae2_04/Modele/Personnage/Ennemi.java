@@ -246,6 +246,7 @@ public abstract class Ennemi extends Personnage {
         }
     }
 
+
     private boolean verifierMarchabilite(int x, int y) {
         if (peutTraverserObstacles) {
             return true;
