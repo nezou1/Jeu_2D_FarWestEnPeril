@@ -113,10 +113,10 @@ public abstract class Ennemi extends Personnage {
         int newY = getY() + directions[directionActuelle][1];
 
         // Calcule les cases correspondantes à la nouvelle position
-        int caseX1 = newX / 32;
-        int caseY1 = newY / 32;
-        int caseX2 = (newX + largeurImage - 1) / 32;
-        int caseY2 = (newY + hauteurImage - 1) / 32;
+        int caseX1 = newX ;
+        int caseY1 = newY ;
+        int caseX2 = (newX + largeurImage - 1) ;
+        int caseY2 = (newY + hauteurImage - 1) ;
 
         // Vérifie si la nouvelle position est marchable pour toute la zone occupée par l'image
         if (getTerrain().estMarchable(caseY1, caseX1) && getTerrain().estMarchable(caseY2, caseX2)) {
