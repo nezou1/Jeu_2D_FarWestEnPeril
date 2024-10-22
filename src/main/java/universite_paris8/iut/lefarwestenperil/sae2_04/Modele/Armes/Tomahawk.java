@@ -14,32 +14,16 @@ public class Tomahawk extends Arme {
 
     @Override
     public void attaquer(Personnage attaquant) {
-
-        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(),attaquant);
-
-
+        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(), attaquant);
     }
 
-    public void danslaDirectionEnnemis(List<Ennemi> cibles,Personnage p){
+    public void danslaDirectionEnnemis(List<Ennemi> cibles, Personnage p) {
         for (Personnage cible : cibles) {
             int cibleX = cible.getX();
             int cibleY = cible.getY();
-            boolean dansLaDirection = false;
+            boolean dansLaDirection;
 
-            switch (p.getDirection()) {
-                case 0:
-                    dansLaDirection = (cibleX > p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
-                    break;
-                case 1:
-                    dansLaDirection = (cibleY > p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
-                    break;
-                case 2:
-                    dansLaDirection = (cibleX < p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
-                    break;
-                case 3:
-                    dansLaDirection = (cibleY < p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
-                    break;
-            }
+            dansLaDirection = recevoirDirection(p.getDirection(), cibleX, cibleY, cible);
 
             if (dansLaDirection) {
                 cible.recevoirDegats(getPointAttaque());
@@ -48,6 +32,24 @@ public class Tomahawk extends Arme {
         }
     }
 
+    public boolean recevoirDirection(int direction, int cibleX, int cibleY, Personnage p) {
+        boolean dansLaDirection = true;
+        switch (direction) {
+            case 0:
+                dansLaDirection = (cibleX > p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
+                break;
+            case 1:
+                dansLaDirection = (cibleY > p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
+                break;
+            case 2:
+                dansLaDirection = (cibleX < p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
+                break;
+            case 3:
+                dansLaDirection = (cibleY < p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
+                break;
+        }
+        return dansLaDirection;
+    }
 
 
     public String toString() {

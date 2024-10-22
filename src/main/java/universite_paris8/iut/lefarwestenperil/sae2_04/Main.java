@@ -5,31 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-
-import javax.sound.sampled.*;
-
 public class Main extends Application {
     protected static Clip clipFond;
     private static Clip clipVictoire;
     private static Clip clipDefaite;
-
-
-    @Override
-    public void start(Stage stage) throws IOException {
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueMenu.fxml"));
-        ScrollPane scrollPane = new ScrollPane();
-        Scene scene = new Scene(fxmlLoader.load(),1025 , 800);
-        stage.setTitle("LeFar West en Péril");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public static void main(String[] args) {
         URL urlImageVaiL = Main.class.getResource("sonFond.wav");
@@ -37,6 +22,7 @@ public class Main extends Application {
         PlayMusicFond(s);
         launch();
     }
+
     public static void PlayMusicFond(String location) {
         AudioInputStream audioInputStream = null;
         try {
@@ -55,14 +41,14 @@ public class Main extends Application {
         }
     }
 
-
     public static void stopMusicFond() {
         if (clipFond != null && clipFond.isRunning()) {
             clipFond.stop();
             clipFond.close();
         }
     }
-    public static void PlayMusicVictoire(String location){
+
+    public static void PlayMusicVictoire(String location) {
         AudioInputStream audioInputStream = null;
         try {
             audioInputStream = AudioSystem.getAudioInputStream(new File(location));
@@ -86,6 +72,7 @@ public class Main extends Application {
         }
         clipVictoire.start();
     }
+
     public static void stopMusicVictoire() {
         if (clipVictoire != null && clipVictoire.isRunning()) {
             clipVictoire.stop();
@@ -93,7 +80,7 @@ public class Main extends Application {
         }
     }
 
-    public static void PlayMusicDefaite(String location){
+    public static void PlayMusicDefaite(String location) {
         AudioInputStream audioInputStream = null;
         try {
             audioInputStream = AudioSystem.getAudioInputStream(new File(location));
@@ -123,5 +110,17 @@ public class Main extends Application {
             clipDefaite.stop();
             clipDefaite.close();
         }
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueMenu.fxml"));
+        ScrollPane scrollPane = new ScrollPane();
+        Scene scene = new Scene(fxmlLoader.load(), 1025, 800);
+        stage.setTitle("LeFar West en Péril");
+        stage.setScene(scene);
+        stage.show();
     }
 }

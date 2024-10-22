@@ -6,17 +6,17 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import java.util.List;
 
 public class Gardien {
-    private int x;
-    private int y;
-    private String question;
-    private List<String> choix;
-    private String bonneReponse;
-    private String messageReussite;
-    private String messageEchec;
+    private final int x;
+    private final int y;
+    private final String question;
+    private final List<String> choix;
+    private final String bonneReponse;
+    private final String messageReussite;
+    private final String messageEchec;
+    private final int recompense;
+    private final Environnement env;
     private boolean repondu;
     private long dernierInterrogatoire;
-    private int recompense;
-    private Environnement env;
 
     public Gardien(int x, int y, String question, List<String> choix, String bonneReponse, String messageReussite, int recompense, Environnement env) {
         this.x = x;
@@ -79,11 +79,11 @@ public class Gardien {
     public void recompense(Link link) {
         switch (recompense) {
             case 0:
-                link.ramasserArme(new Marteau(0,0, env));
+                link.ramasserArme(new Marteau(0, 0, env));
                 break;
 
             case 1:
-                link.setPointVie(link.getPointVieMax()+4);
+                link.setPointVie(link.getPointVieMax() + 4);
                 break;
 
         }

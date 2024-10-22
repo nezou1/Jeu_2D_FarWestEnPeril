@@ -13,32 +13,25 @@ import java.util.List;
 public abstract class Personnage {
 
 
+    private static int compteurBrulure;
+    private final IntegerProperty x;
+    private final IntegerProperty y;
+    private final Terrain terrain;
     protected int tailleTuile = 32;
-
+    protected int direction;
     private int pointVie;
     private int pointAttaque;
     private int pointDefense;
     private int pointVieMax;
-
     private boolean brule;
-    private static int compteurBrulure;
-
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
-
-
-    private IntegerProperty x, y;
     private int vitesseDeplacement;
-    protected int direction;
-
-    private Terrain terrain;
     private Environnement env;
 
 
-
-
-    public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain,Environnement env) {
+    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, Environnement env) {
         this.pointVie = pointVie;
         this.pointVieMax = pointVie;
         this.pointAttaque = pointAttaque;
@@ -48,11 +41,11 @@ public abstract class Personnage {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.terrain = terrain;
-        this.vitesseDeplacement=4;
+        this.vitesseDeplacement = 4;
         this.indexArmeActuelle = 0;
         this.brule = false;
         this.env = env;
-        this.compteurBrulure = 0;
+        compteurBrulure = 0;
     }
 
     public Personnage(int x, int y, Terrain terrain) {
@@ -61,18 +54,17 @@ public abstract class Personnage {
         this.terrain = terrain;
     }
 
-    public boolean isBrule(){
+    public boolean isBrule() {
         return this.brule;
     }
 
 
-
-    public void brulure(){
-        if(compteurBrulure % 10 == 0){
-            this.setPointVie(getPointVie()-1);
-            if (compteurBrulure==30){
+    public void brulure() {
+        if (compteurBrulure % 10 == 0) {
+            this.setPointVie(getPointVie() - 1);
+            if (compteurBrulure == 30) {
                 compteurBrulure = 0;
-                brule= false;
+                brule = false;
             }
         }
         compteurBrulure++;
@@ -84,7 +76,8 @@ public abstract class Personnage {
             this.armeActuelle = arme;
         }
     }
-    public Arme getArme(){
+
+    public Arme getArme() {
         return armeActuelle;
     }
 
@@ -92,7 +85,7 @@ public abstract class Personnage {
         return pointVieMax;
     }
 
-    public void setPointVieMax(int pointVieMax){
+    public void setPointVieMax(int pointVieMax) {
         this.pointVieMax = pointVieMax;
     }
 
@@ -115,15 +108,13 @@ public abstract class Personnage {
     }
 
 
-
     public int getDirection() {
         return direction;
     }
 
     public void attaque(List<Ennemi> cibles) {
         if (armeActuelle != null) {
-            if (getArme() instanceof Bombe) {
-                Bombe bombe = (Bombe) getArme();
+            if (getArme() instanceof Bombe bombe) {
                 System.out.println("bombe");
                 if (bombe.estEnCours()) {
                     System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
@@ -136,15 +127,11 @@ public abstract class Personnage {
         }
     }
 
-    public void setPointVie(int pointVie) {
-        this.pointVie = pointVie;
-    }
-
     public boolean estVivant() {
         return this.pointVie > 0;
     }
 
-    public IntegerProperty vieProperty(){
+    public IntegerProperty vieProperty() {
         return new SimpleIntegerProperty(pointVie);
     }
 
@@ -154,6 +141,10 @@ public abstract class Personnage {
 
     public int getPointVie() {
         return pointVie;
+    }
+
+    public void setPointVie(int pointVie) {
+        this.pointVie = pointVie;
     }
 
     public int getPointAttaque() {
@@ -179,7 +170,6 @@ public abstract class Personnage {
     public IntegerProperty yProperty() {
         return y;
     }
-
 
 
     public final int getX() {
@@ -217,14 +207,19 @@ public abstract class Personnage {
     }
 
     public Arme getArmeActuelle() {
-        if(this.armes.size() == 1) {
-            this.armeActuelle = this.armes.get(armes.size()-1);
+        if (this.armes.size() == 1) {
+            this.armeActuelle = this.armes.get(armes.size() - 1);
         }
-        if (this.armes.size()>=2) {
-            armeActuelle = this.armes.get(armes.size()-1);
+        if (this.armes.size() >= 2) {
+            armeActuelle = this.armes.get(armes.size() - 1);
         }
         return armeActuelle;
     }
+
+    public void setArmeActuelle(Arme armeActuelle) {
+        this.armeActuelle = armeActuelle;
+    }
+
     public List<Arme> getArmes() {
         return this.armes;
     }
@@ -233,13 +228,6 @@ public abstract class Personnage {
         this.armes.add(arme);
         System.out.println(armes);
     }
-
-
-
-    public void setArmeActuelle(Arme armeActuelle) {
-        this.armeActuelle = armeActuelle;
-    }
-
 
     @Override
     public String toString() {

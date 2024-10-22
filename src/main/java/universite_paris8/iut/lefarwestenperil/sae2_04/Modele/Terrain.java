@@ -1,7 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class Terrain {
 
-    private int [][] tab;
+    private int[][] tab;
 
     public Terrain() {
         chargerTerrain();
@@ -27,15 +26,16 @@ public class Terrain {
                     ligneTab[i] = Integer.parseInt(valeurs[i].trim());
                 }
                 lignes.add(ligneTab);
-                ligne= reader.readLine();
+                ligne = reader.readLine();
             }
-            tab = lignes.toArray(new int[0][]); 
+            tab = lignes.toArray(new int[0][]);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(tab.length+"  "+ tab[0].length);
+        System.out.println(tab.length + "  " + tab[0].length);
     }
+
     public int[][] getTab() {
         return this.tab;
     }

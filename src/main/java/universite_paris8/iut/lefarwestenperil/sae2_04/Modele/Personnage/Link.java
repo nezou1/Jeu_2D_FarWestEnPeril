@@ -6,7 +6,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 public class Link extends Personnage {
 
     public Link(Terrain terrain, Environnement env) {
-        super(1600, 1500,16,2,1, terrain,env);
+        super(1600, 1500, 16, 2, 1, terrain, env);
     }
 
     public void deplacer(int dx, int dy) {

@@ -1,11 +1,11 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
 
@@ -15,9 +15,9 @@ import javax.sound.sampled.Clip;
 import java.net.URL;
 
 public class BouleDeFeuVue {
-    private Pane panneauDeJeu;
-    private Image imageBouleDeFeu;
-    private Image imageExplosion;
+    private final Pane panneauDeJeu;
+    private final Image imageBouleDeFeu;
+    private final Image imageExplosion;
     private Clip clipExplosion;
 
 

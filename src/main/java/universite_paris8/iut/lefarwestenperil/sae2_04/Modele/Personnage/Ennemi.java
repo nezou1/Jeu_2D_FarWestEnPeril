@@ -13,39 +13,40 @@ import java.util.List;
  * Un ennemi est un personnage qui peut se déplacer sur le terrain.
  */
 public abstract class Ennemi extends Personnage {
-    private int vitesse;
     public static int compteurId = 0;
-    private String id;
+    private final int tempsAttente;
+    private final int vitesse;
+    private final String id;
+    private final BarreDeVie barreDeVie;
+    private final int portee;
+    private final int porteeAttaque;
+    private final int largeurImage;
+    private final int hauteurImage;
+    private final BFS bfs;
+    private final Environnement environnement;
     private int tuileActuel;
-    private BarreDeVie barreDeVie;
     private int pixelsParcourus;
     private int directionActuelle;
-    private int portee;
-    private int porteeAttaque;
-    private int largeurImage;
-    private int hauteurImage;
-    private BFS bfs;
     private List<Point> chemin;
     private boolean peutTraverserObstacles;
-    private Environnement environnement;
     private int compteur;
-    private final int tempsAttente;
 
 
     /**
      * Constructeur pour initialiser un Ennemi avec les paramètres donnés.
-     * @param x la position x initiale
-     * @param y la position y initiale
-     * @param pointVie les points de vie de l'ennemi
+     *
+     * @param x            la position x initiale
+     * @param y            la position y initiale
+     * @param pointVie     les points de vie de l'ennemi
      * @param pointAttaque les points d'attaque de l'ennemi
      * @param pointDefense les points de défense de l'ennemi
-     * @param terrain le terrain sur lequel se déplace l'ennemi
-     * @param vitesse la vitesse de déplacement de l'ennemi
-     * * @param largeurImage la largeur de l'image de l'ennemi
-     * * @param hauteurImage la hauteur de l'image de l'ennemi
+     * @param terrain      le terrain sur lequel se déplace l'ennemi
+     * @param vitesse      la vitesse de déplacement de l'ennemi
+     *                     * @param largeurImage la largeur de l'image de l'ennemi
+     *                     * @param hauteurImage la hauteur de l'image de l'ennemi
      */
     public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
-        super(x, y, pointVie, pointAttaque, pointDefense, terrain,env);
+        super(x, y, pointVie, pointAttaque, pointDefense, terrain, env);
         this.vitesse = vitesse;
         this.id = "E" + compteurId;
         compteurId++;
@@ -63,24 +64,24 @@ public abstract class Ennemi extends Personnage {
         this.tempsAttente = tempsAttente;
     }
 
-    public Environnement getEnvironnement(){
+    public static int getCompteurId() {
+        return compteurId;
+    }
+
+    public Environnement getEnvironnement() {
         return environnement;
     }
 
-    public int getCompteur(){
+    public int getCompteur() {
         return compteur;
     }
 
-    public void setCompteur(int i){
+    public void setCompteur(int i) {
         this.compteur = i;
     }
 
     public int getVitesse() {
         return vitesse;
-    }
-
-    public static int getCompteurId() {
-        return compteurId;
     }
 
     public int getTuileActuel() {
@@ -142,6 +143,7 @@ public abstract class Ennemi extends Personnage {
 
     /**
      * Retourne l'identifiant unique de l'ennemi.
+     *
      * @return l'identifiant unique de l'ennemi
      */
     public String getId() {
@@ -150,6 +152,7 @@ public abstract class Ennemi extends Personnage {
 
     /**
      * Retourne la largeur de l'image de l'ennemi.
+     *
      * @return la largeur de l'image de l'ennemi
      */
     public int getLargeurImage() {
@@ -158,22 +161,22 @@ public abstract class Ennemi extends Personnage {
 
     /**
      * Retourne la hauteur de l'image de l'ennemi.
+     *
      * @return la hauteur de l'image de l'ennemi
      */
     public int getHauteurImage() {
         return hauteurImage;
     }
 
+    public boolean getPeutTraverserObstacles() {
+        return peutTraverserObstacles;
+    }
 
     public void setPeutTraverserObstacles(boolean peutTraverserObstacles) {
         this.peutTraverserObstacles = peutTraverserObstacles;
     }
 
-    public boolean getPeutTraverserObstacles() {
-        return peutTraverserObstacles;
-    }
-
-    public void parcoursBFS(){
+    public void parcoursBFS() {
         if (chemin.isEmpty()) {
             return;
         }
@@ -271,14 +274,14 @@ public abstract class Ennemi extends Personnage {
     }
 
     public boolean peutAttaquer(Link link) {
-        double distance = Math.sqrt(Math.pow(link.getX() - getX() , 2) + Math.pow(link.getY() - getY(), 2));
+        double distance = Math.sqrt(Math.pow(link.getX() - getX(), 2) + Math.pow(link.getY() - getY(), 2));
         return distance <= porteeAttaque;
     }
 
     public boolean detectionLink(Link link) {
-        double distance = Math.sqrt(Math.pow(link.getX() - getX() , 2) + Math.pow(link.getY() - getY(), 2));
-        if(distance <= portee) {
-            this.chemin = BFS.bfs(getTerrain().getTab(),new Point((getX()+8)/32, (getY()+10)/32), new Point(link.getX()/32, link.getY()/32));
+        double distance = Math.sqrt(Math.pow(link.getX() - getX(), 2) + Math.pow(link.getY() - getY(), 2));
+        if (distance <= portee) {
+            this.chemin = BFS.bfs(getTerrain().getTab(), new Point((getX() + 8) / 32, (getY() + 10) / 32), new Point(link.getX() / 32, link.getY() / 32));
             for (Point tuile : chemin) {
                 System.out.println(tuile);
             }

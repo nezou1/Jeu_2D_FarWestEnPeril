@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListCoeurVue {
-    private List<CoeurVue> coeurs;
-    private HBox vieBox;
+    private final List<CoeurVue> coeurs;
+    private final HBox vieBox;
 
     public ListCoeurVue(Link link, HBox vieBox) {
         this.vieBox = vieBox;

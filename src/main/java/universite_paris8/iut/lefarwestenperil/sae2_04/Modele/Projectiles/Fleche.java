@@ -3,14 +3,14 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 
 import java.util.List;
 
 public class Fleche extends Projectile {
+    private final int direction;
     private List<Ennemi> cibles;
-    private int direction;
     private Timeline timeline;
 
 
@@ -47,12 +47,12 @@ public class Fleche extends Projectile {
                 getEnv().getFleches().remove(this);
             }
 
-            System.out.println("Flèche se déplace à (" + x + ", " + y + ")");
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-    public boolean cibleEstProche(){
+
+    public boolean cibleEstProche() {
         if (cibles != null && cibles.size() > 0) {
 
 

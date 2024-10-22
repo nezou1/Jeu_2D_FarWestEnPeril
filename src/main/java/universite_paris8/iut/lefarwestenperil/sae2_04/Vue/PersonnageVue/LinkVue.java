@@ -1,37 +1,37 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
-import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.TireALArc;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
 public class LinkVue extends PersonnageVue {
-    private Image imageLinkDroite;
-    private Image imageLinkGauche;
-    private Image imageLinkHaut;
-    private Image imageLinkDroiteA;
-    private Image imageLinkGaucheA;
-    private Image imageLinkHautA;
-    private Image imageLinkDroiteM;
-    private Image imageLinkGaucheM;
-    private Image imageLinkHautM;
+    private final Image imageLinkDroite;
+    private final Image imageLinkGauche;
+    private final Image imageLinkHaut;
+    private final Image imageLinkDroiteA;
+    private final Image imageLinkGaucheA;
+    private final Image imageLinkHautA;
+    private final Image imageLinkDroiteM;
+    private final Image imageLinkGaucheM;
+    private final Image imageLinkHautM;
     private ImageView iv3;
 
     private String direction;
 
-    public LinkVue(Pane panneauDeJeu){
+    public LinkVue(Pane panneauDeJeu) {
         super(panneauDeJeu);
         URL urlImageGaucheA = Main.class.getResource("linkArcGauche.png");
         URL urlImageHautA = Main.class.getResource("linkDos.png");
@@ -61,6 +61,25 @@ public class LinkVue extends PersonnageVue {
         direction = "DROITE";
     }
 
+    // essayetu rep a la qquestion tu attaque le cactus
+//jfais comment pour lavoir okok
+    //et comment je fais pour casser les cactus
+    //
+    public static Image createMirrorImage(BufferedImage image) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        BufferedImage mirroredImage = new BufferedImage(width, height, image.getType());
+
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-width, 0);
+
+        Graphics2D g2d = mirroredImage.createGraphics();
+        g2d.drawImage(image, tx, null);
+        g2d.dispose();
+
+        return SwingFXUtils.toFXImage(mirroredImage, null);
+    }
+
     public void creerLink(Personnage personnage) {
         iv3 = new ImageView(imageLinkDroite);
         iv3.translateXProperty().bind(personnage.xProperty());
@@ -71,21 +90,21 @@ public class LinkVue extends PersonnageVue {
     public void updateImage(String direction, Arme arme) {
         switch (direction) {
             case "DROITE":
-                if (arme instanceof TireALArc){
+                if (arme instanceof TireALArc) {
                     iv3.setImage(imageLinkDroiteA);
                 } else {
-                    if(arme instanceof Marteau) {
+                    if (arme instanceof Marteau) {
                         iv3.setImage(imageLinkDroiteM);
-                    } else{
+                    } else {
                         iv3.setImage(imageLinkDroite);
                     }
                 }
                 this.direction = "DROITE";
                 break;
             case "GAUCHE":
-                if (arme instanceof TireALArc){
+                if (arme instanceof TireALArc) {
                     iv3.setImage(imageLinkGaucheA);
-                }else {
+                } else {
                     if (arme instanceof Marteau) {
                         iv3.setImage(imageLinkGaucheM);
                     } else {
@@ -95,10 +114,10 @@ public class LinkVue extends PersonnageVue {
                 this.direction = "GAUCHE";
                 break;
             case "HAUT":
-                if (arme instanceof TireALArc){
+                if (arme instanceof TireALArc) {
                     iv3.setImage(imageLinkHautA);
-                }else {
-                    if(arme instanceof Marteau){
+                } else {
+                    if (arme instanceof Marteau) {
                         iv3.setImage(imageLinkHautM);
                     } else {
                         iv3.setImage(imageLinkHaut);
@@ -106,7 +125,7 @@ public class LinkVue extends PersonnageVue {
                 }
                 break;
             case "BAS":
-                if (arme instanceof TireALArc){
+                if (arme instanceof TireALArc) {
                     if (this.direction.equals("GAUCHE")) {
                         iv3.setImage(imageLinkGaucheA);
                     } else {
@@ -132,24 +151,5 @@ public class LinkVue extends PersonnageVue {
                 }
                 break;
         }
-    }
-
-    // essayetu rep a la qquestion tu attaque le cactus
-//jfais comment pour lavoir okok
-    //et comment je fais pour casser les cactus
-    //
-    public static Image createMirrorImage(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        BufferedImage mirroredImage = new BufferedImage(width, height, image.getType());
-
-        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-        tx.translate(-width, 0);
-
-        Graphics2D g2d = mirroredImage.createGraphics();
-        g2d.drawImage(image, tx, null);
-        g2d.dispose();
-
-        return SwingFXUtils.toFXImage(mirroredImage, null);
     }
 }

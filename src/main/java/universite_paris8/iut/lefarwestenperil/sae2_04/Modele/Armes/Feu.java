@@ -1,15 +1,12 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
 
-import java.util.List;
-
 public class Feu extends Arme {
-    private Environnement env;
+    private final Environnement env;
 
     public Feu(Environnement env) {
         super(7, 0);

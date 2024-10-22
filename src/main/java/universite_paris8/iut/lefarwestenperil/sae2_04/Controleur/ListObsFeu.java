@@ -7,8 +7,8 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue.BouleDeFeuVue
 
 public class ListObsFeu implements ListChangeListener<BouleDeFeu> {
 
-    private Pane panneauDeJeu;
-    private BouleDeFeuVue bouleDeFeuVue;
+    private final Pane panneauDeJeu;
+    private final BouleDeFeuVue bouleDeFeuVue;
 
 
     public ListObsFeu(Pane PanneauJeu) {
@@ -18,6 +18,7 @@ public class ListObsFeu implements ListChangeListener<BouleDeFeu> {
 
     /**
      * Méthode appelée lorsqu'il y a des changements dans la liste de barres de vie.
+     *
      * @param change un objet Change décrivant les changements survenus
      */
     @Override

@@ -2,7 +2,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -20,23 +19,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue.BombeVue;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.MessageVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.TerrainVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Controleur implements Initializable {
     private Terrain terrain;
@@ -63,7 +64,6 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         env = new Environnement();
 
         tv = new TerrainVue(env.getTerrain(), tuile);
@@ -105,8 +105,8 @@ public class Controleur implements Initializable {
         panneauDeJeu.getTransforms().add(scaleTransform);
 
 
-        scaleTransform.setPivotX(env.getLink().getX()-200);
-        scaleTransform.setPivotY(env.getLink().getY()-200);
+        scaleTransform.setPivotX(env.getLink().getX() - 200);
+        scaleTransform.setPivotY(env.getLink().getY() - 200);
 
         coeurVue = new ListCoeurVue(env.getLink(), vieBox);
 
@@ -146,10 +146,10 @@ public class Controleur implements Initializable {
                 linkVue.updateImage("DROITE", env.getLink().getArme());
                 break;
             case I:
-                if(env.getLink().getArme() != null) {
+                if (env.getLink().getArme() != null) {
                     List<Ennemi> cibles = env.getEnnemisDansRayon(env.getLink().getX(), env.getLink().getY(), env.getLink().getArme().getRayon());
                     env.getLink().attaque(cibles);
-                    if( env.getLink().getArme() instanceof Marteau){
+                    if (env.getLink().getArme() instanceof Marteau) {
                         tv = new TerrainVue(env.getTerrain(), tuile);
                         tv.creerCarte();
                     }
@@ -164,11 +164,12 @@ public class Controleur implements Initializable {
                 System.out.println("Arme actuelle : " + env.getLink().getArme());
                 break;
             case L:
-                Arme armeActuelle =  env.getLink().getArme();
+                Arme armeActuelle = env.getLink().getArme();
                 env.getLink().setArmeActuelle(bombe);
                 List<Ennemi> bombCibles = env.getEnnemisDansRayon(env.getLink().getX(), env.getLink().getY(), env.getLink().getArme().getRayon());
                 env.getLink().attaque(bombCibles);
                 env.getLink().setArmeActuelle(armeActuelle);
+
                 break;
             default:
                 return;
@@ -182,12 +183,12 @@ public class Controleur implements Initializable {
     public void verifierRencontreGardien() {
         Gardien g = env.verifierRencontreLinkGardien();
         if (g != null) {
-                messageVue.afficherDialogueGardien(g, env.getLink());
+            messageVue.afficherDialogueGardien(g, env.getLink());
         }
     }
 
 
-    public void miseAJourZoom(){
+    public void miseAJourZoom() {
         double paneWidth = panneauDeJeu.getWidth();
         double paneHeight = panneauDeJeu.getHeight();
         double linkX = env.getLink().getX();
@@ -215,6 +216,7 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
+
     public void mettreAJourEtatJeu() {
         // Vérifier si la vie de Link est égale à 0
         if (env.getLink().getPointVie() == 0) {
@@ -230,6 +232,7 @@ public class Controleur implements Initializable {
             afficherEcranVictoire();
         }
     }
+
     private void afficherEcranGameOver() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueGameOver.fxml"));
@@ -314,7 +317,8 @@ public class Controleur implements Initializable {
         // Par exemple :
         gameLoop.play();
     }
-    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws  IOException{
+
+    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueMenu.fxml"));
         root = loader.load();
         // Controleur controleur = loader.getController();

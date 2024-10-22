@@ -1,14 +1,14 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -16,9 +16,9 @@ import javax.sound.sampled.Clip;
 import java.net.URL;
 
 public class BombeVue {
-    private Pane panneauDeJeu;
-    private Image imageBombe;
-    private Image imageExplosion;
+    private final Pane panneauDeJeu;
+    private final Image imageBombe;
+    private final Image imageExplosion;
     private ImageView ivBombe;
     private Clip clipExplosion;
 
@@ -42,43 +42,42 @@ public class BombeVue {
 
     public void creerBombe(Bombe bombe) {
         ivBombe = new ImageView(imageBombe);
-        ivBombe.setX(bombe.getX());
-        ivBombe.setY(bombe.getY());
+
         ivBombe.setId(bombe.getId());
         panneauDeJeu.getChildren().add(ivBombe);
 
-        Timeline animation = new Timeline(
-                new KeyFrame(Duration.millis(50), event -> {
+        new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
                     double newX = ivBombe.getX() + (bombe.getImpactX() - ivBombe.getX()) / 10;
                     double newY = ivBombe.getY() + (bombe.getImpactY() - ivBombe.getY()) / 10;
                     Platform.runLater(() -> {
                         ivBombe.setX(newX);
                         ivBombe.setY(newY);
                     });
-                })
-        );
-        animation.setCycleCount(10);
-        animation.play();
+                    Thread.sleep(50);
+                }
 
-        animation.setOnFinished(event -> {
-            Platform.runLater(() -> {
-                panneauDeJeu.getChildren().remove(ivBombe);
-                ivBombe = new ImageView(imageExplosion);
-                ivBombe.setX(bombe.getImpactX() - imageExplosion.getWidth() / 2);
-                ivBombe.setY(bombe.getImpactY() - imageExplosion.getHeight() / 2);
-                panneauDeJeu.getChildren().add(ivBombe);
-            });
+                Platform.runLater(() -> {
+                    panneauDeJeu.getChildren().remove(ivBombe);
+                    ivBombe = new ImageView(imageExplosion);
+                    ivBombe.setX(bombe.getImpactX() - imageExplosion.getWidth() / 2);
+                    ivBombe.setY(bombe.getImpactY() - imageExplosion.getHeight() / 2);
+                    panneauDeJeu.getChildren().add(ivBombe);
+                });
 
-            // Jouer le son de l'explosion
-            if (clipExplosion != null) {
-                clipExplosion.setFramePosition(0); // Rewind to the beginning
-                clipExplosion.start();
-            }
+                // Jouer le son de l'explosion
+                if (clipExplosion != null) {
+                    clipExplosion.setFramePosition(0); // Rewind to the beginning
+                    clipExplosion.start();
+                }
 
-            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                Thread.sleep(1000); // Delay for explosion display
+
                 Platform.runLater(() -> panneauDeJeu.getChildren().remove(ivBombe));
-            }));
-            delay.play();
-        });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

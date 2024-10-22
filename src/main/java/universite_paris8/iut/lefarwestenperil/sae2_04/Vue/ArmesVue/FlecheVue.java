@@ -12,9 +12,9 @@ import javax.sound.sampled.Clip;
 import java.net.URL;
 
 public class FlecheVue {
-    private Pane panneauDeJeu;
+    private final Pane panneauDeJeu;
+    private final Image imageFleche;
     private ImageView flecheImageView;
-    private Image imageFleche;
     private Clip clipFleche;
 
     public FlecheVue(Pane panneauDeJeu) {

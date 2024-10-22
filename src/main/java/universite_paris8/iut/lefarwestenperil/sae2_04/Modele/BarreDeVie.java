@@ -1,22 +1,26 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
-import javafx.beans.property.*;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
-public class BarreDeVie  {
+public class BarreDeVie {
 
-    private IntegerProperty x, y;
-    private DoubleProperty vieRestante;
+    private final IntegerProperty x;
+    private final IntegerProperty y;
+    private final DoubleProperty vieRestante;
+    private final Double vieMax;
+    private final String id;
     private Double vieActuelle;
-    private Double vieMax;
-    private String id;
 
-    public BarreDeVie(int vie, int vieMax, String id, int x, int y){
-        this.x = new SimpleIntegerProperty(x-5);
-        this.y = new SimpleIntegerProperty(y-5);
+    public BarreDeVie(int vie, int vieMax, String id, int x, int y) {
+        this.x = new SimpleIntegerProperty(x - 5);
+        this.y = new SimpleIntegerProperty(y - 5);
         this.vieActuelle = (double) vie;
-        this.vieMax = (double)vieMax;
+        this.vieMax = (double) vieMax;
         this.id = id;
-        this.vieRestante = new SimpleDoubleProperty(vie/vieMax);
+        this.vieRestante = new SimpleDoubleProperty(vie / vieMax);
     }
 
     public double getVieRestante() {
@@ -52,7 +56,7 @@ public class BarreDeVie  {
     }
 
     public final void setX(int x) {
-        this.xProperty().setValue(x-5);
+        this.xProperty().setValue(x - 5);
     }
 
 
@@ -61,7 +65,7 @@ public class BarreDeVie  {
     }
 
     public final void setY(int y) {
-        this.yProperty().setValue(y-13);
+        this.yProperty().setValue(y - 13);
     }
 
 

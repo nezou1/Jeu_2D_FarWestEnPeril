@@ -7,8 +7,8 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue.FlecheVue;
 
 public class ListObsFleche implements ListChangeListener<Fleche> {
 
-    private Pane panneauDeJeu;
-    private FlecheVue flecheVue;
+    private final Pane panneauDeJeu;
+    private final FlecheVue flecheVue;
 
 
     public ListObsFleche(Pane PanneauJeu) {
@@ -18,6 +18,7 @@ public class ListObsFleche implements ListChangeListener<Fleche> {
 
     /**
      * Méthode appelée lorsqu'il y a des changements dans la liste de barres de vie.
+     *
      * @param change un objet Change décrivant les changements survenus
      */
     @Override

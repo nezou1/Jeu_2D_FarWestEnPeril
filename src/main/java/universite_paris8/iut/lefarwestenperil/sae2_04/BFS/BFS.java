@@ -1,11 +1,13 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.BFS;
 
-import java.awt.Point;
+import java.awt.*;
+import java.util.List;
+import java.util.Queue;
 import java.util.*;
 
 public class BFS {
 
-    private static int[][] moves = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Définition des mouvements possibles (haut, bas, gauche, droite)
+    private static final int[][] moves = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // Définition des mouvements possibles (haut, bas, gauche, droite)
 
     //Recherche le chemin le plus court entre deux points dans une grille en utilisant l'algorithme BFS.
     public static List<Point> bfs(int[][] terrain, Point depart, Point arrivee) {
