@@ -1,5 +1,9 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +19,7 @@ public class Terrain {
     private final int tailleTuile = 32;
 
     private int [][] donneeTerrain;
+    private static final Logger LOGGER = LogManager.getLogger(Terrain.class);
 
     public Terrain() {
         chargerTerrain();
@@ -39,7 +44,7 @@ public class Terrain {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(donneeTerrain.length+"  "+ donneeTerrain[0].length);
+        //System.out.println(donneeTerrain.length+"  "+ donneeTerrain[0].length);
     }
 
     

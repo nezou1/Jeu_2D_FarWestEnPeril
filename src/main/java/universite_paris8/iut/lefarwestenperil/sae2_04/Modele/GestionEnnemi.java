@@ -55,6 +55,7 @@ public class GestionEnnemi{
         }
     }
 
+
     public ObservableList<Ennemi> getEnnemis() {
         return ennemis;
     }
@@ -80,6 +81,7 @@ public class GestionEnnemi{
         } while (!terrain.estMarchable(y , x ) || !terrain.estMarchable((y + hauteurImage - 1) , (x + largeurImage - 1) ));
         ennemi.setX(x);
         ennemi.setY(y);
+
 
     }
 

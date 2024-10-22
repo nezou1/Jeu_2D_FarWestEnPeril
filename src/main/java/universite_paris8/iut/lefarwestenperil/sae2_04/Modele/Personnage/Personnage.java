@@ -2,6 +2,9 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -27,6 +30,8 @@ public class Personnage {
     protected int direction;
     private static int compteurBrulure;
     private int pointVieMax;
+    private static final Logger LOGGER = LogManager.getLogger(Personnage.class);
+
 
 
     public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
@@ -60,6 +65,7 @@ public class Personnage {
     public void brulure(){
         if(compteurBrulure % 10 == 0){
             this.setPointVie(getPointVie()-1);
+            LOGGER.log( Level.INFO, " Aie, notre personnage s'est brulé :)" );
             if (compteurBrulure==30){
                 compteurBrulure = 0;
                 brule= false;
@@ -116,13 +122,15 @@ public class Personnage {
                 Bombe bombe = (Bombe) getArme();
                 System.out.println("bombe");
                 if (bombe.estEnCours()) {
-                    System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
+                    //System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
+                    LOGGER.log( Level.TRACE, "Une bombe est déjà en cours. Veuillez attendre l'explosion" );
                     return;
                 }
             }
             armeActuelle.attaquer(this, cibles);
         } else {
             System.out.println("Aucune arme pour l'attaque directionnelle.");
+            LOGGER.log( Level.INFO, " Aie, nous avons aucune arme pour l'attaque directionnelle." );
         }
     }
 
