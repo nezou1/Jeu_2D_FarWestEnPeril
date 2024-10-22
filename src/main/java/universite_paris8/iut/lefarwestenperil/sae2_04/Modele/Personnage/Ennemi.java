@@ -252,10 +252,10 @@ public abstract class Ennemi extends Personnage {
             return true;
         }
 
-        int caseX1 = x / 32;
-        int caseY1 = y / 32;
-        int caseX2 = (x + largeurImage - 1) / 32;
-        int caseY2 = (y + hauteurImage - 1) / 32;
+        int caseX1 = x ;
+        int caseY1 = y ;
+        int caseX2 = (x + largeurImage - 1) ;
+        int caseY2 = (y + hauteurImage - 1) ;
 
         return getTerrain().estMarchable(caseY1, caseX1) && getTerrain().estMarchable(caseY2, caseX2);
     }
