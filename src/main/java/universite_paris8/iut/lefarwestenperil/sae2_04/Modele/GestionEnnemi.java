@@ -106,14 +106,16 @@ public class GestionEnnemi{
         return ennemisDansRayon;
     }
 
-    public void miseAjour(){
+    public void miseAjour(Link link){
         for (int i = 0; i < ennemis.size(); i++) {
             Ennemi e = ennemis.get(i);
+            e.seDeplacer(link);
             e.getBarreDeVie().setX(e.getX());
             e.getBarreDeVie().setY(e.getY());
             e.getBarreDeVie().setVieActuelle(e.getPointVie());
             e.getBarreDeVie().miseAJourVieTotale();
             System.out.println(e.getBarreDeVie().getVieRestante());
+            System.out.println(e.estVivant() +" et " + e.getPointVie());
             if (!e.estVivant()) {
                 ennemis.remove(i);
                 i--;

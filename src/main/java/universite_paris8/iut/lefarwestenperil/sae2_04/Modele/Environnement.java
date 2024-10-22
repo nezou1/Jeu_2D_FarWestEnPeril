@@ -67,8 +67,8 @@ public class Environnement {
     }
 
     public void unTour() {
-        gestionEnnemi.deplacerEnnemis(link);
-        gestionEnnemi.miseAjour();
+        gestionEnnemi.miseAjour(link);
+        //gestionEnnemi.deplacerEnnemis(link);
         gestionProjectile.mettreAJourProjectiles(tours);
         if (link.isBrule()) {
             link.brulure();
