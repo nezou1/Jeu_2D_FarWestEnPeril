@@ -32,11 +32,21 @@ public class GestionEnnemi{
         int largeurMap = terrain.getLargeur();
         int hauteurMap = terrain.getHauteur();
 
-        int nombreCowboys = (int) (nombreEnnemis * 0.50);  // 50% de Cowboys
-        int nombreDragons = (int) (nombreEnnemis * 0.50);  // 50% de Dragons
+        int nombreCowboysHautGauche = (int) (nombreEnnemis * 0.25);
+        int nombreDragonsHautGauche = (int) (nombreEnnemis * 0.10);
 
-        ajouterEnnemisParType(rand, nombreCowboys, "Cowboy", 0, hauteurMap, 0, largeurMap);
-        ajouterEnnemisParType(rand, nombreDragons, "Dragon", 0, hauteurMap, 0, largeurMap);
+        int nombreCowboysHautDroit = (int) (nombreEnnemis * 0.15);
+        int nombreDragonsHautDroit = (int) (nombreEnnemis * 0.15);
+
+        int nombreCowboysBasDroit = (int) (nombreEnnemis * 0.10);
+        int nombreDragonsBasDroit = (int) (nombreEnnemis * 0.25);
+
+        ajouterEnnemisParType(rand, nombreCowboysHautGauche, "Cowboy", 0, hauteurMap, 0, largeurMap);
+        ajouterEnnemisParType(rand, nombreDragonsHautGauche, "Dragon", 0, hauteurMap, 0, largeurMap);
+        ajouterEnnemisParType(rand, nombreCowboysHautDroit, "Cowboy", 0, hauteurMap, 0, largeurMap);
+        ajouterEnnemisParType(rand, nombreDragonsHautDroit, "Dragon", 0, hauteurMap, 0, largeurMap);
+        ajouterEnnemisParType(rand, nombreCowboysBasDroit, "Cowboy", 0, hauteurMap, 0, largeurMap);
+        ajouterEnnemisParType(rand, nombreDragonsBasDroit, "Dragon", 0, hauteurMap, 0, largeurMap);
     }
 
     private void ajouterEnnemisParType(Random rand, int nombreEnnemis,String type, int minY, int maxY, int minX, int maxX) {
