@@ -4,13 +4,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Dragon;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Cowboy;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
 
 import java.util.*;
 
@@ -20,8 +19,7 @@ import java.util.*;
 public class Environnement {
     private ObservableList<Ennemi> ennemis;
     private ObservableList<BarreDeVie> barreDeVies;
-    private ObservableList<Fleche> fleches;
-    private ObservableList<BouleDeFeu> boulesDeFeu;
+    private final ObservableList<Projectile> projectiles = FXCollections.observableArrayList();
     private IntegerProperty nombreEnnemis;
     private Link link;
     private int tours;
@@ -32,8 +30,6 @@ public class Environnement {
     public Environnement(Terrain terrain, Link link) {
         this.ennemis = FXCollections.observableArrayList();
         this.barreDeVies = FXCollections.observableArrayList();
-        this.fleches = FXCollections.observableArrayList();
-        this.boulesDeFeu = FXCollections.observableArrayList();
         this.tours = 0;
         this.terrain = terrain;
         this.nombreEnnemis = new SimpleIntegerProperty(0);
@@ -43,6 +39,13 @@ public class Environnement {
 
     public Terrain getTerrain(){
         return terrain;
+    }
+
+    public int getHauteur(){
+        return terrain.getHauteur();
+    }
+    public int getLargeur(){
+        return terrain.getLargeur();
     }
 
     public void ajouterGardien(Gardien gardien) {
@@ -88,7 +91,7 @@ public class Environnement {
             do {
                 x = minX * 32 + rand.nextInt((maxX - minX) * 32);
                 y = minY * 32 + rand.nextInt((maxY - minY) * 32);
-            } while (!terrain.estMarchable(y / 32, x / 32) || !terrain.estMarchable((y + hauteurImage - 1) / 32, (x + largeurImage - 1) / 32));
+            } while (!terrain.estMarchable(x,y) || !terrain.estMarchable((y + hauteurImage - 1), (x + largeurImage - 1)));
 
             ennemi.setX(x);
             ennemi.setY(y);
@@ -99,14 +102,6 @@ public class Environnement {
 
     public void ajouterBarreDeVie(BarreDeVie b) {
         barreDeVies.add(b);
-    }
-
-    public void ajouterFleche(Fleche f) {
-        fleches.add(f);
-    }
-
-    public void ajouterBouleDeFeu(BouleDeFeu bdf) {
-        boulesDeFeu.add(bdf);
     }
 
 
@@ -124,23 +119,13 @@ public class Environnement {
             }
         }
 
-        for (int i = 0; i < boulesDeFeu.size(); i++) {
-            BouleDeFeu bdf = boulesDeFeu.get(i);
-            if (bdf.estEnVie()) {
-                bdf.agit();
+        for (int i = 0; i < projectiles.size(); i++) {
+            Projectile p = projectiles.get(i);
+            if (p.isActive()) {
+                p.agit();
             }else{
-                bdf.meurt();
-                boulesDeFeu.remove(bdf);
-            }
-        }
-
-        for (int i = 0; i < fleches.size(); i++) {
-            Fleche f = fleches.get(i);
-            if (f.estEnVie()) {
-                f.agit();
-            }else{
-                f.meurt();
-                fleches.remove(f);
+                p.desactivation();
+                removeProjectile(p);
             }
         }
 
@@ -151,20 +136,24 @@ public class Environnement {
         this.tours++;
     }
 
+    public boolean estMarchable(int x, int y) {
+        return terrain.estMarchable(x,y);
+    }
+
     public ObservableList<BarreDeVie> getBarreDeVies() {
         return barreDeVies;
     }
 
-    public ObservableList<Fleche> getFleches() {
-        return fleches;
+    public ObservableList<Projectile> getProjectiles() {
+        return projectiles;
     }
-    public void removeFleche(Fleche f) {
-        fleches.remove(f);
+    public void ajouterProjectile(Projectile p) {
+        projectiles.add(p);
+    }
+    public void removeProjectile(Projectile p) {
+        projectiles.remove(p);
     }
 
-    public ObservableList<BouleDeFeu> getBoulesDeFeu() {
-        return boulesDeFeu;
-    }
 
     public int getTours() {
         return tours;

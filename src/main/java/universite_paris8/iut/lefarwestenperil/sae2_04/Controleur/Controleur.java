@@ -2,7 +2,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +21,12 @@ import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue.BombeVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
 
@@ -36,7 +34,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Controleur implements Initializable {
     private Terrain terrain;
@@ -75,8 +72,8 @@ public class Controleur implements Initializable {
         tv.creerCarte();
         linkVue.creerLink(link);
 
-        BombeVue bombeVue = new BombeVue(panneauDeJeu);
-        bombe = new Bombe(panneauDeJeu, bombeVue);
+//        BombeVue bombeVue = new BombeVue(panneauDeJeu);
+//        bombe = new Bombe(panneauDeJeu, bombeVue);
 
         link.ramasserArme(new Tomahawk());
         link.ramasserArme(new TireALArc(env));
@@ -87,11 +84,8 @@ public class Controleur implements Initializable {
         ListChangeListener<BarreDeVie> listenB = new ListObsBarreDeVie(panneauDeJeu);
         env.getBarreDeVies().addListener(listenB);
 
-        ListChangeListener<Fleche> listenF = new ListObsFleche(panneauDeJeu);
-        env.getFleches().addListener(listenF);
-
-        ListChangeListener<BouleDeFeu> listenBF = new ListObsFeu(panneauDeJeu);
-        env.getBoulesDeFeu().addListener(listenBF);
+        ListChangeListener<Projectile> listenP = new ListObsProjectiles(panneauDeJeu);
+        env.getProjectiles().addListener(listenP);
 
         env.ajouterQuestionGardien();
 
@@ -167,7 +161,7 @@ public class Controleur implements Initializable {
                 break;
             case L:
                 Arme armeActuelle =  link.getArme();
-                link.setArmeActuelle(bombe);
+//                link.setArmeActuelle(bombe);
                 List<Ennemi> bombCibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
                 link.attaque(bombCibles);
                 link.setArmeActuelle(armeActuelle);

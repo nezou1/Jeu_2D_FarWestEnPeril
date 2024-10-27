@@ -48,8 +48,10 @@ public class Terrain {
         return tab[0].length;
     }
 
-    public boolean estMarchable(int y, int x) {
-        if (x >= 0 && x < getLargeur() && y >= 0 && y < getHauteur()) {
+    public boolean estMarchable(int x, int y) {
+        int newX = x / 32;
+        int newY = y / 32;
+        if (newX >= 0 && newX < getLargeur() && newY >= 0 && newY < getHauteur()) {
             return tab[y][x] == 0 || tab[y][x] == 12;
         }
         return false;

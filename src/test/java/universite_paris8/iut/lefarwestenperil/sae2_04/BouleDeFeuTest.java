@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
@@ -39,8 +39,8 @@ public class BouleDeFeuTest {
 
     @Test
     public void testExplosion() {
-        bouleDeFeu.meurt();
-        assertFalse(bouleDeFeu.estEnVie());
+        bouleDeFeu.desactivation();
+        assertFalse(bouleDeFeu.isActive());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class BouleDeFeuTest {
         link.setX(4);
         link.setY(4);
         bouleDeFeu.agit();
-        assertFalse(bouleDeFeu.estEnVie());
+        assertFalse(bouleDeFeu.isActive());
         assertTrue(link.getPointVie() < 1600); // assuming initial HP of Link is 1600
     }
 }

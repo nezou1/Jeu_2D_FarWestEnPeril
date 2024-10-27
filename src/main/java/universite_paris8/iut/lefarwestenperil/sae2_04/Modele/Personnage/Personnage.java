@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
@@ -11,22 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Personnage {
-    protected int tailleTuile = 32;
-    private int pointVie;
-    private int pointAttaque;
-    private int pointDefense;
-    private Environnement env;
+    private IntegerProperty x, y;
+    protected int direction;
     private int vitesseDeplacement;
+
+    private Environnement env;
+
+    private int pointVieMax;
+    private int pointVie;
+    private int pointDefense;
+
+    protected int tailleTuile = 32;
+    private int pointAttaque;
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
-    private IntegerProperty x, y;
 
     private Terrain terrain;
     private boolean brule;
-    protected int direction;
     private static int compteurBrulure;
-    private int pointVieMax;
 
 
     public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
@@ -112,14 +115,14 @@ public class Personnage {
 
     public void attaque(List<Ennemi> cibles) {
         if (armeActuelle != null) {
-            if (getArme() instanceof Bombe) {
-                Bombe bombe = (Bombe) getArme();
-                System.out.println("bombe");
-                if (bombe.estEnCours()) {
-                    System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
-                    return;
-                }
-            }
+//            if (getArme() instanceof Bombe) {
+//                Bombe bombe = (Bombe) getArme();
+//                System.out.println("bombe");
+//                if (bombe.estEnCours()) {
+//                    System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
+//                    return;
+//                }
+//            }
             armeActuelle.attaquer(this, cibles);
         } else {
             System.out.println("Aucune arme pour l'attaque directionnelle.");

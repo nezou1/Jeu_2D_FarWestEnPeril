@@ -3,7 +3,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class TireALArc extends Arme {
     @Override
     public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
 //        Fleche fleche = new Fleche(attaquant.getX(), attaquant.getY()/*attaquant.getDx(), attaquant.getDy()*/, attaquant.getDirection(), env);
-//        env.ajouterFleche(fleche);
+//        env.ajouterProjectile(fleche);
 //        fleche.agit();
         System.out.println("Tire à l'arc touche et inflige " + getPointAttaque() + " dégâts.");
     }
