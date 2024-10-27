@@ -1,8 +1,10 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
+package universite_paris8.iut.lefarwestenperil.sae2_04;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
 import java.util.Arrays;

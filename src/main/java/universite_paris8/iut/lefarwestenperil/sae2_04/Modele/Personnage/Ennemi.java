@@ -46,12 +46,12 @@ public abstract class Ennemi extends Personnage {
      * @param pointAttaque les points d'attaque de l'ennemi
      * @param pointDefense les points de défense de l'ennemi
      * @param terrain le terrain sur lequel se déplace l'ennemi
-     * @param vitesse la vitesse de déplacement de l'ennemi
+     * @param vitesseDeplacement la vitesse de déplacement de l'ennemi
      * * @param largeurImage la largeur de l'image de l'ennemi
      * * @param hauteurImage la hauteur de l'image de l'ennemi
      */
-    public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
-        super(x, y, pointVie, pointAttaque, pointDefense, terrain);
+    public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesseDeplacement, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
+        super(x, y, vitesseDeplacement, pointVie, pointAttaque, pointDefense, terrain);
         //this.vitesse = vitesse;
         this.id = "E" + compteurId;
         compteurId++;
@@ -110,40 +110,10 @@ public abstract class Ennemi extends Personnage {
      * Déplace l'ennemi en suivant un chemin en carré.
      * L'ennemi change de direction après avoir parcouru une distance de 32 pixels.
      */
-   /* public void deplacerEnCarre() {
-        // Tableau des directions de déplacement (droite, bas, gauche, haut)
-        int[][] directions = {{vitesse, 0}, {0, vitesse}, {-vitesse, 0}, {0, -vitesse}};
 
-        // Calcule la nouvelle position en fonction de la direction actuelle
-        int newX = getX() + directions[directionActuelle][0];
-        int newY = getY() + directions[directionActuelle][1];
-
-        // Calcule les cases correspondantes à la nouvelle position
-        int caseX1 = newX / 32;
-        int caseY1 = newY / 32;
-        int caseX2 = (newX + largeurImage - 1) / 32;
-        int caseY2 = (newY + hauteurImage - 1) /32;
-
-        // Vérifie si la nouvelle position est marchable pour toute la zone occupée par l'image
-        if (getTerrain().estMarchable(caseY1, caseX1) && getTerrain().estMarchable(caseY2, caseX2)) {
-            setX(newX);
-            setY(newY);
-            pixelsParcourus += vitesse;
-
-            // Change de direction après avoir parcouru 32 pixels
-            if (pixelsParcourus >= 32) {
-                directionActuelle = (directionActuelle + 1) % 4;
-                pixelsParcourus = 0;
-            }
-        } else {
-            // Change de direction si la position n'est pas marchable
-            directionActuelle = (directionActuelle + 1) % 4;
-            pixelsParcourus = 0;
-        }
-    }*/
     public void deplacerEnCarre() {
         // Tableau des directions de déplacement (droite, bas, gauche, haut)
-        int[][] directions = {{super.getVitesseDeplacement(), 0}, {0, super.getVitesseDeplacement()}, {-super.getVitesseDeplacement(), 0}, {0, -super.getVitesseDeplacement()}};
+        int[][] directions = {{super.getVitesse(), 0}, {0, super.getVitesse()}, {-super.getVitesse(), 0}, {0, -super.getVitesse()}};
 
         // Calcule la nouvelle position en fonction de la direction actuelle
         int newX = getX() + directions[directionActuelle][0];
@@ -159,7 +129,7 @@ public abstract class Ennemi extends Personnage {
         if (getTerrain().estMarchable(caseY1, caseX1) && getTerrain().estMarchable(caseY2, caseX2)) {
             setX(newX);
             setY(newY);
-            pixelsParcourus += super.getVitesseDeplacement();
+            pixelsParcourus += super.getVitesse();
 
             // Change de direction après avoir parcouru 32 pixels
             if (pixelsParcourus >= 32) {
@@ -224,16 +194,16 @@ public abstract class Ennemi extends Personnage {
 
         // Calcul du déplacement en X
         if (deltaX != 0) {
-            stepX = (deltaX > 0 ? super.getVitesseDeplacement() : -super.getVitesseDeplacement());
-            if (Math.abs(deltaX) < super.getVitesseDeplacement()) {
+            stepX = (deltaX > 0 ? super.getVitesse() : -super.getVitesse());
+            if (Math.abs(deltaX) < super.getVitesse()) {
                 stepX = deltaX;
             }
         }
 
         // Calcul du déplacement en Y
         if (deltaY != 0) {
-            stepY = (deltaY > 0 ? super.getVitesseDeplacement() : -super.getVitesseDeplacement());
-            if (Math.abs(deltaY) < super.getVitesseDeplacement()) {
+            stepY = (deltaY > 0 ? super.getVitesse() : -super.getVitesse());
+            if (Math.abs(deltaY) < super.getVitesse()) {
                 stepY = deltaY;
             }
         }
@@ -261,76 +231,18 @@ public abstract class Ennemi extends Personnage {
         // Vérifier si l'ennemi a atteint la prochaine tuile
         deltaX = prochaineTuile.x * 32 - getX();
         deltaY = prochaineTuile.y * 32 - getY();
-        if (Math.abs(deltaX) < super.getVitesseDeplacement() && Math.abs(deltaY) < super.getVitesseDeplacement()) {
+        if (Math.abs(deltaX) < super.getVitesse() && Math.abs(deltaY) < super.getVitesse()) {
             setX(prochaineTuile.x * 32);
             setY(prochaineTuile.y * 32);
             chemin.remove(chemin.size() - 1);
         }
     }
-   /* public void parcoursBFS(){
-        if (chemin.isEmpty()) {
-            return;
-        }
-
-        Point prochaineTuile = chemin.get(chemin.size() - 1);
-        int deltaX = prochaineTuile.x * 32 - getX();
-        int deltaY = prochaineTuile.y * 32 - getY();
-
-        int stepX = 0;
-        int stepY = 0;
-
-        // Calcul du déplacement en X
-        if (deltaX != 0) {
-            stepX = (deltaX > 0 ? vitesse : -vitesse);
-            if (Math.abs(deltaX) < vitesse) {
-                stepX = deltaX;
-            }
-        }
-
-        // Calcul du déplacement en Y
-        if (deltaY != 0) {
-            stepY = (deltaY > 0 ? vitesse : -vitesse);
-            if (Math.abs(deltaY) < vitesse) {
-                stepY = deltaY;
-            }
-        }
-
-        // Tentative de déplacement en diagonale
-        if (stepX != 0 && stepY != 0) {
-            if (verifierMarchabilite(getX() + stepX, getY() + stepY)) {
-                setX(getX() + stepX);
-                setY(getY() + stepY);
-            } else if (verifierMarchabilite(getX() + stepX, getY())) {
-                setX(getX() + stepX);
-            } else if (verifierMarchabilite(getX(), getY() + stepY)) {
-                setY(getY() + stepY);
-            }
-        } else if (stepX != 0) {
-            if (verifierMarchabilite(getX() + stepX, getY())) {
-                setX(getX() + stepX);
-            }
-        } else if (stepY != 0) {
-            if (verifierMarchabilite(getX(), getY() + stepY)) {
-                setY(getY() + stepY);
-            }
-
-
-        // Vérifier si l'ennemi a atteint la prochaine tuile
-        deltaX = prochaineTuile.x * 32 - getX();
-        deltaY = prochaineTuile.y * 32 - getY();
-        if (Math.abs(deltaX) < vitesse && Math.abs(deltaY) < vitesse) {
-            setX(prochaineTuile.x * 32);
-            setY(prochaineTuile.y * 32);
-            chemin.remove(chemin.size() - 1);
-        }
-    }
-*/
 
     public void seDeplacer(Link link) {
         if (detectionLink(link)) {
             parcoursBFS();
             if (getEnvironnement().getTours() - getCompteur() >= tempsAttente && linkACote()) {
-                getArme().attaquer(this, null);
+                getGestionArme().getArme().attaquer(this, null);
                 setCompteur(getEnvironnement().getTours());
             }
         } else {
@@ -338,18 +250,6 @@ public abstract class Ennemi extends Personnage {
         }
     }
 
-   /* private boolean verifierMarchabilite(int x, int y) {
-        if (peutTraverserObstacles) {
-            return true;
-        }
-
-        int caseX1 = x / 32;
-        int caseY1 = y / 32;
-        int caseX2 = (x + largeurImage - 1) / 32;
-        int caseY2 = (y + hauteurImage - 1) / 32;
-
-        return getTerrain().estMarchable(caseY1, caseX1) && getTerrain().estMarchable(caseY2, caseX2);
-    }*/
    private boolean verifierMarchabilite(int x, int y) {
        if (peutTraverserObstacles) {
            return true;

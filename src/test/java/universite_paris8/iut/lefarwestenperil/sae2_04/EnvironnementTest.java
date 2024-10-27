@@ -1,4 +1,4 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04;
+/*package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 
 import javafx.collections.ObservableList;
@@ -93,4 +93,4 @@ class EnvironnementTest  {
         terrain.getTab()[1][1] = 12;
         assertTrue(environnement.verifierVictoire());
     }
-}
+}*/

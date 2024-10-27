@@ -24,6 +24,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.GestionGardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
@@ -60,6 +61,7 @@ public class Controleur implements Initializable {
 
     private Bombe bombe;
     private TerrainVue tv;
+    private GestionGardien gestionGardien;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +69,7 @@ public class Controleur implements Initializable {
         link = new Link(terrain);
 
         env = new Environnement(terrain, link);
+        this.gestionGardien=new GestionGardien(env);
 
         tv = new TerrainVue(terrain, tuile);
         linkVue = new LinkVue(panneauDeJeu);
@@ -78,8 +81,8 @@ public class Controleur implements Initializable {
         BombeVue bombeVue = new BombeVue(panneauDeJeu);
         bombe = new Bombe(panneauDeJeu, bombeVue);
 
-        link.ramasserArme(new Tomahawk());
-        link.ramasserArme(new TireALArc(env));
+        link.ajouterArme(new Tomahawk());
+        link.ajouterArme(new TireALArc(env));
 
         ListChangeListener<Ennemi> listenE = new ListObsEnnemis(panneauDeJeu);
         env.getEnnemis().addListener(listenE);
@@ -93,7 +96,7 @@ public class Controleur implements Initializable {
         ListChangeListener<BouleDeFeu> listenBF = new ListObsFeu(panneauDeJeu);
         env.getBoulesDeFeu().addListener(listenBF);
 
-        env.ajouterQuestionGardien();
+        gestionGardien.ajouterQuestionGardien();
 
         this.env.ajouterEnnemisAleatoirement(50);
         panneauDeJeu.sceneProperty().addListener((obs, oldScene, newScene) -> {
@@ -150,8 +153,8 @@ public class Controleur implements Initializable {
             case I:
                 if(link.getArme() != null) {
                     List<Ennemi> cibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                    link.attaque(cibles);
-                    if( link.getArme() instanceof Marteau){
+                    link.getGestionCombat().attaque(cibles);
+                    if( link.getGestionArme().getArme() instanceof Marteau){
                         tv = new TerrainVue(terrain, tuile);
                         tv.creerCarte();
                     }
@@ -162,15 +165,15 @@ public class Controleur implements Initializable {
                 System.out.println("Arme actuelle : " + link.getArme());
                 break;
             case J:
-                link.changerArmePrecedente();
+                link.getGestionArme().changerArmePrecedente();
                 System.out.println("Arme actuelle : " + link.getArme());
                 break;
             case L:
                 Arme armeActuelle =  link.getArme();
-                link.setArmeActuelle(bombe);
+                link.getGestionArme().setArme(bombe);
                 List<Ennemi> bombCibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                link.attaque(bombCibles);
-                link.setArmeActuelle(armeActuelle);
+                link.getGestionCombat().attaque(bombCibles);
+                link.getGestionArme().setArme(armeActuelle);
                 break;
             default:
                 return;
@@ -181,13 +184,18 @@ public class Controleur implements Initializable {
     }
 
 
-    public void verifierRencontreGardien() {
+   /* public void verifierRencontreGardien() {
         Gardien g = env.verifierRencontreLinkGardien();
         if (g != null) {
                 messageVue.afficherDialogueGardien(g, link);
         }
-    }
-
+    }*/
+   public void verifierRencontreGardien() {
+       Gardien g= gestionGardien.verifierRencontreLinkGardien(link);
+       if (g != null) {
+           messageVue.afficherDialogueGardien(g, link);
+       }
+   }
 
     public void miseAJourZoom(){
         double paneWidth = panneauDeJeu.getWidth();

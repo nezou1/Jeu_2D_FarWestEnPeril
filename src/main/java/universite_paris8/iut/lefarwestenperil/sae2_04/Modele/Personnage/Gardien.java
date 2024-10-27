@@ -87,7 +87,7 @@ public class Gardien {
     public void recompense(Link link) {
         switch (recompense) {
             case 0:
-                link.ramasserArme(new Marteau(0,0, env));
+                link.ajouterArme(new Marteau(0,0, env));
                 break;
 
             case 1:
