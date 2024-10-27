@@ -3,8 +3,11 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Dragon;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
@@ -52,9 +55,9 @@ class EnvironnementTest  {
 
     @Test
     void testAjouterBouleDeFeu() {
-        BouleDeFeu bouleDeFeu = new BouleDeFeu(1,2,1,0,environnement);//va vers la droite
-        environnement.ajouterBouleDeFeu(bouleDeFeu);
-        ObservableList<BouleDeFeu> boulesDeFeu = environnement.getBoulesDeFeu();
+        BouleDeFeu bouleDeFeu = new BouleDeFeu(1,2, Direction.DROIT,environnement);//va vers la droite
+        environnement.ajouterProjectile(bouleDeFeu);
+        ObservableList<Projectile> boulesDeFeu = environnement.getProjectiles();
         assertEquals(1, boulesDeFeu.size());
         assertEquals(bouleDeFeu, boulesDeFeu.get(0));
     }

@@ -2,6 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
@@ -10,7 +11,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BouleDeFeuTest {
-    private Environnement env;
+
     private Link link;
     private BouleDeFeu bouleDeFeu;
 
@@ -18,8 +19,8 @@ public class BouleDeFeuTest {
     public void setUp() {
         Terrain terrain = new Terrain();
         link = new Link(terrain);
-        env = new Environnement(terrain, link);
-        bouleDeFeu = new BouleDeFeu(0, 0, 0,1, env);//va vers le bas
+        Environnement env = new Environnement(terrain, link);
+        bouleDeFeu = new BouleDeFeu(0, 0, Direction.BAS, env);//va vers le bas
     }
 
     @Test
@@ -52,10 +53,11 @@ public class BouleDeFeuTest {
 
     @Test
     public void testDeplacerEtExplosion() {
+        int initialPV = link.getPointVie();
         link.setX(4);
         link.setY(4);
         bouleDeFeu.agit();
         assertFalse(bouleDeFeu.isActive());
-        assertTrue(link.getPointVie() < 1600); // assuming initial HP of Link is 1600
+        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDefense(), link.getPointVie()); // assuming initial HP of Link is 16
     }
 }

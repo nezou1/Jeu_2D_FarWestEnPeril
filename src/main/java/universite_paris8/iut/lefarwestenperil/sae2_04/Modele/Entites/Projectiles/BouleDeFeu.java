@@ -41,7 +41,7 @@ public class BouleDeFeu extends Projectile {
         Link l = getEnv().getLink();
         this.updateDir();
         seDeplace();
-        if (distanceAvec(l.getX(), l.getY()) > getVitesse()) {
+        if (distanceAvec(l.getX(), l.getY()) < getVitesse()) {
             infligerDegats(l);
             desactivation();
         }
