@@ -123,7 +123,7 @@ public class Personnage {
 //                    return;
 //                }
 //            }
-            armeActuelle.attaquer(this, cibles);
+            armeActuelle.attaquer(this);
         } else {
             System.out.println("Aucune arme pour l'attaque directionnelle.");
         }

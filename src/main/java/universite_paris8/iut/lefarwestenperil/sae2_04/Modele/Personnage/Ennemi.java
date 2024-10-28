@@ -242,7 +242,7 @@ public abstract class Ennemi extends Personnage {
                 // jatt ? okkok c bonnnn  je continue ? vous avez compris c quand il attaque ? oui on a capté
                 //  je parle de lattaqu des ennemis en general la
                 //c'est bon j'ai capté
-                getArme().attaquer(this, null);
+                getArme().attaquer(this);
                 // du coup on va rentrer dans lattaque on commence par lequelle ? lasso et tomahawk
                 // c basique il verifie juste si link il est a la portée on fait boule de feu ?
                 // Aller go on fait boule de feu (Je comprend les profs qui parle tout seul maintenant)

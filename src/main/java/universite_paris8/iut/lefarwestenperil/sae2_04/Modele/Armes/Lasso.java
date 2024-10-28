@@ -1,16 +1,13 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
-import java.util.List;
-
 public class Lasso extends Arme {
 
-    private Environnement env;
-    private int range;
+    private final Environnement env;
+    private final int range;
 
     public Lasso(Environnement env) {
         super(4, 0);
@@ -20,7 +17,7 @@ public class Lasso extends Arme {
 
 
     @Override
-    public void attaquer(Personnage attaquant, List<Ennemi> cibles) {
+    public void attaquer(Personnage attaquant) {
         Link link = env.getLink();
         double distance = Math.sqrt(Math.pow(link.getX() - attaquant.getX(), 2) + Math.pow(link.getY() - attaquant.getY(), 2));
         if (distance <= range) {
@@ -34,4 +31,3 @@ public class Lasso extends Arme {
         return "Lasso : " + super.toString();
     }
 }
-
