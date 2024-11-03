@@ -7,13 +7,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Deplacement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personnage {
+public class Personnage extends Deplacement {
     protected int tailleTuile = 32;
     private int pointVie;
     private int pointAttaque;
@@ -23,8 +24,6 @@ public class Personnage {
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
-    private IntegerProperty x, y;
-
     private Terrain terrain;
     private boolean brule;
     protected int direction;
@@ -32,43 +31,37 @@ public class Personnage {
     private int pointVieMax;
     private static final Logger LOGGER = LogManager.getLogger(Personnage.class);
 
-
-
-    public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
+    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain) {
+        super(x, y);
         this.pointVie = pointVie;
         this.pointVieMax = pointVie;
         this.pointAttaque = pointAttaque;
         this.pointDefense = pointDefense;
         this.armes = new ArrayList<>();
         this.armeActuelle = null;
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
         this.terrain = terrain;
-        this.vitesseDeplacement=4;
+        this.vitesseDeplacement = 4;
         this.indexArmeActuelle = 0;
         this.brule = false;
         this.compteurBrulure = 0;
     }
 
     public Personnage(int x, int y, Terrain terrain) {
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
+        super(x, y);
         this.terrain = terrain;
     }
 
-    public boolean isBrule(){
+    public boolean isBrule() {
         return this.brule;
     }
 
-
-
-    public void brulure(){
-        if(compteurBrulure % 10 == 0){
-            this.setPointVie(getPointVie()-1);
-            LOGGER.log( Level.INFO, " Aie, notre personnage s'est brulé :)" );
-            if (compteurBrulure==30){
+    public void brulure() {
+        if (compteurBrulure % 10 == 0) {
+            this.setPointVie(getPointVie() - 1);
+            LOGGER.log(Level.INFO, "Aie, notre personnage s'est brulé :)");
+            if (compteurBrulure == 30) {
                 compteurBrulure = 0;
-                brule= false;
+                brule = false;
             }
         }
         compteurBrulure++;
@@ -80,7 +73,8 @@ public class Personnage {
             this.armeActuelle = arme;
         }
     }
-    public Arme getArme(){
+
+    public Arme getArme() {
         return armeActuelle;
     }
 
@@ -88,7 +82,7 @@ public class Personnage {
         return pointVieMax;
     }
 
-    public void setPointVieMax(int pointVieMax){
+    public void setPointVieMax(int pointVieMax) {
         this.pointVieMax = pointVieMax;
     }
 
@@ -97,7 +91,6 @@ public class Personnage {
             indexArmeActuelle = (indexArmeActuelle + 1) % armes.size();
             armeActuelle = armes.get(indexArmeActuelle);
         }
-        System.out.println("Armes: " + armes);
         System.out.println("Arme actuelle après changement suivant: " + getArmeActuelle());
     }
 
@@ -106,11 +99,8 @@ public class Personnage {
             indexArmeActuelle = (indexArmeActuelle - 1 + armes.size()) % armes.size();
             armeActuelle = armes.get(indexArmeActuelle);
         }
-        System.out.println("Armes: " + armes);
         System.out.println("Arme actuelle après changement précédent: " + armeActuelle);
     }
-
-
 
     public int getDirection() {
         return direction;
@@ -120,17 +110,14 @@ public class Personnage {
         if (armeActuelle != null) {
             if (getArme() instanceof Bombe) {
                 Bombe bombe = (Bombe) getArme();
-                System.out.println("bombe");
                 if (bombe.estEnCours()) {
-                    //System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
-                    LOGGER.log( Level.TRACE, "Une bombe est déjà en cours. Veuillez attendre l'explosion" );
+                    LOGGER.log(Level.TRACE, "Une bombe est déjà en cours. Veuillez attendre l'explosion");
                     return;
                 }
             }
             armeActuelle.attaquer(this, cibles);
         } else {
-            System.out.println("Aucune arme pour l'attaque directionnelle.");
-            LOGGER.log( Level.INFO, " Aie, nous avons aucune arme pour l'attaque directionnelle." );
+            LOGGER.log(Level.INFO, "Aucune arme pour l'attaque directionnelle.");
         }
     }
 
@@ -142,7 +129,7 @@ public class Personnage {
         return this.pointVie > 0;
     }
 
-    public IntegerProperty vieProperty(){
+    public IntegerProperty vieProperty() {
         return new SimpleIntegerProperty(pointVie);
     }
 
@@ -170,74 +157,32 @@ public class Personnage {
         return vitesseDeplacement;
     }
 
-    public IntegerProperty xProperty() {
-        return x;
-    }
-
-    public IntegerProperty yProperty() {
-        return y;
-    }
-
-
-
-    public final int getX() {
-        return this.xProperty().getValue();
-    }
-
-    public final void setX(int n) {
-        this.xProperty().setValue(n);
-    }
-
-    public final int getY() {
-        return this.yProperty().getValue();
-    }
-
-    public final void setY(int n) {
-        this.yProperty().setValue(n);
-    }
-
     public Terrain getTerrain() {
         return terrain;
     }
 
-
     public void recevoirDegats(int pointsDegats) {
         int degatReel = pointsDegats - this.pointDefense;
-        System.out.println("degat reel :" + degatReel);
         if (degatReel > 0) {
-            if (this.pointVie >= degatReel)
-                this.pointVie -= degatReel;
-            else {
-                this.pointVie = 0;
-            }
+            this.pointVie = Math.max(this.pointVie - degatReel, 0);
         }
-        System.out.println(pointVie);
     }
 
     public Arme getArmeActuelle() {
-        if(this.armes.size() == 1) {
-            this.armeActuelle = this.armes.get(armes.size()-1);
-        }
-        if (this.armes.size()>=2) {
-            armeActuelle = this.armes.get(armes.size()-1);
-        }
         return armeActuelle;
     }
+
     public List<Arme> getArmes() {
         return this.armes;
     }
 
     public void ramasserArme(Arme arme) {
         this.armes.add(arme);
-        System.out.println(armes);
     }
-
-
 
     public void setArmeActuelle(Arme armeActuelle) {
         this.armeActuelle = armeActuelle;
     }
-
 
     @Override
     public String toString() {
@@ -252,5 +197,20 @@ public class Personnage {
     public void setBrule() {
         this.brule = true;
     }
-}
 
+    public int getX() {
+        return super.xProperty().get();
+    }
+
+    public int getY() {
+        return super.yProperty().get();
+    }
+
+    public void setX(int x) {
+        super.xProperty().set(x);
+    }
+
+    public void setY(int y) {
+        super.yProperty().set(y);
+    }
+}
