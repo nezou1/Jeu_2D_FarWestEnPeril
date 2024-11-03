@@ -20,19 +20,17 @@ public class Personnage extends Deplacement {
     private int pointAttaque;
     private int pointDefense;
     private Environnement env;
-    private int vitesseDeplacement;
     private List<Arme> armes;
     private Arme armeActuelle;
     private int indexArmeActuelle;
     private Terrain terrain;
     private boolean brule;
-    protected int direction;
     private static int compteurBrulure;
     private int pointVieMax;
     private static final Logger LOGGER = LogManager.getLogger(Personnage.class);
 
-    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain) {
-        super(x, y);
+    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int direction) {
+        super(x, y, vitesse, direction); // Initialisation de x, y, vitesse, et direction via la superclasse
         this.pointVie = pointVie;
         this.pointVieMax = pointVie;
         this.pointAttaque = pointAttaque;
@@ -40,15 +38,8 @@ public class Personnage extends Deplacement {
         this.armes = new ArrayList<>();
         this.armeActuelle = null;
         this.terrain = terrain;
-        this.vitesseDeplacement = 4;
-        this.indexArmeActuelle = 0;
         this.brule = false;
         this.compteurBrulure = 0;
-    }
-
-    public Personnage(int x, int y, Terrain terrain) {
-        super(x, y);
-        this.terrain = terrain;
     }
 
     public boolean isBrule() {
@@ -91,7 +82,6 @@ public class Personnage extends Deplacement {
             indexArmeActuelle = (indexArmeActuelle + 1) % armes.size();
             armeActuelle = armes.get(indexArmeActuelle);
         }
-        System.out.println("Arme actuelle après changement suivant: " + getArmeActuelle());
     }
 
     public void changerArmePrecedente() {
@@ -99,17 +89,16 @@ public class Personnage extends Deplacement {
             indexArmeActuelle = (indexArmeActuelle - 1 + armes.size()) % armes.size();
             armeActuelle = armes.get(indexArmeActuelle);
         }
-        System.out.println("Arme actuelle après changement précédent: " + armeActuelle);
     }
 
     public int getDirection() {
-        return direction;
+        return super.getDirection();
     }
 
     public void attaque(List<Ennemi> cibles) {
         if (armeActuelle != null) {
-            if (getArme() instanceof Bombe) {
-                Bombe bombe = (Bombe) getArme();
+            if (armeActuelle instanceof Bombe) {
+                Bombe bombe = (Bombe) armeActuelle;
                 if (bombe.estEnCours()) {
                     LOGGER.log(Level.TRACE, "Une bombe est déjà en cours. Veuillez attendre l'explosion");
                     return;
@@ -154,7 +143,7 @@ public class Personnage extends Deplacement {
     }
 
     public int getVitesseDeplacement() {
-        return vitesseDeplacement;
+        return getVitesse();
     }
 
     public Terrain getTerrain() {
