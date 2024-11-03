@@ -62,46 +62,46 @@ public class TerrainVue {
 
 
 
-        for (int i = 0; i < terrain.getTab().length; i++) {
-            for (int j = 0; j < terrain.getTab()[i].length; j++) {
+        for (int i = 0; i < terrain.getDonneeTerrain().length; i++) {
+            for (int j = 0; j < terrain.getDonneeTerrain()[i].length; j++) {
 
-                if (terrain.getTab()[i][j] == 0) {
+                if (terrain.getDonneeTerrain()[i][j] == 0) {
                     ImageView iv1 = new ImageView(imageSol2);
                     this.tuile.getChildren().add(iv1);
-                } else if (terrain.getTab()[i][j] == 1) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 1) {
                     ImageView iv2 = new ImageView(imageSol);
                     this.tuile.getChildren().add(iv2);
-                } else if (terrain.getTab()[i][j] == 2) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 2) {
                     ImageView iv3 = new ImageView(imageSol3);
                     this.tuile.getChildren().add(iv3);
-                } else if (terrain.getTab()[i][j] == 3) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 3) {
                     ImageView iv4 = new ImageView(imageSol4);
                     this.tuile.getChildren().add(iv4);
-                } else if (terrain.getTab()[i][j] == 4) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 4) {
                     ImageView iv5 = new ImageView(imageSol5);
                     this.tuile.getChildren().add(iv5);
-                } else if (terrain.getTab()[i][j] == 5) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 5) {
                     ImageView iv6 = new ImageView(imageSol6);
                     this.tuile.getChildren().add(iv6);
-                } else if (terrain.getTab()[i][j] == 7) {
+                } else if (terrain.getDonneeTerrain()[i][j] == 7) {
                     ImageView iv7 = new ImageView(imageChateau);
                     this.tuile.getChildren().add(iv7);
-                } else  if (terrain.getTab()[i][j] == 8){
+                } else  if (terrain.getDonneeTerrain()[i][j] == 8){
                     ImageView iv8 = new ImageView(imageGardienA);
                     this.tuile.getChildren().add(iv8);
-                } else if (terrain.getTab()[i][j] == 9){
+                } else if (terrain.getDonneeTerrain()[i][j] == 9){
                     ImageView iv9 = new ImageView(imageGardienB);
                     this.tuile.getChildren().add(iv9);
-                }else if (terrain.getTab()[i][j] == 13){
+                }else if (terrain.getDonneeTerrain()[i][j] == 13){
                     ImageView iv10 = new ImageView(imageGardienC);
                     this.tuile.getChildren().add(iv10);
-                }else if (terrain.getTab()[i][j] == 10){
+                }else if (terrain.getDonneeTerrain()[i][j] == 10){
                     ImageView iv11 = new ImageView(imageBombeATerre);
                     this.tuile.getChildren().add(iv11);
-                }else if (terrain.getTab()[i][j] == 11){
+                }else if (terrain.getDonneeTerrain()[i][j] == 11){
                     ImageView iv12 = new ImageView(imageArcATerre);
                     this.tuile.getChildren().add(iv12);
-                }else if (terrain.getTab()[i][j] == 12){
+                }else if (terrain.getDonneeTerrain()[i][j] == 12){
                     ImageView iv13 = new ImageView(imagePapa);
                     this.tuile.getChildren().add(iv13);
                 }

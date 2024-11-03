@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%-5p] %C{1} %M [%L]: %msg%n" />
+        </Console>
+        <RollingRandomAccessFile name="file"
+                                 filePattern="/Users/nezhaelfayez/Desktop/IUT/S3/MSI">
+            <PatternLayout
+                    pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%-5p] %C{1} %M [%L]: %msg%n" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="5MB" />
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="console" level="ERROR" />
+        </Root>
+        <Logger name="universite_paris8.iut.lefarwestenperil.sae2_04" level="TRACE" additivity="true">
+            <AppenderRef ref="file" />
+        </Logger>
+    </Loggers>
+</Configuration>

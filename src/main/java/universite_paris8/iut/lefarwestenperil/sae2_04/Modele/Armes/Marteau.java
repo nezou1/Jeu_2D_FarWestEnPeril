@@ -41,8 +41,8 @@ public class Marteau extends Arme {
                 break;
         }
 
-        if (terrain.getTab()[y][x] == 3) {
-            terrain.getTab()[y][x] = 0;
+        if (terrain.getDonneeTerrain()[y][x] == 3) {
+            terrain.getDonneeTerrain()[y][x] = 0;
         }
     }
 

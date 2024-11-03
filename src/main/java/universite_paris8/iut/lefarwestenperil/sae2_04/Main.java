@@ -4,6 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
 import java.awt.*;
 import java.io.File;
@@ -17,12 +21,13 @@ public class Main extends Application {
     protected static Clip clipFond;
     private static Clip clipVictoire;
     private static Clip clipDefaite;
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
 
     @Override
     public void start(Stage stage) throws IOException {
 
-
+        LOGGER.log( Level.ERROR, "Une bombe est déjà en cours. Veuillez attendre l'explosion" );
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vueMenu.fxml"));
         ScrollPane scrollPane = new ScrollPane();
         Scene scene = new Scene(fxmlLoader.load(),1025 , 800);
