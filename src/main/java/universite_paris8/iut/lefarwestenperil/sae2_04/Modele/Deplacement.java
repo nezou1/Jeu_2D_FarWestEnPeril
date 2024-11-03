@@ -1,68 +1,40 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
- * La classe Deplacement gère les coordonnées et les déplacements des objets dans le jeu.
+ * La classe Deplacement gère uniquement les coordonnées et les déplacements basiques des objets dans le jeu
+ * en utilisant IntegerProperty pour une intégration facile avec JavaFX.
  */
 public class Deplacement {
-    private int x;
-    private int y;
-    private int tailleTuile;
+    private IntegerProperty x;
+    private IntegerProperty y;
 
-    public Deplacement(int x, int y, int tailleTuile) {
-        this.x = x;
-        this.y = y;
-        this.tailleTuile = tailleTuile;
+    // Constructeur initialisant les propriétés de position
+    public Deplacement(int x, int y) {
+        this.x = new SimpleIntegerProperty(x);
+        this.y = new SimpleIntegerProperty(y);
     }
 
-    public Deplacement(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void deplacerVers(int deltaX, int deltaY) {
-        // Déplace la position selon un delta (déplacement relatif)
-
-        this.x += deltaX;
-        this.y += deltaY;
-    }
-
-    public int[] getPosition() {
-        // Retourne la position actuelle sous forme de tableau [x, y]
-
-        return new int[]{x, y};
-    }
-
-    public boolean dansLesLimites(int largeur, int hauteur) {
-        // Vérifie si la position est dans les limites spécifiées
-
-        return x >= 0 && x < largeur && y >= 0 && y < hauteur;
-    }
-
-    public int getX() {
+    // Accesseurs pour les propriétés x et y (nécessaire pour JavaFX)
+    public IntegerProperty xProperty() {
         return x;
     }
 
-    public int getY() {
+    public IntegerProperty yProperty() {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    // Méthode pour mettre à jour la position directement
+    public void setPosition(int x, int y) {
+        this.x.set(x);
+        this.y.set(y);
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void deplacerEnTuiles(int deltaX, int deltaY) {
-        // Déplacement de la position en unités de tuiles
-
-        this.x += deltaX * tailleTuile;
-        this.y += deltaY * tailleTuile;
+    // Méthode pour déplacer en fonction d'un delta
+    public void deplacerVers(int deltaX, int deltaY) {
+        this.x.set(this.x.get() + deltaX);
+        this.y.set(this.y.get() + deltaY);
     }
 }
