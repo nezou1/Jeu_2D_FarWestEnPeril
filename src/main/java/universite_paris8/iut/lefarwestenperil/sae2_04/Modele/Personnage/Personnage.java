@@ -3,7 +3,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
@@ -114,13 +113,6 @@ public abstract class Personnage {
 
     public void attaque(List<Ennemi> cibles) {
         if (armeActuelle != null) {
-            if (getArme() instanceof Bombe bombe) {
-                System.out.println("bombe");
-                if (bombe.estEnCours()) {
-                    System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
-                    return;
-                }
-            }
             armeActuelle.attaquer(this);
         } else {
             System.out.println("Aucune arme pour l'attaque directionnelle.");

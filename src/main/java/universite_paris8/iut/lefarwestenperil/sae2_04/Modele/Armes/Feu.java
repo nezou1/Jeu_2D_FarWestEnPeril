@@ -5,17 +5,18 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
 
+
 public class Feu extends Arme {
+    private static final int DEGATS_FEU = 7;
     private final Environnement env;
 
     public Feu(Environnement env) {
-        super(7, 0);
+        super(DEGATS_FEU, 0);
         this.env = env;
     }
 
     @Override
     public void attaquer(Personnage attaquant) {
-        // la on prend link on crée une boule de feu et on la fait deplacer jusqua link mdrrr weee
         Link link = env.getLink();
         BouleDeFeu bouleDeFeu = new BouleDeFeu(attaquant.getX(), attaquant.getY(), link.getX(), link.getY(), getPointAttaque(), env);
         env.ajouterBouleDeFeu(bouleDeFeu);

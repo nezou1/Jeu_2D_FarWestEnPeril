@@ -5,6 +5,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
+
 public class Marteau extends Arme {
     private final Environnement env;
 
@@ -19,32 +20,23 @@ public class Marteau extends Arme {
         casserCactus(env.getLink().getTerrain(), link);
     }
 
-
-    public void casserCactus(Terrain terrain, Link link) {
+    private void casserCactus(Terrain terrain, Link link) {
         int x = (link.getX() + 11) / 32;
         int y = (link.getY() + 13) / 32;
 
         switch (link.getDirection()) {
-            case 0:
-                x++;
-                break;
-            case 1:
-                y++;
-                break;
-            case 2:
-                x--;
-                break;
-            case 3:
-                y--;
-                break;
+            case 0 -> x++;
+            case 1 -> y++;
+            case 2 -> x--;
+            case 3 -> y--;
         }
 
-        if (terrain.getTab()[y][x] == 3) {
+        if (terrain.isValidCoordinate(x, y) && terrain.getTab()[y][x] == 3) {
             terrain.getTab()[y][x] = 0;
         }
     }
 
-
+    @Override
     public String toString() {
         return "Marteau : " + super.toString();
     }

@@ -55,5 +55,14 @@ public class Terrain {
         }
         return false;
     }
+    /**
+     * Vérifie si les coordonnées (x, y) sont valides dans le tableau.
+     * @param x la coordonnée x à vérifier
+     * @param y la coordonnée y à vérifier
+     * @return true si les coordonnées sont valides, sinon false
+     */
+    public boolean isValidCoordinate(int x, int y) {
+        return x >= 0 && x < tab[0].length && y >= 0 && y < tab.length;
+    }
 
 }

@@ -1,14 +1,10 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ArmesVue;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

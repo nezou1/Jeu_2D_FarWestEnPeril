@@ -59,7 +59,6 @@ public class Controleur implements Initializable {
     private ListCoeurVue coeurVue;
     private MessageVue messageVue;
 
-    private Bombe bombe;
     private TerrainVue tv;
 
     @Override
@@ -73,8 +72,7 @@ public class Controleur implements Initializable {
         tv.creerCarte();
         linkVue.creerLink(env.getLink());
 
-        BombeVue bombeVue = new BombeVue(panneauDeJeu);
-        bombe = new Bombe(panneauDeJeu, bombeVue);
+
 
         env.getLink().ramasserArme(new Tomahawk());
         env.getLink().ramasserArme(new TireALArc(env));
@@ -165,7 +163,6 @@ public class Controleur implements Initializable {
                 break;
             case L:
                 Arme armeActuelle = env.getLink().getArme();
-                env.getLink().setArmeActuelle(bombe);
                 List<Ennemi> bombCibles = env.getEnnemisDansRayon(env.getLink().getX(), env.getLink().getY(), env.getLink().getArme().getRayon());
                 env.getLink().attaque(bombCibles);
                 env.getLink().setArmeActuelle(armeActuelle);

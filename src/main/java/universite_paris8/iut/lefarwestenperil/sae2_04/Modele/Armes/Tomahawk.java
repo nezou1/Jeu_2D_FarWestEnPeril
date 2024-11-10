@@ -5,53 +5,46 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personna
 
 import java.util.List;
 
+
 public class Tomahawk extends Arme {
+    private static final int DEGATS_TOMAHAWK = 7;
+    private static final int RAYON_TOMAHAWK = 50;
 
     public Tomahawk() {
-        super(7, 50);
+        super(DEGATS_TOMAHAWK, RAYON_TOMAHAWK);
     }
-
 
     @Override
     public void attaquer(Personnage attaquant) {
-        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(), attaquant);
+        dansLaDirectionEnnemis(attaquant.getEnv().getEnnemis(), attaquant);
     }
 
-    public void danslaDirectionEnnemis(List<Ennemi> cibles, Personnage p) {
+    private void dansLaDirectionEnnemis(List<Ennemi> cibles, Personnage p) {
         for (Personnage cible : cibles) {
-            int cibleX = cible.getX();
-            int cibleY = cible.getY();
-            boolean dansLaDirection;
-
-            dansLaDirection = recevoirDirection(p.getDirection(), cibleX, cibleY, cible);
-
-            if (dansLaDirection) {
+            if (estDansLaDirection(p, cible)) {
                 cible.recevoirDegats(getPointAttaque());
                 System.out.println("Tomahawk directionnel inflige " + getPointAttaque() + " dégâts à " + cible);
             }
         }
     }
 
-    public boolean recevoirDirection(int direction, int cibleX, int cibleY, Personnage p) {
-        boolean dansLaDirection = true;
-        switch (direction) {
-            case 0:
-                dansLaDirection = (cibleX > p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
-                break;
-            case 1:
-                dansLaDirection = (cibleY > p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
-                break;
-            case 2:
-                dansLaDirection = (cibleX < p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
-                break;
-            case 3:
-                dansLaDirection = (cibleY < p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
-                break;
-        }
-        return dansLaDirection;
+    private boolean estDansLaDirection(Personnage attaquant, Personnage cible) {
+        int direction = attaquant.getDirection();
+        int cibleX = cible.getX();
+        int cibleY = cible.getY();
+        int attaquantX = attaquant.getX();
+        int attaquantY = attaquant.getY();
+
+        return switch (direction) {
+            case 0 -> (cibleX > attaquantX) && (Math.abs(cibleY - attaquantY) < 32);
+            case 1 -> (cibleY > attaquantY) && (Math.abs(cibleX - attaquantX) < 32);
+            case 2 -> (cibleX < attaquantX) && (Math.abs(cibleY - attaquantY) < 32);
+            case 3 -> (cibleY < attaquantY) && (Math.abs(cibleX - attaquantX) < 32);
+            default -> false;
+        };
     }
 
-
+    @Override
     public String toString() {
         return "Tomahawk : " + super.toString();
     }

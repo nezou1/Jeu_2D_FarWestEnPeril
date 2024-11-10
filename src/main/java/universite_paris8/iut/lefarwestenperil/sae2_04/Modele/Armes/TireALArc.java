@@ -4,11 +4,14 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
 
+
 public class TireALArc extends Arme {
+    private static final int DEGATS_ARC = 6;
+    private static final int RAYON_ARC = 500;
     private final Environnement env;
 
     public TireALArc(Environnement env) {
-        super(6, 500);
+        super(DEGATS_ARC, RAYON_ARC);
         this.env = env;
     }
 

@@ -4,23 +4,22 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
-public class Lasso extends Arme {
 
+public class Lasso extends Arme {
+    private static final int DEGATS_LASSO = 4;
+    private static final int PORTEE_LASSO = 50;
     private final Environnement env;
-    private final int range;
 
     public Lasso(Environnement env) {
-        super(4, 0);
+        super(DEGATS_LASSO, 0);
         this.env = env;
-        this.range = 50;
     }
-
 
     @Override
     public void attaquer(Personnage attaquant) {
         Link link = env.getLink();
-        double distance = Math.sqrt(Math.pow(link.getX() - attaquant.getX(), 2) + Math.pow(link.getY() - attaquant.getY(), 2));
-        if (distance <= range) {
+        double distance = calculerDistance(attaquant.getX(), attaquant.getY(), link.getX(), link.getY());
+        if (distance <= PORTEE_LASSO) {
             link.recevoirDegats(getPointAttaque());
             System.out.println("Lasso attrape Link et inflige " + getPointAttaque() + " dégâts.");
         }
