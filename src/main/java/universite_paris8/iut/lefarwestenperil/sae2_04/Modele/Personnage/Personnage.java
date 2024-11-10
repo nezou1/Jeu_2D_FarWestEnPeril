@@ -6,7 +6,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Deplacement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
@@ -97,14 +98,14 @@ public class Personnage extends Deplacement {
 
     public void attaque(List<Ennemi> cibles) {
         if (armeActuelle != null) {
-            if (armeActuelle instanceof Bombe) {
+            /*if (armeActuelle instanceof Bombe) {
                 Bombe bombe = (Bombe) armeActuelle;
                 if (bombe.estEnCours()) {
                     LOGGER.log(Level.TRACE, "Une bombe est déjà en cours. Veuillez attendre l'explosion");
                     return;
                 }
-            }
-            armeActuelle.attaquer(this, cibles);
+            }*/
+            armeActuelle.attaquer(this);
         } else {
             LOGGER.log(Level.INFO, "Aucune arme pour l'attaque directionnelle.");
         }
@@ -152,12 +153,24 @@ public class Personnage extends Deplacement {
 
     public void recevoirDegats(int pointsDegats) {
         int degatReel = pointsDegats - this.pointDefense;
+        System.out.println("degat reel :" + degatReel);
         if (degatReel > 0) {
-            this.pointVie = Math.max(this.pointVie - degatReel, 0);
+            if (this.pointVie >= degatReel)
+                this.pointVie -= degatReel;
+            else {
+                this.pointVie = 0;
+            }
         }
+        System.out.println(pointVie);
     }
 
     public Arme getArmeActuelle() {
+        if(this.armes.size() == 1) {
+            this.armeActuelle = this.armes.get(armes.size()-1);
+        }
+        if (this.armes.size()>=2) {
+            armeActuelle = this.armes.get(armes.size()-1);
+        }
         return armeActuelle;
     }
 

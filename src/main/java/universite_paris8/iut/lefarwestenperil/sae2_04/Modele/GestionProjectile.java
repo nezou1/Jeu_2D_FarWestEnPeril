@@ -1,7 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Projectiles.Fleche;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,41 +10,28 @@ import javafx.collections.ObservableList;
  */
 
 public class GestionProjectile {
-    private ObservableList<Fleche> fleches;
-    private ObservableList<BouleDeFeu> boulesDeFeu;
+    private final ObservableList<Projectile> projectiles = FXCollections.observableArrayList();
 
-    public GestionProjectile() {
-        this.fleches = FXCollections.observableArrayList();
-        this.boulesDeFeu = FXCollections.observableArrayList();
+    public GestionProjectile() {}
+
+    public ObservableList<Projectile> getProjectiles() {
+        return projectiles;
     }
 
-    public void ajouterProjectile(Fleche fleche) {
-         fleches.add(fleche);
+    public void ajouterProjectile(Projectile fleche) {
+        projectiles.add(fleche);
     }
 
-    public void ajouterProjectile(BouleDeFeu bouleDeFeu) {
-        boulesDeFeu.add(bouleDeFeu);
-    }
-
-    public void mettreAJourProjectiles(int tours) {
-        for (BouleDeFeu bdf : boulesDeFeu) {
-            if (bdf.isActive()) {
-                bdf.deplacer();
-                if (tours - bdf.getCreationTour() >= 50) {
-                    bdf.explosion();
-                }
-            } else {
-                boulesDeFeu.remove(bdf);
+    public void mettreAJourProjectiles() {
+        for (int i = 0; i < projectiles.size(); i++) {
+            Projectile p = projectiles.get(i);
+            if (p.isActive()) {
+                p.agit();
+            }else{
+                p.desactivation();
+                projectiles.remove(p);
             }
         }
-    }
-
-    public ObservableList<Fleche> getFleches() {
-        return fleches;
-    }
-
-    public ObservableList<BouleDeFeu> getBoulesDeFeu() {
-        return boulesDeFeu;
     }
 }
 

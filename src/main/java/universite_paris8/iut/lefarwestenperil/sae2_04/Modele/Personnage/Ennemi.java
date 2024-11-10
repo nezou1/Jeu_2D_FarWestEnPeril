@@ -30,8 +30,18 @@ public abstract class Ennemi extends Personnage {
     private int compteur;
     private final int tempsAttente;
 
+
     /**
      * Constructeur pour initialiser un Ennemi avec les paramètres donnés.
+     * @param x la position x initiale
+     * @param y la position y initiale
+     * @param pointVie les points de vie de l'ennemi
+     * @param pointAttaque les points d'attaque de l'ennemi
+     * @param pointDefense les points de défense de l'ennemi
+     * @param terrain le terrain sur lequel se déplace l'ennemi
+     * @param vitesse la vitesse de déplacement de l'ennemi
+     * * @param largeurImage la largeur de l'image de l'ennemi
+     * * @param hauteurImage la hauteur de l'image de l'ennemi
      */
     public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
         super(x, y, pointVie, pointAttaque, pointDefense, terrain, vitesse, 0); // Initialise avec vitesse et direction via la superclasse
@@ -121,17 +131,30 @@ public abstract class Ennemi extends Personnage {
         return chemin;
     }
 
+    /**
+     * Retourne l'identifiant unique de l'ennemi.
+     * @return l'identifiant unique de l'ennemi
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Retourne la largeur de l'image de l'ennemi.
+     * @return la largeur de l'image de l'ennemi
+     */
     public int getLargeurImage() {
         return largeurImage;
     }
 
+    /**
+     * Retourne la hauteur de l'image de l'ennemi.
+     * @return la hauteur de l'image de l'ennemi
+     */
     public int getHauteurImage() {
         return hauteurImage;
     }
+
 
     public void setPeutTraverserObstacles(boolean peutTraverserObstacles) {
         this.peutTraverserObstacles = peutTraverserObstacles;
@@ -156,6 +179,7 @@ public abstract class Ennemi extends Personnage {
         int stepX = 0;
         int stepY = 0;
 
+        // Calcul du déplacement en X
         if (deltaX != 0) {
             stepX = (deltaX > 0 ? getVitesse() : -getVitesse());
             if (Math.abs(deltaX) < getVitesse()) {
@@ -163,6 +187,7 @@ public abstract class Ennemi extends Personnage {
             }
         }
 
+        // Calcul du déplacement en Y
         if (deltaY != 0) {
             stepY = (deltaY > 0 ? getVitesse() : -getVitesse());
             if (Math.abs(deltaY) < getVitesse()) {
@@ -198,7 +223,7 @@ public abstract class Ennemi extends Personnage {
         if (detectionLink(link)) {
             parcoursBFS();
             if (getEnvironnement().getTours() - getCompteur() >= tempsAttente && linkACote()) {
-                getArme().attaquer(this, null);
+                getArme().attaquer(this);
                 setCompteur(getEnvironnement().getTours());
             }
         } else {
