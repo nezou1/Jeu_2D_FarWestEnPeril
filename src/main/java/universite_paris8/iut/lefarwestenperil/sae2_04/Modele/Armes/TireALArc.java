@@ -1,7 +1,6 @@
 
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Fleche;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 

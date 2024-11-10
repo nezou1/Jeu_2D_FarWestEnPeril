@@ -49,7 +49,7 @@ public abstract class Ennemi extends Personnage {
         this.vitesse = vitesse;
         this.id = "E" + compteurId;
         compteurId++;
-        this.barreDeVie = new BarreDeVie(pointVie, pointVie, getId(), getX(), getY());
+        this.barreDeVie = new BarreDeVie(getX(), getY(),pointVie);
         this.largeurImage = largeurImage;
         this.hauteurImage = hauteurImage;
         this.pixelsParcourus = 0;
@@ -287,7 +287,7 @@ public abstract class Ennemi extends Personnage {
     }
 
     public boolean linkACote() {
-        Link link = environnement.getLink();
+        Link link = Environnement.getLink();
         double distance = Math.sqrt(Math.pow(link.getX() - getX(), 2) + Math.pow(link.getY() - getY(), 2));
         return distance <= 100;
     }

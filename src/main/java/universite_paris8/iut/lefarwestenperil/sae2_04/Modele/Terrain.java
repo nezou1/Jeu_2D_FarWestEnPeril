@@ -1,7 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,16 +33,15 @@ public class Terrain {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(tab.length+"  "+ tab[0].length);
+//        System.out.println(tab.length+"  "+ tab[0].length);
     }
+
     public int[][] getTab() {
         return this.tab;
     }
-
     public int getHauteur() {
         return tab.length;
     }
-
     public int getLargeur() {
         return tab[0].length;
     }

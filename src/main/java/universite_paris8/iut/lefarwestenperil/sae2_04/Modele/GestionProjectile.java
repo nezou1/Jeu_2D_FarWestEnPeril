@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 
 /**
  * Classe GestionProjectiles:

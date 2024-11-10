@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
@@ -15,25 +15,25 @@ import java.util.*;
  */
 public class Environnement {
 //    private final ObservableList<Ennemi> ennemis = FXCollections.observableArrayList();
-    private final GestionEnnemi gestionEnnemi;
-    private final GestionProjectile gestionProjectile;
+    private static GestionEnnemi gestionEnnemi;
+    private static GestionProjectile gestionProjectile;
     private final ObservableList<BarreDeVie> barreDeVies = FXCollections.observableArrayList();
     private final ObservableList<Gardien> gardiens = FXCollections.observableArrayList();
-    private final Link link;
+    private static Link link;
 
-    private final Terrain terrain;
+    private static Terrain terrain;
     private int tours;
 
 
     public Environnement(Terrain terrain, Link link) {
-        gestionEnnemi = new GestionEnnemi(this);
+//        gestionEnnemi = new GestionEnnemi(this);
         gestionProjectile = new GestionProjectile();
-        this.terrain = terrain;
-        this.link = link;
+        Environnement.terrain = terrain;
+        Environnement.link = link;
         this.tours = 0;
     }
 
-    public Terrain getTerrain(){
+    public static Terrain getTerrain(){
         return terrain;
     }
 
@@ -44,17 +44,17 @@ public class Environnement {
         return terrain.getLargeur();
     }
 
-    public ObservableList<Ennemi> getEnnemis() {
-        return gestionEnnemi.getEnnemis();
-    }
-    public void ajouterEnnemisAleatoirement(int nbEnnemi){
+//    public static ObservableList<Ennemi> getEnnemis() {
+//        return gestionEnnemi.getEnnemis();
+//    }
+    public static void ajouterEnnemisAleatoirement(int nbEnnemi){
         gestionEnnemi.ajouterEnnemisAleatoirement(nbEnnemi);
     }
 
-    public ObservableList<Projectile> getProjectiles(){
+    public static ObservableList<Projectile> getProjectiles(){
         return gestionProjectile.getProjectiles();
     }
-    public void ajouterProjectile(Projectile projectile){
+    public static void ajouterProjectile(Projectile projectile){
         gestionProjectile.ajouterProjectile(projectile);
     }
 
@@ -64,9 +64,9 @@ public class Environnement {
     public void ajouterGardien(Gardien gardien) {
         gardiens.add(gardien);
     }
-    public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {
-        return gestionEnnemi.getEnnemisDansRayon(x,y,rayon);
-    }
+//    public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {
+//        return gestionEnnemi.getEnnemisDansRayon(x,y,rayon);
+//    }
 
     public ObservableList<BarreDeVie> getBarreDeVies() {
         return barreDeVies;
@@ -79,14 +79,14 @@ public class Environnement {
         return tours;
     }
 
-    public Link getLink() {
+    public static Link getLink() {
         return link;
     }
 
 
 
     public void unTour() {
-        gestionEnnemi.deplacerEnnemis(link);
+//        gestionEnnemi.deplacerEnnemis(link);
         gestionEnnemi.miseAjour();
         gestionProjectile.mettreAJourProjectiles();
 
@@ -96,7 +96,7 @@ public class Environnement {
         this.tours++;
     }
 
-    public boolean estMarchable(int x, int y) {
+    public static boolean estMarchable(int x, int y) {
         return terrain.estMarchable(x,y);
     }
 
@@ -125,9 +125,9 @@ public class Environnement {
 
 
     public boolean verifierVictoire() {
-            int x = link.getX();
-            int y = link.getY();
-            return getTerrain().getTab()[y/32][x/32] == 12 ;
+            int x = link.getX()/32;
+            int y = link.getY()/32;
+            return getTerrain().getTab()[y][x] == 12 ;
         }
 }
 

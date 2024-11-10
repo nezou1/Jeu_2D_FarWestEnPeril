@@ -3,7 +3,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
@@ -27,7 +26,7 @@ public class Personnage {
     private Arme armeActuelle;
     private int indexArmeActuelle;
 
-    private Terrain terrain;
+    private final Terrain terrain;
     private boolean brule;
     private static int compteurBrulure;
 

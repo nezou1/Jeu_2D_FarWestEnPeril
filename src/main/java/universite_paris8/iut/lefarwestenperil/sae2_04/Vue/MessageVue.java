@@ -4,8 +4,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Vue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
 
 public class MessageVue {
 
@@ -19,7 +19,7 @@ public class MessageVue {
         alert.showAndWait();
     }
 
-    public void afficherDialogueGardien(Gardien gardien, Link link) {
+    public void afficherDialogueGardien(Gardien2 gardien, Link2 link) {
         long tempsActuel = System.currentTimeMillis();
         long tempsEcouleDepuisDernierInterrogatoire = tempsActuel - gardien.getDernierInterrogatoire();
 

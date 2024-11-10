@@ -2,25 +2,23 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BouleDeFeuTest {
 
-    private Link link;
+    private Link2 link;
     private BouleDeFeu bouleDeFeu;
 
     @BeforeEach
     public void setUp() {
-        Terrain terrain = new Terrain();
-        link = new Link(terrain);
-        Environnement env = new Environnement(terrain, link);
-        bouleDeFeu = new BouleDeFeu(0, 0, Direction.BAS, env);//va vers le bas
+        Environnement2 env = new Environnement2();
+        link = Environnement2.getLink2();
+        bouleDeFeu = new BouleDeFeu(20, 20, Direction.BAS, env);//va vers le bas
     }
 
     @Test
@@ -48,16 +46,16 @@ public class BouleDeFeuTest {
     public void testInfligerDegats() {
         int initialPV = link.getPointVie();
         bouleDeFeu.infligerDegats(link);
-        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDefense(), link.getPointVie());
+        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDef(), link.getPointVie());
     }
 
     @Test
     public void testDeplacerEtExplosion() {
         int initialPV = link.getPointVie();
-        link.setX(4);
-        link.setY(4);
+        link.setX(20);
+        link.setY(20);
         bouleDeFeu.agit();
         assertFalse(bouleDeFeu.isActive());
-        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDefense(), link.getPointVie()); // assuming initial HP of Link is 16
+        assertEquals(initialPV - bouleDeFeu.getDegats() + link.getPointDef(), link.getPointVie()); // assuming initial HP of Link is 16
     }
 }
