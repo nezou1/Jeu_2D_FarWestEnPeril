@@ -35,7 +35,7 @@ public class BombeVue {
             e.printStackTrace();
         }
     }
-
+/*
     public void creerBombe(Bombe bombe) {
         ivBombe = new ImageView(imageBombe);
 
@@ -58,7 +58,7 @@ public class BombeVue {
                     panneauDeJeu.getChildren().remove(ivBombe);
                     ivBombe = new ImageView(imageExplosion);
                     ivBombe.setX(bombe.getImpactX() - imageExplosion.getWidth() / 2);
-                    ivBombe.setY(bombe.getImpactY() - imageExplosion.getHeight() / 2);
+                   ivBombe.setY(bombe.getImpactY() - imageExplosion.getHeight() / 2);
                     panneauDeJeu.getChildren().add(ivBombe);
                 });
 
@@ -76,4 +76,6 @@ public class BombeVue {
             }
         }).start();
     }
+
+ */
 }
