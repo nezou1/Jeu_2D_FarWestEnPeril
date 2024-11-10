@@ -2,6 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.BFS.BFS;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
@@ -44,7 +45,7 @@ public abstract class Ennemi extends Personnage {
      * * @param hauteurImage la hauteur de l'image de l'ennemi
      */
     public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
-        super(x, y, pointVie, pointAttaque, pointDefense, terrain, vitesse, 0); // Initialise avec vitesse et direction via la superclasse
+        super(x, y, pointVie, pointAttaque, pointDefense, terrain, vitesse, Direction.NULL); // Initialise avec vitesse et direction via la superclasse
         this.id = "E" + compteurId++;
         this.barreDeVie = new BarreDeVie(pointVie, pointVie, getId(), getX(), getY());
         this.largeurImage = largeurImage;

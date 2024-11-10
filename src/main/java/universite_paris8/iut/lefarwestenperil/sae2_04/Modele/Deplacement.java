@@ -2,6 +2,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.DirectionalLight;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 
 /**
  * La classe Deplacement gère uniquement les coordonnées et les déplacements basiques des objets dans le jeu
@@ -11,10 +13,10 @@ public class Deplacement {
     private IntegerProperty x;
     private IntegerProperty y;
     private int vitesse;     // La vitesse de déplacement de l'objet
-    private int direction;
+    private Direction direction;
 
     // Constructeur initialisant les propriétés de position
-    public Deplacement(int x, int y, int vitesse, int direction) {
+    public Deplacement(int x, int y, int vitesse, Direction direction) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.vitesse = vitesse;
@@ -51,11 +53,11 @@ public class Deplacement {
     }
 
     // Gestion de la direction
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 }

@@ -26,16 +26,16 @@ public class Marteau extends Arme {
         int y = (link.getY() + 13) / 32;
 
         switch (link.getDirection()) {
-            case 0:
+            case DROIT:
                 x++;
                 break;
-            case 1:
+            case BAS:
                 y++;
                 break;
-            case 2:
+            case GAUCHE:
                 x--;
                 break;
-            case 3:
+            case HAUT:
                 y--;
                 break;
         }

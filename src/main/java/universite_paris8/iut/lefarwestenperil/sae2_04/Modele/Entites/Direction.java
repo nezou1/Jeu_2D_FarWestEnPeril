@@ -20,6 +20,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites;
  * </ul>
  */
 public enum Direction {
+    NULL(0,0),
     HAUT(0,-1), BAS(0,1), GAUCHE(-1,0), DROIT(1,0),
 
     HAUT_GAUCHE(-1,-1), HAUT_DROIT(1,-1), BAS_GAUCHE(-1,1), BAS_DROIT(1,1);

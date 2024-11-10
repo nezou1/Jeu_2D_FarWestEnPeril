@@ -30,7 +30,7 @@ public class Personnage extends Deplacement {
     private int pointVieMax;
     private static final Logger LOGGER = LogManager.getLogger(Personnage.class);
 
-    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int direction) {
+    public Personnage(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, Direction direction) {
         super(x, y, vitesse, direction); // Initialisation de x, y, vitesse, et direction via la superclasse
         this.pointVie = pointVie;
         this.pointVieMax = pointVie;
@@ -92,7 +92,7 @@ public class Personnage extends Deplacement {
         }
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return super.getDirection();
     }
 
