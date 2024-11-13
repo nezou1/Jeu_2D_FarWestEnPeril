@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
 
 public abstract class Etat {
 

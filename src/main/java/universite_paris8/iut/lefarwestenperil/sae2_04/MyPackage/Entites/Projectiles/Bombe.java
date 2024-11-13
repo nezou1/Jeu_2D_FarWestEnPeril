@@ -4,7 +4,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Project
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Portee;
 

@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Deplacement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 
 import java.util.ArrayList;

@@ -1,9 +1,10 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 
 import java.util.ArrayList;

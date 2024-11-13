@@ -1,12 +1,14 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Cowboy2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Dragon2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Cowboy2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Dragon2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Outils;
 
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats.EtatBrulure;
 

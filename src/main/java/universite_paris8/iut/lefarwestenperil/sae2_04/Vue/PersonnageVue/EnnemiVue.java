@@ -4,10 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Dragon;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Dragon2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Dragon2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
 
 import java.net.URL;
 

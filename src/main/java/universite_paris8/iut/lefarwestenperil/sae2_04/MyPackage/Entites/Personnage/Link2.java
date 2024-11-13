@@ -1,4 +1,4 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.PointDeVie;

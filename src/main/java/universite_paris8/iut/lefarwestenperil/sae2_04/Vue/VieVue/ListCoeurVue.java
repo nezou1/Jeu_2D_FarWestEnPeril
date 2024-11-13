@@ -1,7 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue;
 
 import javafx.scene.layout.HBox;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
 
 import java.util.ArrayList;
 import java.util.List;

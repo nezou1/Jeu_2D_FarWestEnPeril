@@ -4,7 +4,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.BFS.BFS;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 
 import java.awt.*;
 import java.util.List;

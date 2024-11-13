@@ -1,7 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
 
 import static universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Portee.PORTEETOMAHAWK;
 

@@ -1,4 +1,4 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

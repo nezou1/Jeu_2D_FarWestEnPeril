@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.PointDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.MarteauW;

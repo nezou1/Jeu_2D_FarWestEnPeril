@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.EnnemiVue;
 
 

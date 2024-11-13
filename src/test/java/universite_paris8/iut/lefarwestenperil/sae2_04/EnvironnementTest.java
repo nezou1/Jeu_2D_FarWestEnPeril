@@ -4,14 +4,14 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats.EtatBrulure;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;

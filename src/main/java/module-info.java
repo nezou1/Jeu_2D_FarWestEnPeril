@@ -15,8 +15,8 @@ module universite_paris8.iut.lefarwestenperil.sae2_04 {
     opens universite_paris8.iut.lefarwestenperil.sae2_04.Modele to javafx.fxml;
     exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites;
     opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites to javafx.fxml;
-    exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants;
-    opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants to javafx.fxml;
+    exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage;
+    opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage to javafx.fxml;
     exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage;
     opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage to javafx.fxml;
     exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats;
@@ -25,4 +25,6 @@ module universite_paris8.iut.lefarwestenperil.sae2_04 {
     opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires to javafx.fxml;
     exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs;
     opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs to javafx.fxml;
+    exports universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire;
+    opens universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire to javafx.fxml;
 }

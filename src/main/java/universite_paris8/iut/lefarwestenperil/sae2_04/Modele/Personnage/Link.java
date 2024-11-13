@@ -1,7 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 
 public class Link extends Personnage {
 

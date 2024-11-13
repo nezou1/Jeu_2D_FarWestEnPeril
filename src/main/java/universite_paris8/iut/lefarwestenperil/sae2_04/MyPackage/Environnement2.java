@@ -2,10 +2,13 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage;
 
 import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionEnnemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionGardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionProjectile;
 
 import java.util.List;
 

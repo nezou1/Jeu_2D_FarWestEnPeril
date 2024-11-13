@@ -7,7 +7,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
 import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.TireALArc;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;

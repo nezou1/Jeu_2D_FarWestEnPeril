@@ -3,9 +3,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 import static org.junit.jupiter.api.Assertions.*;

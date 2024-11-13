@@ -5,6 +5,9 @@ import javafx.collections.ObservableList;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionEnnemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionProjectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
 
 
 import java.util.ArrayList;

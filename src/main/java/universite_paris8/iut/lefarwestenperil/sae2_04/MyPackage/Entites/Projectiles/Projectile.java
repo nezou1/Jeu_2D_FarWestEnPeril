@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Project
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.ActeurMobile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 /**<p>
