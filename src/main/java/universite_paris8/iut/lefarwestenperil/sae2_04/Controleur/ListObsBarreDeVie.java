@@ -39,7 +39,7 @@ public class ListObsBarreDeVie implements ListChangeListener<BarreDeVie> {
             if (change.wasAdded()) {
                 // Pour chaque élément ajouté, afficher la barre de vie correspondante
                 for (BarreDeVie b : change.getAddedSubList()) {
-                    System.out.println("add");
+
                     barreDeVieVue.afficherBarreVie(b);
                 }
             }

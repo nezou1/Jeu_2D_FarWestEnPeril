@@ -125,7 +125,7 @@ public class Controleur implements Initializable {
 
     @FXML
     private void gererTouchePressee(KeyEvent event) {
-        System.out.println("Touche pressée: " + event.getCode());
+
         switch (event.getCode()) {
             case Z:
                 env.getLink().deplacerHaut();
@@ -155,11 +155,11 @@ public class Controleur implements Initializable {
                 break;
             case K:
                 env.getLink().changerArmeSuivante();
-                System.out.println("Arme actuelle : " + env.getLink().getArme());
+
                 break;
             case J:
                 env.getLink().changerArmePrecedente();
-                System.out.println("Arme actuelle : " + env.getLink().getArme());
+
                 break;
             case L:
                 Arme armeActuelle = env.getLink().getArme();
@@ -173,7 +173,7 @@ public class Controleur implements Initializable {
         }
         miseAJourZoom();
         verifierRencontreGardien();
-        System.out.println("Position du personnage: x=" + env.getLink().getX() + ", y=" + env.getLink().getY());
+
     }
 
 
@@ -220,12 +220,12 @@ public class Controleur implements Initializable {
             Main.stopMusicFond();
             afficherEcranGameOver();
             gameLoop.stop();
-            System.out.println("Game Over");
+
         }
         if (env.verifierVictoire()) {
             gameLoop.stop();
             Main.stopMusicFond();
-            System.out.println("Victory!");
+
             afficherEcranVictoire();
         }
     }
