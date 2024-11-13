@@ -3,11 +3,13 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Fleche;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 public class TireALArc extends Arme {
-    private final Environnement env;
+    private final Environnement2 env;
 
-    public TireALArc(Environnement env) {
+    public TireALArc(Environnement2 env) {
         super(6, 500);
         this.env = env;
     }

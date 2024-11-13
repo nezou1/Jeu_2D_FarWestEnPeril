@@ -2,8 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.DirectionalLight;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 
 /**
  * La classe Deplacement gère uniquement les coordonnées et les déplacements basiques des objets dans le jeu

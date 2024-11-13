@@ -59,9 +59,9 @@ public class Environnement {
         barreDeVies.add(b);
     }
 
-//    public void ajouterProjectile(Projectile projectile){
-//        gestionProjectile.ajouterProjectile(projectile);
-//    }
+    public void ajouterProjectile(Projectile projectile){
+        gestionProjectile.ajouterProjectile(projectile);
+    }
 
 
 //    public void unTour() {
