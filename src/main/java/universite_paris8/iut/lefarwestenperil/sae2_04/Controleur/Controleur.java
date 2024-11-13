@@ -61,9 +61,9 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        env = new Environnement();
+        env = Environnement.getInstance();
         terrain = new Terrain();
-        link = Environnement.getLink2();
+        link = env.getLink2();
 
 
         tv = new TerrainVue(terrain, tuile);

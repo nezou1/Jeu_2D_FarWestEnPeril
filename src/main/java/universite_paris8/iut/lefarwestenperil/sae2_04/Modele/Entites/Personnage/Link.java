@@ -9,6 +9,8 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.St
 public class Link extends Guerrier{
 
     private boolean move;
+    private static Link instance;
+
 
     public Link(int x, int y, Environnement env) {
         super("Link", x, y, Direction.NULL, 10, env, PointDeVie.PVLINK, 1, new Arsenal());
@@ -17,6 +19,13 @@ public class Link extends Guerrier{
 
     public Link(Environnement env) {
         super("Link", 1600, 1500, Direction.NULL, 10, env, PointDeVie.PVLINK, 1, new Arsenal());
+    }
+
+    public static Link getInstance(Environnement env) {
+        if (instance == null) {
+            instance = new Link(env);
+        }
+        return instance;
     }
 
     public void deplacerHaut() {

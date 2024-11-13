@@ -30,6 +30,8 @@ import java.util.List;
 
 public class Environnement {
 
+    private static Environnement instance;
+
     private static Link link;
     private final Terrain terrain;
 
@@ -41,11 +43,18 @@ public class Environnement {
 
     public Environnement() {
         terrain = new Terrain();
-        Environnement.link = new Link(this);
+        Environnement.link = Link.getInstance(this);
         gestionEnnemi = new GestionEnnemi(this);
         gestionProjectile = new GestionProjectile();
         gestionGardien = new GestionGardien();
         this.tours = 0;
+    }
+
+    public static Environnement getInstance() {
+        if (instance == null) {
+            instance = new Environnement();
+        }
+        return instance;
     }
 
     public Terrain getTerrain(){
