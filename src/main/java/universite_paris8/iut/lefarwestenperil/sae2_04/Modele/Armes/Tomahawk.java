@@ -15,7 +15,7 @@ public class Tomahawk extends Arme {
 
     @Override
     public void attaquer(Personnage attaquant) {
-        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(), attaquant);
+//        danslaDirectionEnnemis(attaquant.getEnv().getEnnemis(), attaquant);
     }
 
     public void danslaDirectionEnnemis(List<Ennemi> cibles, Personnage p) {

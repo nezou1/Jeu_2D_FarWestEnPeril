@@ -3,6 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Outils;
 
 public class Lasso extends Arme {
 
@@ -19,7 +20,7 @@ public class Lasso extends Arme {
     @Override
     public void attaquer(Personnage attaquant) {
         Link link = env.getLink();
-        double distance = Math.sqrt(Math.pow(link.getX() - attaquant.getX(), 2) + Math.pow(link.getY() - attaquant.getY(), 2));
+        double distance = Outils.distanceEntre(attaquant.getX(),attaquant.getY(),link.getX(),link.getY());
         if (distance <= range) {
             link.recevoirDegats(getPointAttaque());
             System.out.println("Lasso attrape Link et inflige " + getPointAttaque() + " dégâts.");

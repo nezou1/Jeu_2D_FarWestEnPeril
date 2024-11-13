@@ -1,15 +1,19 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 
 /**
- * Ici on se concentre sur la gestion des projectils, qui comprenait l'ajout, le déplacement et la detection de link.
- * Tout cela se trouvait dans la class Environnement et a été déplacée dans une nouvelle classe appelée GestionEnnemi.
+ * Classe GestionProjectiles:
+ * <p>
+ *     Cette classe s'occupe de la gestion des actions des projectiles
+ * </p>
+ * Tout cela se trouvait dans la class Environnement
  */
 
 public class GestionProjectile {
+
     private final ObservableList<Projectile> projectiles = FXCollections.observableArrayList();
 
     public GestionProjectile() {}
@@ -34,4 +38,3 @@ public class GestionProjectile {
         }
     }
 }
-

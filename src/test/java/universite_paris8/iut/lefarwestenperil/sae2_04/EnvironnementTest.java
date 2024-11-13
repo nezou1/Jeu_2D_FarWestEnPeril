@@ -3,17 +3,15 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Dragon;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Cowboy;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats.EtatBrulure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,24 +19,22 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnvironnementTest  {
-    private Environnement environnement;
+    private Environnement2 environnement;
     private Terrain terrain;
-    private Link link;
-    private GestionEnnemi gestionEnnemi;
+    private Link2 link;
 
     @BeforeEach
     void setUp() {
-        terrain = new Terrain(); // Supposons que le terrain est 20x20
-        link = new Link(terrain);
-        environnement = new Environnement(terrain, link);
-        gestionEnnemi = new GestionEnnemi(terrain,environnement);
+        environnement = new Environnement2();
+        terrain = environnement.getTerrain(); // Supposons que le terrain est 20x20
+        link = Environnement2.getLink2();
     }
 
     @Test
     void testAjouterGardien() {
-        Gardien gardien = new Gardien(100, 100, "Question", new ArrayList<>(), "Réponse", "Message", 0, environnement);
+        Gardien2 gardien = new Gardien2(100, 100, "Question", new ArrayList<>(), "Réponse", "Message", 0, environnement);
         environnement.ajouterGardien(gardien);
-        ObservableList<Gardien> gardiens = environnement.getGardiens();
+        ObservableList<Gardien2> gardiens = environnement.getGardiens();
         assertEquals(1, gardiens.size());
         assertEquals(gardien, gardiens.get(0));
     }
@@ -47,7 +43,7 @@ class EnvironnementTest  {
 
     @Test
     void testUnTour() {
-        Cowboy cowboy = new Cowboy(terrain, environnement);
+        Cowboy2 cowboy = new Cowboy2(environnement);
         environnement.getEnnemis().add(cowboy);
         environnement.unTour();
         assertEquals(1, environnement.getTours());
@@ -66,36 +62,36 @@ class EnvironnementTest  {
 
     @Test
     void testGetEnnemisDansRayon() {
-        Ennemi ennemi1 = new Cowboy(terrain, environnement);
+        Ennemi2 ennemi1 = new Cowboy2(environnement);
         ennemi1.setX(10);
         ennemi1.setY(10);
-        Ennemi ennemi2 = new Dragon(terrain, environnement);
+        Ennemi2 ennemi2 = new Dragon2(environnement);
         ennemi2.setX(100);
         ennemi2.setY(100);
         environnement.getEnnemis().addAll(ennemi1, ennemi2);
-        List<Ennemi> ennemisDansRayon = gestionEnnemi.getEnnemisDansRayon(10, 10, 20);
+        List<Ennemi2> ennemisDansRayon = environnement.getEnnemisDansRayon(10, 10, 20);
         assertEquals(1, ennemisDansRayon.size());
         assertEquals(ennemi1, ennemisDansRayon.get(0));
     }
 
     @Test
     void testAjouterQuestionGardien() {
-        //environnement.ajouterQuestionGardien();
-        ObservableList<Gardien> gardiens = environnement.getGardiens();
+        environnement.ajouterQuestionGardien();
+        ObservableList<Gardien2> gardiens = environnement.getGardiens();
         assertEquals(3, gardiens.size());
     }
 
     @Test
     void testAjouterBrulure() {
-        environnement.ajouterBrulure();
-        assertTrue(link.isBrule());
+        link.setEtat(new EtatBrulure());
+        assertTrue(link.getEtat().isActive());
     }
 
     @Test
     void testVerifierVictoire() {
         link.setX(32);
         link.setY(32);
-        terrain.getDonneeTerrain()[1][1] = 12;
+        terrain.getTab()[1][1] = 12;
         assertTrue(environnement.verifierVictoire());
     }
 }

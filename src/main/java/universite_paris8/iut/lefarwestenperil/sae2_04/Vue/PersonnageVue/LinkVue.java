@@ -4,11 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.TireALArc;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -61,14 +61,14 @@ public class LinkVue extends PersonnageVue {
         direction = "DROITE";
     }
 
-    public void creerLink(Personnage personnage) {
+    public void creerLink(EtreVivant etreVivant) {
         iv3 = new ImageView(imageLinkDroite);
-        iv3.translateXProperty().bind(personnage.xProperty());
-        iv3.translateYProperty().bind(personnage.yProperty());
+        iv3.translateXProperty().bind(etreVivant.xProperty());
+        iv3.translateYProperty().bind(etreVivant.yProperty());
         super.getPanneauDeJeu().getChildren().add(iv3);
     }
 
-    public void updateImage(String direction, Arme arme) {
+    public void updateImage(String direction, StrategieAttaque arme) {
         switch (direction) {
             case "DROITE":
                 if (arme instanceof TireALArc){

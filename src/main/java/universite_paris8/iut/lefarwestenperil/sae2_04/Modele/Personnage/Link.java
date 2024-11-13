@@ -59,4 +59,5 @@ public class Link extends Personnage {
     public String toString() {
         return "Link : " + super.toString();
     }
+
 }

@@ -14,7 +14,7 @@ public class ListObsBarreDeVie implements ListChangeListener<BarreDeVie> {
     // Panneau sur lequel les barres de vie seront affichées
     private Pane panneauDeJeu;
     // Vue utilisée pour afficher les barres de vie
-    private BarreDeVieVue barreDeVieVue;
+    private final BarreDeVieVue barreDeVieVue;
 
     /**
      * Constructeur pour initialiser ListObsBarreDeVie avec le panneau de jeu donné.
@@ -34,12 +34,10 @@ public class ListObsBarreDeVie implements ListChangeListener<BarreDeVie> {
         // Parcourt toutes les modifications survenues dans la liste
         while (change.next()) {
             // Si des éléments ont été ajoutés
-            if (change.wasAdded()) {
-                // Pour chaque élément ajouté, afficher la barre de vie correspondante
-                for (BarreDeVie b : change.getAddedSubList()) {
-                    System.out.println("add");
-                    barreDeVieVue.afficherBarreVie(b);
-                }
+            // Pour chaque élément ajouté, afficher la barre de vie correspondante
+            for (BarreDeVie b : change.getAddedSubList()) {
+//                System.out.println("add");
+                barreDeVieVue.afficherBarreVie(b);
             }
         }
     }

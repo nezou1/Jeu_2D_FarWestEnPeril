@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 
 import javax.sound.sampled.Clip;
 
@@ -57,13 +57,13 @@ public class FlecheVue extends ProjectileVue {
                 flecheImageView.setRotate(0);
                 break;
             case HAUT:
-                flecheImageView.setRotate(90);
+                flecheImageView.setRotate(-90);
                 break;
             case GAUCHE:
                 flecheImageView.setRotate(180);
                 break;
             case BAS:
-                flecheImageView.setRotate(-90);
+                flecheImageView.setRotate(90);
                 break;
         }
         return flecheImageView;

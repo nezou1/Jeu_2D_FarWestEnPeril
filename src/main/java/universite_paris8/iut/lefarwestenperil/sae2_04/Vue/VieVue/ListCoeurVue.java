@@ -1,16 +1,16 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue;
 
 import javafx.scene.layout.HBox;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListCoeurVue {
-    private List<CoeurVue> coeurs;
-    private HBox vieBox;
+    private final List<CoeurVue> coeurs;
+    private final HBox vieBox;
 
-    public ListCoeurVue(Link link, HBox vieBox) {
+    public ListCoeurVue(Link2 link, HBox vieBox) {
         this.vieBox = vieBox;
         coeurs = new ArrayList<>();
 

@@ -2,7 +2,6 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,28 +20,27 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Gardien;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Link;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.ArcW;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Controleur implements Initializable {
     private Terrain terrain;
     private Timeline gameLoop;
-    private Environnement env;
-    private GestionEnnemi gestionEnnemi;
-    private Link link;
+    private Environnement2 env;
+    private Link2 link;
     private LinkVue linkVue;
     @FXML
     private Pane panneauDeJeu;
@@ -58,16 +56,14 @@ public class Controleur implements Initializable {
     private ListCoeurVue coeurVue;
     private MessageVue messageVue;
 
-    private Bombe bombe;
     private TerrainVue tv;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        env = new Environnement2();
         terrain = new Terrain();
-        link = new Link(terrain);
+        link = Environnement2.getLink2();
 
-        env = new Environnement(terrain, link);
-        gestionEnnemi = new GestionEnnemi(terrain,env);
 
         tv = new TerrainVue(terrain, tuile);
         linkVue = new LinkVue(panneauDeJeu);
@@ -79,10 +75,11 @@ public class Controleur implements Initializable {
 //        BombeVue bombeVue = new BombeVue(panneauDeJeu);
 //        bombe = new Bombe(panneauDeJeu, bombeVue);
 
-        link.ramasserArme(new Tomahawk());
-        link.ramasserArme(new TireALArc(env));
+        link.ajouterArme(new TomahawkW());
+        link.ajouterArme(new ArcW());
+        link.ajouterArme(new LanceurDeBombes());
 
-        ListChangeListener<Ennemi> listenE = new ListObsEnnemis(panneauDeJeu);
+        ListChangeListener<Ennemi2> listenE = new ListObsEnnemis(panneauDeJeu);
         env.getEnnemis().addListener(listenE);
 
         ListChangeListener<BarreDeVie> listenB = new ListObsBarreDeVie(panneauDeJeu);
@@ -93,10 +90,11 @@ public class Controleur implements Initializable {
 
         env.ajouterQuestionGardien();
 
-        this.env.ajouterEnnemisAleatoirement(50);
+        env.ajouterEnnemisAleatoirement(50);
         panneauDeJeu.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.setOnKeyPressed(this::gererTouchePressee);
+                newScene.setOnKeyReleased(this::keyReleased);
             }
         });
 
@@ -147,9 +145,8 @@ public class Controleur implements Initializable {
                 break;
             case I:
                 if(link.getArme() != null) {
-                    List<Ennemi> cibles = gestionEnnemi.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                    link.attaque(cibles);
-                    if( link.getArme() instanceof Marteau){
+                    link.attaquer();
+                    if( link.getArmeActuelle() instanceof MarteauW){
                         tv = new TerrainVue(terrain, tuile);
                         tv.creerCarte();
                     }
@@ -164,11 +161,10 @@ public class Controleur implements Initializable {
                 System.out.println("Arme actuelle : " + link.getArme());
                 break;
             case L:
-                Arme armeActuelle =  link.getArme();
-                link.setArmeActuelle(armeActuelle);
-                List<Ennemi> bombCibles = gestionEnnemi.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
-                link.attaque(bombCibles);
-                link.setArmeActuelle(armeActuelle);
+                StrategieAttaque tmp = link.getArmeActuelle();
+                link.setArmeActuelle(new LanceurDeBombes());
+                link.attaquer();
+                link.setArmeActuelle(tmp);
                 break;
             default:
                 return;
@@ -178,9 +174,15 @@ public class Controleur implements Initializable {
         System.out.println("Position du personnage: x=" + link.getX() + ", y=" + link.getY());
     }
 
+    @FXML
+    public void keyReleased(KeyEvent keyEvent) {
+        link.noWalking();
+        linkVue.updateImage("DROITE", link.getArme());
+    }
+
 
     public void verifierRencontreGardien() {
-        Gardien g = env.verifierRencontreLinkGardien();
+        Gardien2 g = env.verifierRencontreLinkGardien();
         if (g != null) {
                 messageVue.afficherDialogueGardien(g, link);
         }
