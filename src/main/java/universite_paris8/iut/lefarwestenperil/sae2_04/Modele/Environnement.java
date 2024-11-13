@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionEnnemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionGardien;
@@ -20,7 +20,7 @@ import java.util.List;
  * Elle possède :
  * <ul>
  *     <li>un terrain {@link Terrain}</li>
- *     <li>un personnage principal {@link Link2}</li>
+ *     <li>un personnage principal {@link Link}</li>
  *     <li>un nombre de tours {@link #tours}</li>
  *     <li>un gestionnaire d'ennemis {@link GestionEnnemi}</li>
  *     <li>un gestionnaire de projectiles {@link GestionProjectile}</li>
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Environnement {
 
-    private static Link2 link2;
+    private static Link link;
     private final Terrain terrain;
 
     private final GestionEnnemi gestionEnnemi;
@@ -41,7 +41,7 @@ public class Environnement {
 
     public Environnement() {
         terrain = new Terrain();
-        Environnement.link2 = new Link2(this);
+        Environnement.link = new Link(this);
         gestionEnnemi = new GestionEnnemi(this);
         gestionProjectile = new GestionProjectile();
         gestionGardien = new GestionGardien();
@@ -59,8 +59,8 @@ public class Environnement {
         return terrain.getLargeur();
     }
 
-    public static Link2 getLink2(){
-        return link2;
+    public static Link getLink2(){
+        return link;
     }
 
     public ObservableList<Ennemi> getEnnemis() {
@@ -105,7 +105,7 @@ public class Environnement {
         gestionEnnemi.miseAjour();
         gestionProjectile.mettreAJourProjectiles();
 
-        link2.agit();
+        link.agit();
         tours++;
     }
 
@@ -115,7 +115,7 @@ public class Environnement {
     }
 
     public boolean verifierVictoire() {
-        Link2 link = Environnement.getLink2();
+        Link link = Environnement.getLink2();
         int x = link.getX()/32;
         int y = link.getY()/32;
         return getTerrain().getDonneeTerrain()[y][x] == 12 ;

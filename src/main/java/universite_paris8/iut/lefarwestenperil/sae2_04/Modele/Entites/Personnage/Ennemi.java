@@ -167,7 +167,7 @@ public abstract class Ennemi extends Guerrier{
 
     @Override
     public void agit() {
-        Link2 link = Environnement.getLink2();
+        Link link = Environnement.getLink2();
         if (linkACote()) {
             initChemin(link.getX(),link.getY());
             parcoursBFS();
@@ -189,7 +189,7 @@ public abstract class Ennemi extends Guerrier{
     }
 
     private boolean linkACote() {
-        Link2 link = Environnement.getLink2();
+        Link link = Environnement.getLink2();
         return distanceAvec(link.getX(),link.getY()) <= portee;
     }
 

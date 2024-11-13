@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
@@ -74,7 +74,7 @@ public class Gardien2 extends PNJ {
         this.dernierInterrogatoire = dernierInterrogatoire;
     }
 
-    public void recompense(Link2 link) {
+    public void recompense(Link link) {
         switch (recompense) {
             case 0:
                 link.ajouterArme(new Marteau());

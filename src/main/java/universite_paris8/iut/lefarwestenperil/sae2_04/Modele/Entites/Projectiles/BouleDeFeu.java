@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectile
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.EtatBrulure;
 
@@ -39,7 +39,7 @@ public class BouleDeFeu extends Projectile {
 
     @Override
     public void agit() {
-        Link2 l = Environnement.getLink2();
+        Link l = Environnement.getLink2();
         this.updateDir();
         seDeplace();
         if (distanceAvec(l.getX(), l.getY()) < getVitesse()) {

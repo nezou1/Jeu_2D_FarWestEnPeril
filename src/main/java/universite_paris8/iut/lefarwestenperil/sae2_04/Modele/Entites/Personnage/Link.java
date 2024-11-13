@@ -6,16 +6,16 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Ar
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 
-public class Link2 extends Guerrier{
+public class Link extends Guerrier{
 
     private boolean move;
 
-    public Link2(int x, int y, Environnement env) {
+    public Link(int x, int y, Environnement env) {
         super("Link", x, y, Direction.NULL, 10, env, PointDeVie.PVLINK, 1, new Arsenal());
         move = false;
     }
 
-    public Link2(Environnement env) {
+    public Link(Environnement env) {
         super("Link", 1600, 1500, Direction.NULL, 10, env, PointDeVie.PVLINK, 1, new Arsenal());
     }
 

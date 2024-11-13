@@ -1,7 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 
@@ -9,7 +9,7 @@ public class Marteau implements StrategieAttaque {
 
     @Override
     public void attaquer(Personnage proprietaite) {
-        Link2 link = Environnement.getLink2();
+        Link link = Environnement.getLink2();
         int x = (link.getX() + 11) / 32;
         int y = (link.getY() + 13) / 32;
 

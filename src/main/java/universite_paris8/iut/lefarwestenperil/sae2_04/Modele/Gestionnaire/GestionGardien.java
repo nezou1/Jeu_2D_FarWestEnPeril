@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 
@@ -32,7 +32,7 @@ public class GestionGardien {
         ajouterGardien(new Gardien2(1600, 1000, "Est-ce que l'expression indienne « Un chameau ne passe pas par le chas d'une aiguille » signifie qu'il est possible pour une personne arrogante de se montrer humble ?", choix, "Non", "Bonne réponse! Tu as 1 cœur de vie en plus !",1, null));
     }
     public Gardien2 verifierRencontreLinkGardien() {
-        Link2 link = Environnement.getLink2();
+        Link link = Environnement.getLink2();
         for (Gardien2 gardien : gardiens) {
             if (link.getX()/32 == gardien.getX()/32 && link.getY()/32 == gardien.getY()/32) {
                 return gardien;

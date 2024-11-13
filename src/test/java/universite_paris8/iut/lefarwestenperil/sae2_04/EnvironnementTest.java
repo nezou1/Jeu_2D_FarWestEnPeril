@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EnvironnementTest  {
     private Environnement environnement;
     private Terrain terrain;
-    private Link2 link;
+    private Link link;
 
     @BeforeEach
     void setUp() {
