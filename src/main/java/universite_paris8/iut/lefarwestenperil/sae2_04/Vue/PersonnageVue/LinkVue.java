@@ -4,13 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.TireALArc;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.Weapon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -70,7 +68,7 @@ public class LinkVue extends PersonnageVue {
         super.getPanneauDeJeu().getChildren().add(iv3);
     }
 
-    public void updateImage(String direction, Weapon arme) {
+    public void updateImage(String direction, StrategieAttaque arme) {
         switch (direction) {
             case "DROITE":
                 if (arme instanceof TireALArc){

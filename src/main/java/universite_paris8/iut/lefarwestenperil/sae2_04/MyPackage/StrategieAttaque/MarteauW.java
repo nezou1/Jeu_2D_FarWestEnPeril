@@ -1,11 +1,11 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 
-public class MarteauW implements Weapon{
+public class MarteauW implements StrategieAttaque {
 
     @Override
     public void attaquer(EtreVivant proprietaite) {

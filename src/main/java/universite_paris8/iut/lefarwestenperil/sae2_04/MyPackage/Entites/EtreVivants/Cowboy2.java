@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreViv
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Portee;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.LassoW;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.LassoW;
 
 public class Cowboy2 extends Ennemi2{
 

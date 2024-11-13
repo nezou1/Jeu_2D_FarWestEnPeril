@@ -25,7 +25,9 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gar
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.ArcW;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
@@ -159,7 +161,7 @@ public class Controleur implements Initializable {
                 System.out.println("Arme actuelle : " + link.getArme());
                 break;
             case L:
-                Weapon tmp = link.getArmeActuelle();
+                StrategieAttaque tmp = link.getArmeActuelle();
                 link.setArmeActuelle(new LanceurDeBombes());
                 link.attaquer();
                 link.setArmeActuelle(tmp);

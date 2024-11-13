@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreViv
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Portee;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.SouffleDuDragon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.SouffleDuDragon;
 
 public class Dragon2 extends Ennemi2{
 

@@ -2,9 +2,9 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreViv
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.PointDeVie;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.Arsenal;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.Arsenal;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.Weapon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
 
 public class Link2 extends Guerrier{
 
@@ -39,14 +39,14 @@ public class Link2 extends Guerrier{
         move = false;
     }
 
-    public Weapon getArmeActuelle(){
+    public StrategieAttaque getArmeActuelle(){
         return ((Arsenal)getArme()).getArmeActuelle();
     }
-    public void setArmeActuelle(Weapon arme){
+    public void setArmeActuelle(StrategieAttaque arme){
         ((Arsenal)getArme()).setArmeActuelle(arme);
     }
 
-    public void ajouterArme(Weapon arme){
+    public void ajouterArme(StrategieAttaque arme){
         ((Arsenal)getArme()).ajouterArme(arme);
     }
 

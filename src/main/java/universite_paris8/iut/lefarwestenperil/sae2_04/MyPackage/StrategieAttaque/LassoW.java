@@ -1,4 +1,4 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque;
 
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
@@ -9,7 +9,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Outi
 
 import static universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitaires.Portee.PORTEELASSO;
 
-public class LassoW implements Weapon {
+public class LassoW implements StrategieAttaque {
     @Override
     public void attaquer(EtreVivant proprietaite) {
         Link2 link = Environnement2.getLink2();

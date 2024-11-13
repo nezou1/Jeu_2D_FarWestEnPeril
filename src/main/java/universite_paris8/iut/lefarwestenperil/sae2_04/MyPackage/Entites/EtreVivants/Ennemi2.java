@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreViv
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.BFS.BFS;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons.Weapon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
 
@@ -26,7 +26,7 @@ public abstract class Ennemi2 extends Guerrier{
 
     private final BarreDeVie barreDeVie;
 
-    public Ennemi2(String id, int x, int y, Direction direction, int vitesse, Environnement2 env, int pv, int pointDef, Weapon arme, int hauteurI, int largeurI, int portee, int tempsAttente, boolean peutTraverserObstacles) {
+    public Ennemi2(String id, int x, int y, Direction direction, int vitesse, Environnement2 env, int pv, int pointDef, StrategieAttaque arme, int hauteurI, int largeurI, int portee, int tempsAttente, boolean peutTraverserObstacles) {
         super(id, x, y, direction, vitesse, env, pv, pointDef, arme);
         this.barreDeVie = new BarreDeVie(x, y, pv);
         bfs = new BFS();

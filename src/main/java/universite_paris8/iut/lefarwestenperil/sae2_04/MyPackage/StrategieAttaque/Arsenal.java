@@ -1,26 +1,26 @@
-package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Weapons;
+package universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreVivants.EtreVivant;
 
 import java.util.ArrayList;
 
-public class Arsenal implements Weapon {
+public class Arsenal implements StrategieAttaque {
 
-    private Weapon armeActuelle;
-    private final ArrayList<Weapon> armes;
+    private StrategieAttaque armeActuelle;
+    private final ArrayList<StrategieAttaque> armes;
 
     public Arsenal() {
         armes = new ArrayList<>();
     }
 
-    public ArrayList<Weapon> getArmes() {
+    public ArrayList<StrategieAttaque> getArmes() {
         return armes;
     }
-    public Weapon getArmeActuelle() {
+    public StrategieAttaque getArmeActuelle() {
         return armeActuelle;
     }
-    public void setArmeActuelle(Weapon arme) {
-        for (Weapon ar : armes){
+    public void setArmeActuelle(StrategieAttaque arme) {
+        for (StrategieAttaque ar : armes){
             if (ar.getClass().equals(arme.getClass())){
                 armeActuelle = ar;
                 break;
@@ -28,7 +28,7 @@ public class Arsenal implements Weapon {
         }
     }
 
-    public void ajouterArme(Weapon arme) {
+    public void ajouterArme(StrategieAttaque arme) {
         armes.add(arme);
         if (armeActuelle == null)
             armeActuelle = arme;
@@ -67,7 +67,7 @@ public class Arsenal implements Weapon {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("Arsenal : ");
-        for (Weapon arme : armes) {
+        for (StrategieAttaque arme : armes) {
             if (arme != armeActuelle)
                 str.append(arme.toString()).append("\n");
         }
