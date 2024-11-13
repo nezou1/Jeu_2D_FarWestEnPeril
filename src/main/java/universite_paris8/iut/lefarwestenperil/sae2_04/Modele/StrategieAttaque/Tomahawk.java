@@ -1,15 +1,15 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 
 import static universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee.PORTEETOMAHAWK;
 
 
 public class Tomahawk implements StrategieAttaque {
     @Override
-    public void attaquer(EtreVivant proprietaite) {
-        for (EtreVivant cible : proprietaite.getEnv().getEnnemis()) {
+    public void attaquer(Personnage proprietaite) {
+        for (Personnage cible : proprietaite.getEnv().getEnnemis()) {
             int cibleX = cible.getX();
             int cibleY = cible.getY();
             boolean dansLaDirection;

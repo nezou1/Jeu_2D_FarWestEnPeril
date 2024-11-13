@@ -7,7 +7,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
 import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;
@@ -61,10 +61,10 @@ public class LinkVue extends PersonnageVue {
         direction = "DROITE";
     }
 
-    public void creerLink(EtreVivant etreVivant) {
+    public void creerLink(Personnage personnage) {
         iv3 = new ImageView(imageLinkDroite);
-        iv3.translateXProperty().bind(etreVivant.xProperty());
-        iv3.translateYProperty().bind(etreVivant.yProperty());
+        iv3.translateXProperty().bind(personnage.xProperty());
+        iv3.translateYProperty().bind(personnage.yProperty());
         super.getPanneauDeJeu().getChildren().add(iv3);
     }
 

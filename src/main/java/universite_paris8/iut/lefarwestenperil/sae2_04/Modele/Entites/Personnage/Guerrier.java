@@ -5,7 +5,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 
-public abstract class Guerrier extends EtreVivant {
+public abstract class Guerrier extends Personnage {
 
     private final StrategieAttaque arme;
 

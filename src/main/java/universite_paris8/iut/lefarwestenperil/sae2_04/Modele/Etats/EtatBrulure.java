@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 
 public class EtatBrulure extends Etat {
 
@@ -9,9 +9,9 @@ public class EtatBrulure extends Etat {
     }
 
     @Override
-    public void apply(EtreVivant etreVivant) {
+    public void apply(Personnage personnage) {
         if (getDuree()%10 == 0) {
-            etreVivant.seBlesse(1);
+            personnage.seBlesse(1);
             if (isFinish())
                 deactivate();
         }

@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectile
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.ActeurMobile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 /**<p>
@@ -53,7 +53,7 @@ public abstract class Projectile extends ActeurMobile {
     }
 
     /** inflige ses dégats à une cible */
-    public void infligerDegats(EtreVivant cible) {
+    public void infligerDegats(Personnage cible) {
         cible.encaisseDegats(degats);
     }
 }

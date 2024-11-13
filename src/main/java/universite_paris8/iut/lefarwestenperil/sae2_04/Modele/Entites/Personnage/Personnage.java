@@ -13,13 +13,13 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.Etat;
  *      Elle possède des {@code points de vie}.
  */
 
-public abstract class EtreVivant extends ActeurMobile {
+public abstract class Personnage extends ActeurMobile {
 
     private int pointVie;
     private final int pointDef;
     private Etat etat;
 
-    public EtreVivant(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int def) {
+    public Personnage(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int def) {
         super(id,x, y, direction, vitesse, env);
         this.pointVie = pv;
         this.pointDef = def;
@@ -57,14 +57,12 @@ public abstract class EtreVivant extends ActeurMobile {
 
     public void encaisseDegats(int ptsDegats){
         int degatReel = ptsDegats - pointDef;
-//        System.out.println("degat reel :" + degatReel);
         if (degatReel > 0) {
             if (getPointVie() >= degatReel)
                 seBlesse(degatReel);
             else
                 meurt();
         }
-//        System.out.println(getPointVie());
     }
 
     public void appliquerEtat() {

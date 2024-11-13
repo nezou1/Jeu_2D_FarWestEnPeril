@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 
 import java.util.ArrayList;
 
@@ -60,7 +60,7 @@ public class Arsenal implements StrategieAttaque {
     }
 
     @Override
-    public void attaquer(EtreVivant proprietaite) {
+    public void attaquer(Personnage proprietaite) {
         armeActuelle.attaquer(proprietaite);
     }
 

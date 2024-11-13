@@ -1,7 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.EtatBrulure;
@@ -32,7 +32,7 @@ public class BouleDeFeu extends Projectile {
      *     <li>Elle met à jour sa direction ( {@link #updateDir()} )</li>
      *     <li>Elle se déplace  {@link #seDeplace()}</li>
      *     <li>Elle vérifie si elle est proche de Link {@link #distanceAvec(double, double)}</li>
-     *     <li>Si elle le trouve, elle le {@code brûle}  ({@link #infligerDegats(EtreVivant)}  }, {@link #desactivation()} ),
+     *     <li>Si elle le trouve, elle le {@code brûle}  ({@link #infligerDegats(Personnage)}  }, {@link #desactivation()} ),
      *     Sinon elle continue sa route et {@code se dégrade}</li>
      * </ol>
      */
@@ -54,7 +54,7 @@ public class BouleDeFeu extends Projectile {
      * @param cible
      */
     @Override
-    public void infligerDegats(EtreVivant cible) {
+    public void infligerDegats(Personnage cible) {
         super.infligerDegats(cible);
         cible.setEtat(new EtatBrulure());
     }

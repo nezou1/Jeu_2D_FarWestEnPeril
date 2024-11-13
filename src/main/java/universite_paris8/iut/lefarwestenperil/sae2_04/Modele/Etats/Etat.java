@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 
 public abstract class Etat {
 
@@ -30,5 +30,5 @@ public abstract class Etat {
         this.duree-=val;
     }
 
-    public abstract void apply(EtreVivant etreVivant);
+    public abstract void apply(Personnage personnage);
 }

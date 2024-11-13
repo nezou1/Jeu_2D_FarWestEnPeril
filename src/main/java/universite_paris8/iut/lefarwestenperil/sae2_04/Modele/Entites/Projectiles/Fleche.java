@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectile
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee;
 
@@ -30,7 +30,7 @@ public class Fleche extends Projectile {
      *     <li>Elle vérifie si une autre bombe est en cours ( {@link #isActive()} )</li>
      *     <li>Elle se déplace avec {@link #seDeplace()}</li>
      *     <li>Elle cherche un ennemi devant d'elle avec {@link #chercheEnnemi()}</li>
-     *     <li>Si elle en trouve un, elle lui inflige des dégats  ({@link #infligerDegats(EtreVivant)}  }, {@link #desactivation()} ),
+     *     <li>Si elle en trouve un, elle lui inflige des dégats  ({@link #infligerDegats(Personnage)}  }, {@link #desactivation()} ),
      *     Sinon elle continue sa route et {@code se dégrade} </li>
      * </ol>
      */
