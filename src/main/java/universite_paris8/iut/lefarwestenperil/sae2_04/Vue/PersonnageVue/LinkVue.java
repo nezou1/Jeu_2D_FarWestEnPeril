@@ -4,11 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Marteau;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
 import javafx.embed.swing.SwingFXUtils;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.TireALArc;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.EtreVivant;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.StrategieAttaque;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.EtreVivant;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -71,7 +71,7 @@ public class LinkVue extends PersonnageVue {
     public void updateImage(String direction, StrategieAttaque arme) {
         switch (direction) {
             case "DROITE":
-                if (arme instanceof TireALArc){
+                if (arme instanceof Arc){
                     iv3.setImage(imageLinkDroiteA);
                 } else {
                     if(arme instanceof Marteau) {
@@ -83,7 +83,7 @@ public class LinkVue extends PersonnageVue {
                 this.direction = "DROITE";
                 break;
             case "GAUCHE":
-                if (arme instanceof TireALArc){
+                if (arme instanceof Arc){
                     iv3.setImage(imageLinkGaucheA);
                 }else {
                     if (arme instanceof Marteau) {
@@ -95,7 +95,7 @@ public class LinkVue extends PersonnageVue {
                 this.direction = "GAUCHE";
                 break;
             case "HAUT":
-                if (arme instanceof TireALArc){
+                if (arme instanceof Arc){
                     iv3.setImage(imageLinkHautA);
                 }else {
                     if(arme instanceof Marteau){
@@ -106,7 +106,7 @@ public class LinkVue extends PersonnageVue {
                 }
                 break;
             case "BAS":
-                if (arme instanceof TireALArc){
+                if (arme instanceof Arc){
                     if (this.direction.equals("GAUCHE")) {
                         iv3.setImage(imageLinkGaucheA);
                     } else {

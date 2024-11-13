@@ -1,134 +1,123 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionEnnemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionGardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionProjectile;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionEnnemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Gestionnaire.GestionProjectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
-
-
-import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * La classe Environnement représente le contexte global du jeu, incluant les ennemis, les gardiens, les projectiles, etc.
+ * Classe Environnement :
+ * <p>
+ *     Cette classe se charge de la gestion de tous les éléments du jeu intéragissant entre eux.
+ * </p>
+ * Elle possède :
+ * <ul>
+ *     <li>un terrain {@link Terrain}</li>
+ *     <li>un personnage principal {@link Link2}</li>
+ *     <li>un nombre de tours {@link #tours}</li>
+ *     <li>un gestionnaire d'ennemis {@link GestionEnnemi}</li>
+ *     <li>un gestionnaire de projectiles {@link GestionProjectile}</li>
+ *     <li>un gestionnaire de personnages non-jouables {@link GestionGardien}</li>
+ * </ul>
  */
 
 public class Environnement {
-    private GestionEnnemi gestionEnnemi;
-    private GestionProjectile gestionProjectile;
 
-    private ObservableList<BarreDeVie> barreDeVies;
-    private ObservableList<Gardien> gardiens;
-    private Link link;
+    private static Link2 link2;
+    private final Terrain terrain;
 
-    private Terrain terrain;
+    private final GestionEnnemi gestionEnnemi;
+    private final GestionProjectile gestionProjectile;
+    private final GestionGardien gestionGardien;
+
     private int tours;
 
-    public Environnement(Terrain terrain, Link link) {
-        this.terrain = terrain;
-        this.link = link;
-//        this.gestionEnnemi = new GestionEnnemi(this);
-        this.gestionProjectile = new GestionProjectile();
-        this.barreDeVies = FXCollections.observableArrayList();
-        this.gardiens = FXCollections.observableArrayList();
+    public Environnement() {
+        terrain = new Terrain();
+        Environnement.link2 = new Link2(this);
+        gestionEnnemi = new GestionEnnemi(this);
+        gestionProjectile = new GestionProjectile();
+        gestionGardien = new GestionGardien();
         this.tours = 0;
     }
 
-
-    public void ajouterEnnemisAleatoirement(int nombreEnnemis) {
-        gestionEnnemi.ajouterEnnemisAleatoirement(nombreEnnemis);
-    }
-
-    public void ajouterGardien(Gardien gardien) {
-        gardiens.add(gardien);
-    }
-
-    public void ajouterQuestionGardien(){
-        List<String> choix = new ArrayList<>();
-        choix.add("Oui");
-        choix.add("Non");
-        ajouterGardien(new Gardien(2944, 544, "Lexpression «Creuse où tu te tiens » signifie-t-elle qu'on peut trouver des opportunités ou des solutions autour de soi sans chercher ailleurs ?", choix, "Oui", "Bien joué ! Récupère ton marteau qui te permet de casser des cactus pour sauver ton papa qui est coincé dedans(en changeant d'arme).", 0, this));
-        ajouterGardien(new Gardien(2144, 832, "L'expression indienne « Comme les rats quittent un navire qui coule » est-elle utilisée pour décrire les gens qui abandonnent une situation difficile ou désespérée ?", choix, "Oui", "Bonne réponse! Tu as 1 cœur de vie en plus !", 1, this));
-        ajouterGardien(new Gardien(1600, 1000, "Est-ce que l'expression indienne « Un chameau ne passe pas par le chas d'une aiguille » signifie qu'il est possible pour une personne arrogante de se montrer humble ?", choix, "Non", "Bonne réponse! Tu as 1 cœur de vie en plus !",1, this));
-    }
-
-
-    public void ajouterBarreDeVie(BarreDeVie b) {
-        barreDeVies.add(b);
-    }
-
-    public void ajouterProjectile(Projectile projectile){
-        gestionProjectile.ajouterProjectile(projectile);
-    }
-
-
-//    public void unTour() {
-//        gestionEnnemi.miseAjour(link);
-//        //gestionEnnemi.deplacerEnnemis(link);
-//        gestionProjectile.mettreAJourProjectiles();
-//        if (link.isBrule()) {
-//            link.brulure();
-//        }
-//        this.tours++;
-//    }
-
-    public Gardien verifierRencontreLinkGardien() {
-        // Vérifie si Link rencontre un Gardien
-
-        for (Gardien gardien : gardiens) {
-            if (link.getX() / 32 == gardien.getX() / 32 && link.getY() / 32 == gardien.getY() / 32) {
-                return gardien;
-            }
-        }
-        return null;
-    }
-
-    public boolean verifierVictoire() {
-        // Vérifie la victoire de Link
-
-        int x = link.getX();
-        int y = link.getY();
-        return terrain.getDonneeTerrain()[y / 32][x / 32] == 12;
-    }
-    public void ajouterBrulure() {
-        link.setBrule();
-    }
-
-
-    public Terrain getTerrain() {
+    public Terrain getTerrain(){
         return terrain;
     }
 
-//    public ObservableList<Ennemi> getEnnemis() {
-//        return gestionEnnemi.getEnnemis();
-//    }
+    public int getHauteur(){
+        return terrain.getHauteur();
+    }
+    public int getLargeur(){
+        return terrain.getLargeur();
+    }
 
+    public static Link2 getLink2(){
+        return link2;
+    }
+
+    public ObservableList<Ennemi> getEnnemis() {
+        return gestionEnnemi.getEnnemis();
+    }
+    public void ajouterEnnemisAleatoirement(int nbEnnemi){
+        gestionEnnemi.ajouterEnnemisAleatoirement(nbEnnemi);
+    }
+    public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {
+        return gestionEnnemi.getEnnemisDansRayon(x,y,rayon);
+    }
     public ObservableList<BarreDeVie> getBarreDeVies() {
-        return barreDeVies;
+        return gestionEnnemi.getBarreDeVies();
     }
-
-    public ObservableList<Gardien> getGardiens() {
-        return gardiens;
-    }
-
 
     public ObservableList<Projectile> getProjectiles(){
         return gestionProjectile.getProjectiles();
     }
+    public void ajouterProjectile(Projectile projectile){
+        gestionProjectile.ajouterProjectile(projectile);
+    }
 
-    public Link getLink() {
-        return link;
+    public ObservableList<Gardien2> getGardiens() {
+        return gestionGardien.getGardiens();
+    }
+    public void ajouterGardien(Gardien2 gardien) {
+        gestionGardien.ajouterGardien(gardien);
+    }
+    public void ajouterQuestionGardien() {
+        gestionGardien.ajouterQuestionGardien();
+    }
+    public Gardien2 verifierRencontreLinkGardien(){
+        return gestionGardien.verifierRencontreLinkGardien();
     }
 
     public int getTours() {
         return tours;
     }
 
+    public void unTour() {
+        gestionEnnemi.deplacerEnnemis();
+        gestionEnnemi.miseAjour();
+        gestionProjectile.mettreAJourProjectiles();
+
+        link2.agit();
+        tours++;
+    }
+
+
+    public boolean estMarchable(int x, int y) {
+        return terrain.estMarchable(x,y);
+    }
+
+    public boolean verifierVictoire() {
+        Link2 link = Environnement.getLink2();
+        int x = link.getX()/32;
+        int y = link.getY()/32;
+        return getTerrain().getDonneeTerrain()[y][x] == 12 ;
+    }
 }
-
-

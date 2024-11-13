@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Dragon2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Dragon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 
 import java.net.URL;
 
@@ -24,8 +24,8 @@ public class EnnemiVue extends PersonnageVue{
         imageCb = new Image(String.valueOf(urlImageCb));
     }
 
-    public void creerEnnemi(Ennemi2 ennemi) {
-        if (ennemi instanceof Dragon2){
+    public void creerEnnemi(Ennemi ennemi) {
+        if (ennemi instanceof Dragon){
             iv2 = new ImageView(imageDra);
             iv2.setId(ennemi.getId());
 
@@ -40,7 +40,7 @@ public class EnnemiVue extends PersonnageVue{
         getPanneauDeJeu().getChildren().add(iv2);
     }
 
-    public void supprimerEnnemi(Ennemi2 ennemi){
+    public void supprimerEnnemi(Ennemi ennemi){
         System.out.println(ennemi.getId());
         getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#"+ ennemi.getId()));
         getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#"+ ennemi.getBarreDeVie().getId()));

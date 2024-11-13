@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.BarreDeVieVue;
 
 /**

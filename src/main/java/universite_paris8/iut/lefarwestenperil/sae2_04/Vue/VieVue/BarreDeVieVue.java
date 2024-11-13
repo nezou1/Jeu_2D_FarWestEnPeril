@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue;
 
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 
 /**
  * La classe BarreDeVieVue est responsable de l'affichage graphique des barres de vie dans le panneau de jeu.

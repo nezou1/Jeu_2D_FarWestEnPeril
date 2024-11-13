@@ -3,9 +3,9 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Bombe;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ProjectilesVue.ProjectileVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ProjectilesVue.BombeVue;

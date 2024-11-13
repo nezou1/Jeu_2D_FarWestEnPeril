@@ -4,14 +4,14 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Etats.EtatBrulure;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.EtatBrulure;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnvironnementTest  {
-    private Environnement2 environnement;
+    private Environnement environnement;
     private Terrain terrain;
     private Link2 link;
 
     @BeforeEach
     void setUp() {
-        environnement = new Environnement2();
+        environnement = new Environnement();
         terrain = environnement.getTerrain(); // Supposons que le terrain est 20x20
-        link = Environnement2.getLink2();
+        link = Environnement.getLink2();
     }
 
     @Test
@@ -43,7 +43,7 @@ class EnvironnementTest  {
 
     @Test
     void testUnTour() {
-        Cowboy2 cowboy = new Cowboy2(environnement);
+        Cowboy cowboy = new Cowboy(environnement);
         environnement.getEnnemis().add(cowboy);
         environnement.unTour();
         assertEquals(1, environnement.getTours());
@@ -62,14 +62,14 @@ class EnvironnementTest  {
 
     @Test
     void testGetEnnemisDansRayon() {
-        Ennemi2 ennemi1 = new Cowboy2(environnement);
+        Ennemi ennemi1 = new Cowboy(environnement);
         ennemi1.setX(10);
         ennemi1.setY(10);
-        Ennemi2 ennemi2 = new Dragon2(environnement);
+        Ennemi ennemi2 = new Dragon(environnement);
         ennemi2.setX(100);
         ennemi2.setY(100);
         environnement.getEnnemis().addAll(ennemi1, ennemi2);
-        List<Ennemi2> ennemisDansRayon = environnement.getEnnemisDansRayon(10, 10, 20);
+        List<Ennemi> ennemisDansRayon = environnement.getEnnemisDansRayon(10, 10, 20);
         assertEquals(1, ennemisDansRayon.size());
         assertEquals(ennemi1, ennemisDansRayon.get(0));
     }

@@ -19,16 +19,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Ennemi2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.PNJs.Gardien2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.ArcW;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
@@ -40,7 +40,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     private Terrain terrain;
     private Timeline gameLoop;
-    private Environnement2 env;
+    private Environnement env;
     private Link2 link;
     private LinkVue linkVue;
     @FXML
@@ -61,9 +61,9 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        env = new Environnement2();
+        env = new Environnement();
         terrain = new Terrain();
-        link = Environnement2.getLink2();
+        link = Environnement.getLink2();
 
 
         tv = new TerrainVue(terrain, tuile);
@@ -76,11 +76,11 @@ public class Controleur implements Initializable {
 //        BombeVue bombeVue = new BombeVue(panneauDeJeu);
 //        bombe = new Bombe(panneauDeJeu, bombeVue);
 
-        link.ajouterArme(new TomahawkW());
-        link.ajouterArme(new ArcW());
+        link.ajouterArme(new Tomahawk());
+        link.ajouterArme(new Arc());
         link.ajouterArme(new LanceurDeBombes());
 
-        ListChangeListener<Ennemi2> listenE = new ListObsEnnemis(panneauDeJeu);
+        ListChangeListener<Ennemi> listenE = new ListObsEnnemis(panneauDeJeu);
         env.getEnnemis().addListener(listenE);
 
         ListChangeListener<BarreDeVie> listenB = new ListObsBarreDeVie(panneauDeJeu);
@@ -147,7 +147,7 @@ public class Controleur implements Initializable {
             case I:
                 if(link.getArme() != null) {
                     link.attaquer();
-                    if( link.getArmeActuelle() instanceof MarteauW){
+                    if( link.getArmeActuelle() instanceof Marteau){
                         tv = new TerrainVue(terrain, tuile);
                         tv.creerCarte();
                     }

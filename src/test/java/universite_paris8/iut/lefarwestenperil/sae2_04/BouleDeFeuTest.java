@@ -2,10 +2,10 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.BouleDeFeu;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,8 +16,8 @@ public class BouleDeFeuTest {
 
     @BeforeEach
     public void setUp() {
-        Environnement2 env = new Environnement2();
-        link = Environnement2.getLink2();
+        Environnement env = new Environnement();
+        link = Environnement.getLink2();
         bouleDeFeu = new BouleDeFeu(20, 20, Direction.BAS, env);//va vers le bas
     }
 

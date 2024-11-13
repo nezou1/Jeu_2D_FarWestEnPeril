@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.*;
 
 import java.awt.*;
 import java.io.File;

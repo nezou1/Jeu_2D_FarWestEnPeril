@@ -3,9 +3,9 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Terrain;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Personnage.Link2;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ class LinkTest {
     void setUp() {
 //        new Environnement2();
         terrain = new Terrain(); // Créez un terrain de test, par exemple 20x20
-        link = new Link2(new Environnement2());
+        link = new Link2(new Environnement());
     }
 
     @Test

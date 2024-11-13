@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ProjectilesVue;
 import javafx.scene.layout.Pane;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
-import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 
 
 public class BombeVue extends ExplosifVue{
