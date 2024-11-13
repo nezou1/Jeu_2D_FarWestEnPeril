@@ -1,6 +1,7 @@
 
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes;
 
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.Personnage;
 
@@ -33,19 +34,19 @@ public class Tomahawk extends Arme {
         }
     }
 
-    public boolean recevoirDirection(int direction, int cibleX, int cibleY, Personnage p) {
+    public boolean recevoirDirection(Direction direction, int cibleX, int cibleY, Personnage p) {
         boolean dansLaDirection = true;
         switch (direction) {
-            case 0:
+            case DROIT:
                 dansLaDirection = (cibleX > p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
                 break;
-            case 1:
+            case BAS:
                 dansLaDirection = (cibleY > p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
                 break;
-            case 2:
+            case GAUCHE:
                 dansLaDirection = (cibleX < p.getX()) && (Math.abs(cibleY - p.getY()) < 32);
                 break;
-            case 3:
+            case HAUT:
                 dansLaDirection = (cibleY < p.getX()) && (Math.abs(cibleX - p.getY()) < 32);
                 break;
         }

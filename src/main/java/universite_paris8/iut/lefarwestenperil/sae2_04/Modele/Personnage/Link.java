@@ -1,11 +1,12 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
 public class Link extends Personnage {
 
     public Link(Terrain terrain) {
-        super(1600, 1500, 16, 2, 1, terrain, 4, 0); // Initialisation de vitesse et direction
+        super(1600, 1500, 16, 2, 1, terrain, 4, Direction.NULL); // Initialisation de vitesse et direction
     }
 
     public void deplacer(int dx, int dy) {
@@ -17,10 +18,10 @@ public class Link extends Personnage {
             setY(newY);
 
             // Mise à jour de la direction
-            if (dx > 0) setDirection(0);       // Droite
-            else if (dx < 0) setDirection(2);  // Gauche
-            if (dy > 0) setDirection(1);       // Bas
-            else if (dy < 0) setDirection(3);  // Haut
+            if (dx > 0) setDirection(Direction.NULL);       // Droite
+            else if (dx < 0) setDirection(Direction.GAUCHE);  // Gauche
+            if (dy > 0) setDirection(Direction.BAS);       // Bas
+            else if (dy < 0) setDirection(Direction.HAUT);  // Haut
         } else if (dx != 0 && getX() % tailleTuile < 4) {
             newX = getX() / tailleTuile * tailleTuile + 1;
             setX(newX);
