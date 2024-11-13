@@ -11,9 +11,9 @@ import static universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitair
 
 public class LassoW implements Weapon {
     @Override
-    public void utilise(EtreVivant personnage) {
+    public void attaquer(EtreVivant proprietaite) {
         Link2 link = Environnement2.getLink2();
-        double distance = Outils.distanceEntre(personnage.getX(),personnage.getY(),link.getX(),link.getY());
+        double distance = Outils.distanceEntre(proprietaite.getX(), proprietaite.getY(),link.getX(),link.getY());
         if (distance <= PORTEELASSO) {
             link.encaisseDegats(4);
 //            System.out.println("Lasso attrape Link et inflige 4 dégâts.");

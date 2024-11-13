@@ -8,7 +8,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 public class MarteauW implements Weapon{
 
     @Override
-    public void utilise(EtreVivant etreVivant) {
+    public void attaquer(EtreVivant proprietaite) {
         Link2 link = Environnement2.getLink2();
         int x = (link.getX() + 11) / 32;
         int y = (link.getY() + 13) / 32;
@@ -27,7 +27,7 @@ public class MarteauW implements Weapon{
                 --y;
                 break;
         }
-        int[][] tab = etreVivant.getEnv().getTerrain().getTab();
+        int[][] tab = proprietaite.getEnv().getTerrain().getTab();
         if (tab[y][x] == 3)
             tab[y][x] = 0;
     }

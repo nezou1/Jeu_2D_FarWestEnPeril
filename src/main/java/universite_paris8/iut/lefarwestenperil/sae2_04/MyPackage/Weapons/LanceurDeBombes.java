@@ -8,9 +8,9 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Environnement2;
 
 public class LanceurDeBombes implements Weapon {
     @Override
-    public void utilise(EtreVivant etreVivant) {
-        Bombe bombe = new Bombe(etreVivant.getX(), etreVivant.getY(), etreVivant.getDirection(), etreVivant.getEnv());
-        etreVivant.getEnv().ajouterProjectile(bombe);
+    public void attaquer(EtreVivant proprietaite) {
+        Bombe bombe = new Bombe(proprietaite.getX(), proprietaite.getY(), proprietaite.getDirection(), proprietaite.getEnv());
+        proprietaite.getEnv().ajouterProjectile(bombe);
         bombe.seDeplace();
     }
 

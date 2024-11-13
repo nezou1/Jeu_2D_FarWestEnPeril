@@ -172,7 +172,7 @@ public abstract class Ennemi2 extends Guerrier{
             initChemin(link.getX(),link.getY());
             parcoursBFS();
             if (getEnv().getTours() - compteur >= tempsAttente) {
-                getArme().utilise(this);
+                getArme().attaquer(this);
                 setCompteur(getEnv().getTours());
             }
         } else {

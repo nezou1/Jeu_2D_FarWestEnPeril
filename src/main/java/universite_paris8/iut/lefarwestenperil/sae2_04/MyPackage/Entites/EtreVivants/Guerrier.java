@@ -19,7 +19,7 @@ public abstract class Guerrier extends EtreVivant {
     }
 
     public void attaquer(){
-        arme.utilise(this);
+        arme.attaquer(this);
     }
 
 }

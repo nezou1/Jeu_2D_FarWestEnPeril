@@ -4,6 +4,6 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.EtreViva
 
 public interface Weapon {
 
-    void utilise(EtreVivant etreVivant);
+    void attaquer(EtreVivant proprietaite);
     String toString();
 }

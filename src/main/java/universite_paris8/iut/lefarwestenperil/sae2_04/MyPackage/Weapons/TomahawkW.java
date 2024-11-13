@@ -8,12 +8,12 @@ import static universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Utilitair
 
 public class TomahawkW implements Weapon{
     @Override
-    public void utilise(EtreVivant e) {
-        for (EtreVivant cible : e.getEnv().getEnnemis()) {
+    public void attaquer(EtreVivant proprietaite) {
+        for (EtreVivant cible : proprietaite.getEnv().getEnnemis()) {
             int cibleX = cible.getX();
             int cibleY = cible.getY();
             boolean dansLaDirection;
-            dansLaDirection = recevoirDirection(e.getDirection(), e.getX(), e.getY(), cibleX, cibleY);
+            dansLaDirection = recevoirDirection(proprietaite.getDirection(), proprietaite.getX(), proprietaite.getY(), cibleX, cibleY);
             if (dansLaDirection) {
                 cible.encaisseDegats(7);
                 System.out.println("Tomahawk directionnel inflige 7 dégâts à " + cible);

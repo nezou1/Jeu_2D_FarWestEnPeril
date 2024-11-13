@@ -6,9 +6,9 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projecti
 public class ArcW implements Weapon{
 
     @Override
-    public void utilise(EtreVivant etreVivant) {
-        Fleche fleche = new Fleche(etreVivant.getX(), etreVivant.getY(), etreVivant.getDirection(), etreVivant.getEnv());
-        etreVivant.getEnv().ajouterProjectile(fleche);
+    public void attaquer(EtreVivant proprietaite) {
+        Fleche fleche = new Fleche(proprietaite.getX(), proprietaite.getY(), proprietaite.getDirection(), proprietaite.getEnv());
+        proprietaite.getEnv().ajouterProjectile(fleche);
         fleche.seDeplace();
 //        System.out.println("Tir à l'arc touche et inflige " + fleche.getDegats() + " dégâts.");
     }

@@ -6,9 +6,9 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projecti
 public class SouffleDuDragon implements Weapon{
 
     @Override
-    public void utilise(EtreVivant etreVivant) {
-        BouleDeFeu bouleDeFeu = new BouleDeFeu(etreVivant.getX(), etreVivant.getY(), etreVivant.getDirection(), etreVivant.getEnv());
-        etreVivant.getEnv().ajouterProjectile(bouleDeFeu);
+    public void attaquer(EtreVivant proprietaite) {
+        BouleDeFeu bouleDeFeu = new BouleDeFeu(proprietaite.getX(), proprietaite.getY(), proprietaite.getDirection(), proprietaite.getEnv());
+        proprietaite.getEnv().ajouterProjectile(bouleDeFeu);
         bouleDeFeu.seDeplace();
 //        System.out.println("Le souffle du Dragon brûle et inflige "+bouleDeFeu.getDegats()+" points de dégâts.");
     }

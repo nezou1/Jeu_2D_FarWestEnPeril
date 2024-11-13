@@ -60,8 +60,8 @@ public class Arsenal implements Weapon {
     }
 
     @Override
-    public void utilise(EtreVivant etreVivant) {
-        armeActuelle.utilise(etreVivant);
+    public void attaquer(EtreVivant proprietaite) {
+        armeActuelle.attaquer(proprietaite);
     }
 
     @Override
