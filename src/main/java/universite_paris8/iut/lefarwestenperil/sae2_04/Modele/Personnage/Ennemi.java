@@ -46,7 +46,7 @@ public abstract class Ennemi extends Personnage {
     public Ennemi(int x, int y, int pointVie, int pointAttaque, int pointDefense, Terrain terrain, int vitesse, int portee, boolean peutTraverserObstacles, int porteeAttaque, Environnement env, int tempsAttente, int largeurImage, int hauteurImage) {
         super(x, y, pointVie, pointAttaque, pointDefense, terrain, vitesse, 0); // Initialise avec vitesse et direction via la superclasse
         this.id = "E" + compteurId++;
-        this.barreDeVie = new BarreDeVie(pointVie, pointVie, getId(), getX(), getY());
+        this.barreDeVie = new BarreDeVie(getX(), getY(),pointVie);
         this.largeurImage = largeurImage;
         this.hauteurImage = hauteurImage;
         this.pixelsParcourus = 0;

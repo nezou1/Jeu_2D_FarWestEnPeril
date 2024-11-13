@@ -194,7 +194,7 @@ public abstract class Ennemi2 extends Guerrier{
     }
 
     private void initChemin(int cibleX, int cibleY) {
-        int[][] tab = getEnv().getTerrain().getTab();
+        int[][] tab = getEnv().getTerrain().getDonneeTerrain();
         int newX = (getX()+8) / 32;
         int newY = (getY()+8) / 32;
         int newLinkX = cibleX/ 32;

@@ -27,7 +27,7 @@ public class MarteauW implements StrategieAttaque {
                 --y;
                 break;
         }
-        int[][] tab = proprietaite.getEnv().getTerrain().getTab();
+        int[][] tab = proprietaite.getEnv().getTerrain().getDonneeTerrain();
         if (tab[y][x] == 3)
             tab[y][x] = 0;
     }

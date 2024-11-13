@@ -115,6 +115,6 @@ public class Environnement2 {
         Link2 link = Environnement2.getLink2();
         int x = link.getX()/32;
         int y = link.getY()/32;
-        return getTerrain().getTab()[y][x] == 12 ;
+        return getTerrain().getDonneeTerrain()[y][x] == 12 ;
     }
 }

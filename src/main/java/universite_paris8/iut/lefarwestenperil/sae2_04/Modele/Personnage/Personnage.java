@@ -6,8 +6,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Deplacement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;

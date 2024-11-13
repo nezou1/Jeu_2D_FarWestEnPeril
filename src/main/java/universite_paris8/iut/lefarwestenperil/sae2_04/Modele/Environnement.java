@@ -2,9 +2,9 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.*;
 
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.MyPackage.Entites.Projectiles.Projectile;
 
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Environnement {
     public Environnement(Terrain terrain, Link link) {
         this.terrain = terrain;
         this.link = link;
-        this.gestionEnnemi = new GestionEnnemi(terrain, this);
+//        this.gestionEnnemi = new GestionEnnemi(this);
         this.gestionProjectile = new GestionProjectile();
         this.barreDeVies = FXCollections.observableArrayList();
         this.gardiens = FXCollections.observableArrayList();
@@ -59,20 +59,20 @@ public class Environnement {
         barreDeVies.add(b);
     }
 
-    public void ajouterProjectile(Projectile projectile){
-        gestionProjectile.ajouterProjectile(projectile);
-    }
+//    public void ajouterProjectile(Projectile projectile){
+//        gestionProjectile.ajouterProjectile(projectile);
+//    }
 
 
-    public void unTour() {
-        gestionEnnemi.miseAjour(link);
-        //gestionEnnemi.deplacerEnnemis(link);
-        gestionProjectile.mettreAJourProjectiles();
-        if (link.isBrule()) {
-            link.brulure();
-        }
-        this.tours++;
-    }
+//    public void unTour() {
+//        gestionEnnemi.miseAjour(link);
+//        //gestionEnnemi.deplacerEnnemis(link);
+//        gestionProjectile.mettreAJourProjectiles();
+//        if (link.isBrule()) {
+//            link.brulure();
+//        }
+//        this.tours++;
+//    }
 
     public Gardien verifierRencontreLinkGardien() {
         // Vérifie si Link rencontre un Gardien
@@ -101,9 +101,9 @@ public class Environnement {
         return terrain;
     }
 
-    public ObservableList<Ennemi> getEnnemis() {
-        return gestionEnnemi.getEnnemis();
-    }
+//    public ObservableList<Ennemi> getEnnemis() {
+//        return gestionEnnemi.getEnnemis();
+//    }
 
     public ObservableList<BarreDeVie> getBarreDeVies() {
         return barreDeVies;

@@ -60,7 +60,7 @@ public class Terrain {
         return donneeTerrain[0].length;
     }
 
-    public boolean estMarchable(int y, int x) {
+    public boolean estMarchable(int x, int y) {
         int tileX = x / tailleTuile;
         int tileY = y / tailleTuile;
         if (tileX >= 0 && tileX < getLargeur() && tileY >= 0 && tileY < getHauteur()) {
