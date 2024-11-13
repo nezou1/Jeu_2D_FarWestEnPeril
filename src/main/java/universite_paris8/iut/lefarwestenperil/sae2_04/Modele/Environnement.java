@@ -27,6 +27,7 @@ public class Environnement {
     private int tours;
     private Terrain terrain;
     private ObservableList<Gardien> gardiens;
+    private static Environnement instance;
 
 
     public Environnement(Terrain terrain, Link link) {
@@ -39,6 +40,12 @@ public class Environnement {
         this.nombreEnnemis = new SimpleIntegerProperty(0);
         this.link = link;
         this.gardiens = FXCollections.observableArrayList();
+    }
+    public static Environnement getInstance(Terrain terrain, Link link) {
+        if (instance == null) {
+            instance = new Environnement(terrain, link);
+        }
+        return instance;
     }
 
     public Terrain getTerrain(){
