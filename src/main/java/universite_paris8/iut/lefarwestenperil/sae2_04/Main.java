@@ -39,7 +39,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         URL urlImageVaiL = Main.class.getResource("sonFond.wav");
         String s = urlImageVaiL.getPath();
-        //PlayMusicFond(s);
+        PlayMusicFond(s);
         launch();
     }
     public static void PlayMusicFond(String location) {

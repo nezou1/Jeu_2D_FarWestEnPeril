@@ -73,8 +73,6 @@ public class Controleur implements Initializable {
         tv.creerCarte();
         linkVue.creerLink(link);
 
-//        BombeVue bombeVue = new BombeVue(panneauDeJeu);
-//        bombe = new Bombe(panneauDeJeu, bombeVue);
 
         link.ajouterArme(new Tomahawk());
         link.ajouterArme(new Arc());
