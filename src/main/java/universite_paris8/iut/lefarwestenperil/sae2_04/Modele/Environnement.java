@@ -3,7 +3,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionEnnemi;
@@ -92,16 +92,16 @@ public class Environnement {
         gestionProjectile.ajouterProjectile(projectile);
     }
 
-    public ObservableList<Gardien2> getGardiens() {
+    public ObservableList<Gardien> getGardiens() {
         return gestionGardien.getGardiens();
     }
-    public void ajouterGardien(Gardien2 gardien) {
+    public void ajouterGardien(Gardien gardien) {
         gestionGardien.ajouterGardien(gardien);
     }
     public void ajouterQuestionGardien() {
         gestionGardien.ajouterQuestionGardien();
     }
-    public Gardien2 verifierRencontreLinkGardien(){
+    public Gardien verifierRencontreLinkGardien(){
         return gestionGardien.verifierRencontreLinkGardien();
     }
 

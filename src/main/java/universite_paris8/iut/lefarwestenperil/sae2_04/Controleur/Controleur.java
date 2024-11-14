@@ -21,7 +21,7 @@ import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -181,7 +181,7 @@ public class Controleur implements Initializable {
 
 
     public void verifierRencontreGardien() {
-        Gardien2 g = env.verifierRencontreLinkGardien();
+        Gardien g = env.verifierRencontreLinkGardien();
         if (g != null) {
                 messageVue.afficherDialogueGardien(g, link);
         }

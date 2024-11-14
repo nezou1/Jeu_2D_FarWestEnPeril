@@ -12,7 +12,7 @@ import java.util.List;
 //La classe inclut également un système de récompense pour le joueur (Link) en cas de bonne réponse, pouvant être soit une nouvelle arme, soit des points de vie supplémentaires.
 
 
-public class Gardien2 extends PNJ {
+public class Gardien extends PNJ {
 
     private final String question;
 
@@ -27,7 +27,7 @@ public class Gardien2 extends PNJ {
     private final int recompense;
 
 
-    public Gardien2(int x, int y, String question, List<String> choix, String bonneReponse, String messageReussite, int recompense, Environnement env) {
+    public Gardien(int x, int y, String question, List<String> choix, String bonneReponse, String messageReussite, int recompense, Environnement env) {
         super("Gardien",env,x,y);
         this.question = question;
         this.choix = choix;

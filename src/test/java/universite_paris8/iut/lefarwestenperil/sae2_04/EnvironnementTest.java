@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.*;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien2;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.BouleDeFeu;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -32,9 +32,9 @@ class EnvironnementTest  {
 
     @Test
     void testAjouterGardien() {
-        Gardien2 gardien = new Gardien2(100, 100, "Question", new ArrayList<>(), "Réponse", "Message", 0, environnement);
+        Gardien gardien = new Gardien(100, 100, "Question", new ArrayList<>(), "Réponse", "Message", 0, environnement);
         environnement.ajouterGardien(gardien);
-        ObservableList<Gardien2> gardiens = environnement.getGardiens();
+        ObservableList<Gardien> gardiens = environnement.getGardiens();
         assertEquals(1, gardiens.size());
         assertEquals(gardien, gardiens.get(0));
     }
@@ -77,7 +77,7 @@ class EnvironnementTest  {
     @Test
     void testAjouterQuestionGardien() {
         environnement.ajouterQuestionGardien();
-        ObservableList<Gardien2> gardiens = environnement.getGardiens();
+        ObservableList<Gardien> gardiens = environnement.getGardiens();
         assertEquals(3, gardiens.size());
     }
 
