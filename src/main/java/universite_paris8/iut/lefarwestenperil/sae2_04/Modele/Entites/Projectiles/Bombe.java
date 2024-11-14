@@ -42,10 +42,7 @@ public class Bombe extends Projectile {
      */
     @Override
     public void agit() {
-//        if (isActive()) {
-//            System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
-//            return;
-//        }
+
         seDeplace();
         ArrayList<Ennemi> ennemis = chercheEnnemis();
 

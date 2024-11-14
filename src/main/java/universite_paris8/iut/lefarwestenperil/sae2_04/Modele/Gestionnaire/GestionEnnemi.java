@@ -107,7 +107,6 @@ public class GestionEnnemi{
             bVie.setY(e.getY());
             bVie.setVieActuelle(e.getPointVie());
             bVie.miseAJourVieTotale();
-//            System.out.println(e.getBarreDeVie().getVieRestante());
             if (!e.estVivant()) {
                 ennemis.remove(i);
                 i--;

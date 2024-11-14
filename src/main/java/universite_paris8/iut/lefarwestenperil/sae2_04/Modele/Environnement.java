@@ -57,6 +57,48 @@ public class Environnement {
         return instance;
     }
 
+    public void unTour() {
+        gestionEnnemi.deplacerEnnemis();
+        gestionEnnemi.miseAjour();
+        gestionProjectile.mettreAJourProjectiles();
+
+        link.agit();
+        tours++;
+    }
+
+
+    public void ajouterEnnemisAleatoirement(int nbEnnemi){
+
+        gestionEnnemi.ajouterEnnemisAleatoirement(nbEnnemi);
+    }
+    public void ajouterProjectile(Projectile projectile){
+        gestionProjectile.ajouterProjectile(projectile);
+    }
+    public void ajouterGardien(Gardien gardien) {
+        gestionGardien.ajouterGardien(gardien);
+    }
+    public void ajouterQuestionGardien() {
+        gestionGardien.ajouterQuestionGardien();
+    }
+
+
+    public Gardien verifierRencontreLinkGardien(){
+        return gestionGardien.verifierRencontreLinkGardien();
+    }
+
+    public boolean estMarchable(int x, int y) {
+        return terrain.estMarchable(x,y);
+    }
+
+    public boolean verifierVictoire() {
+        Link link = Environnement.getLink2();
+        int x = link.getX()/32;
+        int y = link.getY()/32;
+        return getTerrain().getDonneeTerrain()[y][x] == 12 ;
+    }
+
+    // GETTERS
+
     public Terrain getTerrain(){
         return terrain;
     }
@@ -73,60 +115,26 @@ public class Environnement {
     }
 
     public ObservableList<Ennemi> getEnnemis() {
+
         return gestionEnnemi.getEnnemis();
-    }
-    public void ajouterEnnemisAleatoirement(int nbEnnemi){
-        gestionEnnemi.ajouterEnnemisAleatoirement(nbEnnemi);
     }
     public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {
         return gestionEnnemi.getEnnemisDansRayon(x,y,rayon);
     }
     public ObservableList<BarreDeVie> getBarreDeVies() {
+
         return gestionEnnemi.getBarreDeVies();
     }
-
     public ObservableList<Projectile> getProjectiles(){
+
         return gestionProjectile.getProjectiles();
-    }
-    public void ajouterProjectile(Projectile projectile){
-        gestionProjectile.ajouterProjectile(projectile);
     }
 
     public ObservableList<Gardien> getGardiens() {
         return gestionGardien.getGardiens();
     }
-    public void ajouterGardien(Gardien gardien) {
-        gestionGardien.ajouterGardien(gardien);
-    }
-    public void ajouterQuestionGardien() {
-        gestionGardien.ajouterQuestionGardien();
-    }
-    public Gardien verifierRencontreLinkGardien(){
-        return gestionGardien.verifierRencontreLinkGardien();
-    }
 
     public int getTours() {
         return tours;
-    }
-
-    public void unTour() {
-        gestionEnnemi.deplacerEnnemis();
-        gestionEnnemi.miseAjour();
-        gestionProjectile.mettreAJourProjectiles();
-
-        link.agit();
-        tours++;
-    }
-
-
-    public boolean estMarchable(int x, int y) {
-        return terrain.estMarchable(x,y);
-    }
-
-    public boolean verifierVictoire() {
-        Link link = Environnement.getLink2();
-        int x = link.getX()/32;
-        int y = link.getY()/32;
-        return getTerrain().getDonneeTerrain()[y][x] == 12 ;
     }
 }
