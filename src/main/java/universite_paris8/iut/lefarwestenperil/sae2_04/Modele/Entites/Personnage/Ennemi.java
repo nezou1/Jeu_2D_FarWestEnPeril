@@ -4,7 +4,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.BFS.BFS;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 
 import java.util.List;
 import java.awt.Point;
@@ -167,7 +167,7 @@ public abstract class Ennemi extends Guerrier{
 
     @Override
     public void agit() {
-        Link link = Environnement.getLink2();
+        Link link = getEnv().getLink2();
         if (linkACote()) {
             initChemin(link.getX(),link.getY());
             parcoursBFS();
@@ -189,7 +189,7 @@ public abstract class Ennemi extends Guerrier{
     }
 
     private boolean linkACote() {
-        Link link = Environnement.getLink2();
+        Link link = getEnv().getLink2();
         return distanceAvec(link.getX(),link.getY()) <= portee;
     }
 

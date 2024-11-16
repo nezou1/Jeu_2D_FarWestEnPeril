@@ -1,12 +1,12 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.ActeurMobile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.Etat;
 
 /**
- * Classe EtreVivant:
+ * Classe Personnage:
  * <p>
  *      Cette classe est une sous-classe de {@link ActeurMobile} qui  s'occupe de la gestion des acteurs {@code vivants} de notre jeu.
  * </p>

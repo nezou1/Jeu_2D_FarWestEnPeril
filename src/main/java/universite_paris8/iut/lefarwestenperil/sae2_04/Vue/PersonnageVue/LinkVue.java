@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
 import javafx.embed.swing.SwingFXUtils;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
@@ -18,15 +19,15 @@ import java.io.IOException;
 import java.net.URL;
 
 public class LinkVue extends PersonnageVue {
-    private Image imageLinkDroite;
-    private Image imageLinkGauche;
-    private Image imageLinkHaut;
-    private Image imageLinkDroiteA;
-    private Image imageLinkGaucheA;
-    private Image imageLinkHautA;
-    private Image imageLinkDroiteM;
-    private Image imageLinkGaucheM;
-    private Image imageLinkHautM;
+    private final Image imageLinkDroite;
+    private final Image imageLinkGauche;
+    private final Image imageLinkHaut;
+    private final Image imageLinkDroiteA;
+    private final Image imageLinkGaucheA;
+    private final Image imageLinkHautA;
+    private final Image imageLinkDroiteM;
+    private final Image imageLinkGaucheM;
+    private final Image imageLinkHautM;
     private ImageView iv3;
 
     private String direction;
@@ -39,15 +40,20 @@ public class LinkVue extends PersonnageVue {
         URL urlImageHaut = Main.class.getResource("LinkDosTomahawk.png");
         URL urlImageDroiteM = Main.class.getResource("linkMarteauDroite.png");
         URL urlImageHautM = Main.class.getResource("linkMarteauDroiteDos.png");
+
         imageLinkDroite = new Image(String.valueOf(urlImageDroite));
         imageLinkDroiteM = new Image(String.valueOf(urlImageDroiteM));
         imageLinkGaucheA = new Image(String.valueOf(urlImageGaucheA));
-        BufferedImage originalImage = null;
-        BufferedImage gaucheImage = null;
-        BufferedImage marteauDroitImage = null;
+
+        BufferedImage originalImage;
+        BufferedImage gaucheImage;
+        BufferedImage marteauDroitImage;
         try {
+            assert urlImageDroite != null;
             originalImage = ImageIO.read(urlImageDroite);
+            assert urlImageDroiteM != null;
             marteauDroitImage = ImageIO.read(urlImageDroiteM);
+            assert urlImageGaucheA != null;
             gaucheImage = ImageIO.read(urlImageGaucheA);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -65,80 +71,41 @@ public class LinkVue extends PersonnageVue {
         iv3 = new ImageView(imageLinkDroite);
         iv3.translateXProperty().bind(personnage.xProperty());
         iv3.translateYProperty().bind(personnage.yProperty());
-        super.getPanneauDeJeu().getChildren().add(iv3);
+        getPanneauDeJeu().getChildren().add(iv3);
     }
 
-    public void updateImage(String direction, StrategieAttaque arme) {
+    public void updateImage(Direction direction, StrategieAttaque arme) {
+        Image image = null;
+        boolean estUnArc = arme instanceof Arc;
+        boolean estUnMarteau = arme instanceof Marteau;
         switch (direction) {
-            case "DROITE":
-                if (arme instanceof Arc){
-                    iv3.setImage(imageLinkDroiteA);
-                } else {
-                    if(arme instanceof Marteau) {
-                        iv3.setImage(imageLinkDroiteM);
-                    } else{
-                        iv3.setImage(imageLinkDroite);
-                    }
-                }
+            case DROIT:
+                image = estUnArc ? imageLinkDroiteA :(estUnMarteau ? imageLinkDroiteM :imageLinkDroite);
                 this.direction = "DROITE";
                 break;
-            case "GAUCHE":
-                if (arme instanceof Arc){
-                    iv3.setImage(imageLinkGaucheA);
-                }else {
-                    if (arme instanceof Marteau) {
-                        iv3.setImage(imageLinkGaucheM);
-                    } else {
-                        iv3.setImage(imageLinkGauche);
-                    }
-                }
+            case GAUCHE:
+                image = estUnArc ? imageLinkGaucheA :(estUnMarteau ? imageLinkGaucheM :imageLinkGauche);
                 this.direction = "GAUCHE";
                 break;
-            case "HAUT":
-                if (arme instanceof Arc){
-                    iv3.setImage(imageLinkHautA);
-                }else {
-                    if(arme instanceof Marteau){
-                        iv3.setImage(imageLinkHautM);
-                    } else {
-                        iv3.setImage(imageLinkHaut);
-                    }
-                }
+            case HAUT:
+                image = estUnArc ? imageLinkHautA : (estUnMarteau ? imageLinkHautM :imageLinkHaut);
                 break;
-            case "BAS":
-                if (arme instanceof Arc){
-                    if (this.direction.equals("GAUCHE")) {
-                        iv3.setImage(imageLinkGaucheA);
-                    } else {
-                        iv3.setImage(imageLinkDroiteA);
-                        this.direction = "DROITE";
-                    }
-                } else {
-                    if (arme instanceof Marteau) {
-                        if (this.direction.equals("GAUCHE")) {
-                            iv3.setImage(imageLinkGaucheM);
-                        } else {
-                            iv3.setImage(imageLinkDroiteM);
-                            this.direction = "DROITE";
-                        }
-                    } else {
-                        if (this.direction.equals("GAUCHE")) {
-                            iv3.setImage(imageLinkGauche);
-                        } else {
-                            iv3.setImage(imageLinkDroite);
-                            this.direction = "DROITE";
-                        }
-                    }
-                }
+            case BAS:
+                image = estUnArc ?
+                            ((this.direction.equals("GAUCHE")) ? imageLinkGaucheA :imageLinkDroiteA)
+                        : (this.direction.equals("GAUCHE")) ?
+                                (estUnMarteau ? imageLinkGaucheM :imageLinkGauche)
+                          : (estUnMarteau ? imageLinkDroiteM :imageLinkDroite);
                 break;
         }
+        iv3.setImage(image);
     }
 
     // essayetu rep a la qquestion tu attaque le cactus
 //jfais comment pour lavoir okok
     //et comment je fais pour casser les cactus
     //
-    public static Image createMirrorImage(BufferedImage image) {
+    private static Image createMirrorImage(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
         BufferedImage mirroredImage = new BufferedImage(width, height, image.getType());

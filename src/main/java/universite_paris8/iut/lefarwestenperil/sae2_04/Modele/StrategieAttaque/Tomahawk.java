@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 
 import static universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee.PORTEETOMAHAWK;

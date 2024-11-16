@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,7 +19,6 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
@@ -28,7 +28,8 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.ActionFXML;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.AudioManager;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
@@ -37,12 +38,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controleur implements Initializable {
-    private Terrain terrain;
-    private Timeline gameLoop;
-    private Environnement env;
-    private Link link;
-    private LinkVue linkVue;
+public class Controleur implements Initializable{
+
     @FXML
     private Pane panneauDeJeu;
     @FXML
@@ -50,10 +47,19 @@ public class Controleur implements Initializable {
     private Scale scaleTransform;
     @FXML
     private HBox vieBox;
+
     @FXML
-    private Button pauseButton;
-    private Parent root;
-    private Stage stage;
+    public Button boutonRecommencer;
+    @FXML
+    public Button boutonPrecedent;
+    @FXML
+    public Button boutonPause;
+
+    private Timeline gameLoop;
+    private Environnement env;
+    private Link link;
+    private LinkVue linkVue;
+
     private ListCoeurVue coeurVue;
     private MessageVue messageVue;
 
@@ -61,18 +67,15 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        env = Environnement.getInstance();
-        terrain = new Terrain();
+        env = new Environnement();
         link = env.getLink2();
 
-
-        tv = new TerrainVue(terrain, tuile);
+        tv = new TerrainVue(env.getTerrain(), tuile);
         linkVue = new LinkVue(panneauDeJeu);
         messageVue = new MessageVue();
 
         tv.creerCarte();
         linkVue.creerLink(link);
-
 
         link.ajouterArme(new Tomahawk());
         link.ajouterArme(new Arc());
@@ -97,98 +100,101 @@ public class Controleur implements Initializable {
             }
         });
 
-
         scaleTransform = new Scale();
         panneauDeJeu.getTransforms().add(scaleTransform);
-
 
         scaleTransform.setPivotX(link.getX()-200);
         scaleTransform.setPivotY(link.getY()-200);
 
         coeurVue = new ListCoeurVue(link, vieBox);
 
-
         initAnimation();
         gameLoop.play();
     }
 
-    private void setScale(double scale) {
-        scaleTransform.setX(scale);
-        scaleTransform.setY(scale);
-    }
-
-    public Pane getPanneauDeJeu() {
-        return panneauDeJeu;
-    }
-
-
     @FXML
     private void gererTouchePressee(KeyEvent event) {
-        System.out.println("Touche pressée: " + event.getCode());
-        switch (event.getCode()) {
-            case Z:
-                link.deplacerHaut();
-                linkVue.updateImage("HAUT", link.getArme());
-                break;
-            case Q:
-                link.deplacerGauche();
-                linkVue.updateImage("GAUCHE", link.getArme());
-                break;
-            case S:
-                link.deplacerBas();
-                linkVue.updateImage("BAS", link.getArme());
-                break;
-            case D:
-                link.deplacerDroite();
-                linkVue.updateImage("DROITE", link.getArme());
-                break;
-            case I:
-                if(link.getArme() != null) {
-                    link.attaquer();
-                    if( link.getArmeActuelle() instanceof Marteau){
-                        tv = new TerrainVue(terrain, tuile);
-                        tv.creerCarte();
-                    }
-                }
-                break;
-            case K:
-                link.changerArmeSuivante();
-                System.out.println("Arme actuelle : " + link.getArme());
-                break;
-            case J:
-                link.changerArmePrecedente();
-                System.out.println("Arme actuelle : " + link.getArme());
-                break;
-            case L:
-                StrategieAttaque tmp = link.getArmeActuelle();
-                link.setArmeActuelle(new LanceurDeBombes());
-                link.attaquer();
-                link.setArmeActuelle(tmp);
-                break;
-            default:
-                return;
+//        System.out.println("Touche pressée: " + event.getCode());
+        if (gererDeplacement(event.getCode()) || gererAction(event.getCode())) {
+            miseAJourZoom();
+            verifierRencontreGardien();
         }
-        miseAJourZoom();
-        verifierRencontreGardien();
-        System.out.println("Position du personnage: x=" + link.getX() + ", y=" + link.getY());
+    }
+
+    private boolean gererDeplacement(KeyCode code) {
+        boolean deplacementEffectue = switch (code) {
+            case Z -> {
+                link.deplacerHaut();
+                yield true;
+            }
+            case Q -> {
+                link.deplacerGauche();
+                yield true;
+            }
+            case S -> {
+                link.deplacerBas();
+                yield true;
+            }
+            case D -> {
+                link.deplacerDroite();
+                yield true;
+            }
+            default -> false;
+        };
+        if (deplacementEffectue)
+            linkVue.updateImage(link.getDirection(),link.getArme());
+        return deplacementEffectue;
     }
 
     @FXML
-    public void keyReleased(KeyEvent keyEvent) {
+    private void keyReleased(KeyEvent keyEvent) {
         link.noWalking();
-        linkVue.updateImage("DROITE", link.getArme());
     }
 
+    /**
+     * Cette méthode s'occupe les actions spécifiques du joueur (attaque, changement d'arme, etc.)
+     * {@param code}
+     * {@return }
+     */
+    private boolean gererAction(KeyCode code) {
+        return switch (code) {
+            case I -> {
+                gererAttaque();
+                yield true;
+            }
+            case K -> {
+                link.changerArmeSuivante();
+                yield true;
+            }
+            case J -> {
+                link.changerArmePrecedente();
+                yield true;
+            }
+            case L -> {
+                attaquerAvecLanceurDeBombes();
+                yield true;
+            }
+            default -> false;
+        };
+    }
 
-    public void verifierRencontreGardien() {
-        Gardien g = env.verifierRencontreLinkGardien();
-        if (g != null) {
-                messageVue.afficherDialogueGardien(g, link);
+    private void gererAttaque() {
+        if (link.getArme() != null) {
+            link.attaquer();
+            if (link.getArmeActuelle() instanceof Marteau) {
+                tv.creerCarte();
+            }
         }
     }
 
+    private void attaquerAvecLanceurDeBombes() {
+        StrategieAttaque armeTemporaire = link.getArmeActuelle();
+        link.setArmeActuelle(new LanceurDeBombes());
+        link.attaquer();
+        link.setArmeActuelle(armeTemporaire);
+    }
 
-    public void miseAJourZoom(){
+    private void miseAJourZoom(){
         double paneWidth = panneauDeJeu.getWidth();
         double paneHeight = panneauDeJeu.getHeight();
         double linkX = link.getX();
@@ -198,6 +204,12 @@ public class Controleur implements Initializable {
         panneauDeJeu.setTranslateY(-linkY * scaleTransform.getY() + paneHeight / 2);
     }
 
+    private void verifierRencontreGardien() {
+        Gardien g = env.verifierRencontreLinkGardien();
+        if (g != null) {
+            messageVue.afficherDialogueGardien(g, link);
+        }
+    }
 
     private void initAnimation() {
         gameLoop = new Timeline();
@@ -208,87 +220,57 @@ public class Controleur implements Initializable {
                 ev -> {
                     env.unTour();
                     miseAJourZoom();
-
                     coeurVue.mettreAJourCoeurs(link.getPointVie());
                     mettreAJourEtatJeu(); // Appel de la méthode pour mettre à jour l'état du jeu
-
                 }
         );
         gameLoop.getKeyFrames().add(kf);
     }
-    public void mettreAJourEtatJeu() {
-        // Vérifier si la vie de Link est égale à 0
-        if (link.getPointVie() == 0) {
-            Main.stopMusicFond();
-            afficherEcranGameOver();
-            gameLoop.stop();
-            System.out.println("Game Over");
-        }
-        if (env.verifierVictoire()) {
-            gameLoop.stop();
-            Main.stopMusicFond();
-            System.out.println("Victory!");
-            afficherEcranVictoire();
-        }
-    }
-    private void afficherEcranGameOver() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueGameOver.fxml"));
-            Parent root = loader.load();
-            gameLoop.stop();
 
+    private void mettreAJourEtatJeu() {
+        if (!link.estVivant())
+            afficherEcranGameOver();
+        if (env.verifierVictoire())
+            afficherEcranVictoire();
+    }
+
+    private void afficherEcran(URL chemin, String titre){
+        try {
+            FXMLLoader loader = new FXMLLoader(chemin);
+            Parent root = loader.load();
 
             // Récupérer la scène actuelle à partir d'un nœud parent
             Scene scene = panneauDeJeu.getScene();
-
             // Remplacer le contenu de la scène actuelle par le contenu de la vue Game Over
             scene.setRoot(root);
 
             Stage stage = (Stage) scene.getWindow();
-            stage.setTitle("Game Over");
+            stage.setTitle(titre);
             stage.show();
 
-            // Arrêter la musique en cours (si elle est en cours de lecture)
-            Main.stopMusicFond();
+            AudioManager.stopMusicFond();
+            gameLoop.stop();
+        } catch (IOException ignored) {}
+    }
 
-            // Lancer la musique de défaite
-            URL urlImageVaiL = Main.class.getResource("sonPerdue.wav");
-            String s = urlImageVaiL.getPath();
-            Main.PlayMusicDefaite(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void afficherEcranGameOver() {
+        afficherEcran(
+                getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueGameOver.fxml"),
+                "Game Over"
+        );
+        AudioManager.playMusicDefaite();
     }
 
     private void afficherEcranVictoire() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/gagner.fxml"));
-            Parent root = loader.load();
-            gameLoop.stop();
-
-
-            // Récupérer la scène actuelle à partir d'un nœud parent
-            Scene scene = panneauDeJeu.getScene();
-
-            // Remplacer le contenu de la scène actuelle par le contenu de la vue Victoire
-            scene.setRoot(root);
-
-            Stage stage = (Stage) scene.getWindow();
-            stage.setTitle("Victoire");
-            stage.show();
-
-            // Arrêter la musique en cours (si elle est en cours de lecture)
-            Main.stopMusicFond();
-
-            // Lancer la musique de victoire
-            URL urlImageVictoire = Main.class.getResource("sonVictoire.wav");
-            String s = urlImageVictoire.getPath();
-            Main.PlayMusicVictoire(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        afficherEcran(
+                getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/gagner.fxml"),
+                "Victoire"
+        );
+        AudioManager.playMusicVictoire();
     }
 
+    // Méthode pour mettre le jeu en pause
+    @FXML
     public void reactionBoutonPause(ActionEvent actionEvent) throws IOException {
         pauseGame();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/VuePause.fxml"));
@@ -300,44 +282,24 @@ public class Controleur implements Initializable {
         pauseStage.setScene(new Scene(pauseRoot));
         pauseStage.showAndWait();
         resumeGame();
-
-        // Méthode pour mettre le jeu en pause
     }
 
 
     private void pauseGame() {
         gameLoop.pause();
     }
-
     // Méthode pour reprendre le jeu
     private void resumeGame() {
-        // Reprendre les animations, les timers, etc.
-        // Par exemple :
         gameLoop.play();
     }
-    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws  IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueMenu.fxml"));
-        root = loader.load();
-        // Controleur controleur = loader.getController();
-        stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1000, 800);
-        stage.setResizable(false);
-        stage.setTitle("Le Far West En Péril");
-        stage.setScene(scene);
 
+    @FXML
+    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws IOException{
+        ActionFXML.menu(actionEvent);
     }
 
-    public void reactionBoutonRecommencer(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vue1.fxml"));
-        root = loader.load();
-        Controleur controleur = loader.getController();
-        stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1025, 800);
-        stage.setResizable(false);
-        stage.setTitle("Le Far West En Péril");
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    public void reactionBoutonRecommencer(ActionEvent actionEvent) throws IOException {
+        ActionFXML.jouer(actionEvent);
     }
-
 }
-

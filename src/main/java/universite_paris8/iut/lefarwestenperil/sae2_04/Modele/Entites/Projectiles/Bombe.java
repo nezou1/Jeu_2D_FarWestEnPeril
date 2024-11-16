@@ -1,7 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles;
 
-
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee;

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="600.0" styleClass="imageGagne" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.lefarwestenperil.sae2_04.Controleur.ControleurGagner">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="600.0" styleClass="imageGagne" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.lefarwestenperil.sae2_04.Controleur.ControleurVictoire">
     <children>
         <HBox layoutX="28.0" layoutY="27.0" prefHeight="100.0" prefWidth="526.0" spacing="25.0">
             <children>
@@ -26,7 +21,7 @@
                         <Font name="Agency FB Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="boutonMenu" mnemonicParsing="false" onAction="#reactionBoutonMenu" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" text="Menu" textFill="#6f2013">
+                <Button fx:id="boutonMenu" mnemonicParsing="false" onAction="#reactionBoutonRevenirAuMenu" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" text="Menu" textFill="#6f2013">
                     <padding>
                         <Insets bottom="8.0" top="8.0" />
                     </padding>

@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.ActeurMobile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -8,7 +8,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 /**<p>
  * Classe  {@code Projectile}:
  * <p>
- *     Cette classe est une sous-classe de  {@link Acteur} qui s'occupe de la gestion des  {@code projectiles} dans l'{@link Environnement}
+ *     Cette classe est une sous-classe de  {@link ActeurMobile} qui s'occupe de la gestion des  {@code projectiles} dans l'{@link Environnement}
  * </p>
  * Elle a:
  * <ul>
@@ -46,13 +46,13 @@ public abstract class Projectile extends ActeurMobile {
         durabilite = 0;
     }
 
-    /** cette méthode gère la décrémentation de la durabilité des projectiles*/
+    /** Cette méthode gère la décrémentation de la durabilité des projectiles*/
     public void seDegrade(){ // signifie s'épuiser
         int val = durabilite > 0 ? 1 : 0;
         setDurabilite(durabilite - val); // soit -1, soit -0 (pour pas avoir des pv négatifs)
     }
 
-    /** inflige ses dégats à une cible */
+    /** Inflige les dégats du projectile à une cible */
     public void infligerDegats(Personnage cible) {
         cible.encaisseDegats(degats);
     }

@@ -3,13 +3,12 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Arsenal;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 
 public class Link extends Guerrier{
 
     private boolean move;
-    private static Link instance;
 
 
     public Link(int x, int y, Environnement env) {
@@ -19,13 +18,6 @@ public class Link extends Guerrier{
 
     public Link(Environnement env) {
         super("Link", 1600, 1500, Direction.NULL, 10, env, PointDeVie.PVLINK, 1, new Arsenal());
-    }
-
-    public static Link getInstance(Environnement env) {
-        if (instance == null) {
-            instance = new Link(env);
-        }
-        return instance;
     }
 
     public void deplacerHaut() {

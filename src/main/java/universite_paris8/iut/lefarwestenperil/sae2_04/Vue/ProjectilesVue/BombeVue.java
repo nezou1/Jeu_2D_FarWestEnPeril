@@ -14,25 +14,4 @@ public class BombeVue extends ExplosifVue{
                 Main.class.getResource("bombeExp.wav"),
                 Main.class.getResource("explosion.gif"));
     }
-
-//    public void creerBombe(Bombe bombe) {
-//
-//        Timeline animation = new Timeline(
-//                new KeyFrame(Duration.millis(50), event -> {
-//                    double newX = ivBombe.getX() + (bombe.getImpactX() - ivBombe.getX()) / 10;
-//                    double newY = ivBombe.getY() + (bombe.getImpactY() - ivBombe.getY()) / 10;
-//                    Platform.runLater(() -> {
-//                        ivBombe.setX(newX);
-//                        ivBombe.setY(newY);
-//                    });
-//                })
-//        );
-//        animation.setCycleCount(10);
-//        animation.play();
-//
-//        animation.setOnFinished(event -> {
-//
-//        });
-//    }
-
 }

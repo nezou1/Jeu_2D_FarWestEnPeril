@@ -12,7 +12,7 @@ public class Portee {
 
     // Projectiles
     public static int PORTEEFLECHE = 10;
-    public static int PORTEEBOMBE = 30;
+    public static int PORTEEBOMBE = 50;
 
     public static int PORTEEDRAGON = 150;
     public static int PORTEECOWBOY = 100;

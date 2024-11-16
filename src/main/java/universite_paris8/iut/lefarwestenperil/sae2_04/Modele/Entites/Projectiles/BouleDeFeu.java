@@ -1,6 +1,6 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -39,7 +39,7 @@ public class BouleDeFeu extends Projectile {
 
     @Override
     public void agit() {
-        Link l = Environnement.getLink2();
+        Link l = getEnv().getLink2();
         this.updateDir();
         seDeplace();
         if (distanceAvec(l.getX(), l.getY()) < getVitesse()) {
@@ -63,15 +63,15 @@ public class BouleDeFeu extends Projectile {
      * Cette méthode met à jour la direction de la boule de feu
      */
     private void updateDir(){
-        int linkX = Environnement.getLink2().getX();
-        int linkY = Environnement.getLink2().getY();
+        int linkX = getEnv().getLink2().getX();
+        int linkY = getEnv().getLink2().getY();
         int newDx = Integer.compare(linkX, getX()); // compare la coordonnée x de la cible et de la boule de feu => val possibles : -1, 0, 1
         int newDy = Integer.compare(linkY, getY());// idem avec y
         changeDir(newDx, newDy);
     }
 
     /**<p>
-     *  Cette méthpde modifie la direction par rapport à des directions dx et dy:
+     *  Cette méthpde modifie la direction par rapport à des directions dx et dy
      * </p>
      */
     private void changeDir(int dx, int dy){

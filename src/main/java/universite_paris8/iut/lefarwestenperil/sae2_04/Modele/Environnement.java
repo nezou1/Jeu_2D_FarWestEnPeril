@@ -30,9 +30,7 @@ import java.util.List;
 
 public class Environnement {
 
-    private static Environnement instance;
-
-    private static Link link;
+    private final Link link;
     private final Terrain terrain;
 
     private final GestionEnnemi gestionEnnemi;
@@ -43,18 +41,11 @@ public class Environnement {
 
     public Environnement() {
         terrain = new Terrain();
-        Environnement.link = Link.getInstance(this);
+        link = new Link(this);
         gestionEnnemi = new GestionEnnemi(this);
         gestionProjectile = new GestionProjectile();
-        gestionGardien = new GestionGardien();
+        gestionGardien = new GestionGardien(this);
         this.tours = 0;
-    }
-
-    public static Environnement getInstance() {
-        if (instance == null) {
-            instance = new Environnement();
-        }
-        return instance;
     }
 
     public void unTour() {
@@ -91,7 +82,6 @@ public class Environnement {
     }
 
     public boolean verifierVictoire() {
-        Link link = Environnement.getLink2();
         int x = link.getX()/32;
         int y = link.getY()/32;
         return getTerrain().getDonneeTerrain()[y][x] == 12 ;
@@ -110,7 +100,7 @@ public class Environnement {
         return terrain.getLargeur();
     }
 
-    public static Link getLink2(){
+    public Link getLink2(){
         return link;
     }
 
