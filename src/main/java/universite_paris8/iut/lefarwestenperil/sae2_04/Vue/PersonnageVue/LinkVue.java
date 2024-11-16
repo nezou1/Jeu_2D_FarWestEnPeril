@@ -101,10 +101,6 @@ public class LinkVue extends PersonnageVue {
         iv3.setImage(image);
     }
 
-    // essayetu rep a la qquestion tu attaque le cactus
-//jfais comment pour lavoir okok
-    //et comment je fais pour casser les cactus
-    //
     private static Image createMirrorImage(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();

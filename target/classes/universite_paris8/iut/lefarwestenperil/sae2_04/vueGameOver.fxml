@@ -19,7 +19,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
-      <Button fx:id="boutonRecommencer" layoutX="129.0" layoutY="220.0" mnemonicParsing="false" onAction="#reactionBoutonRecommencer" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Recommencer" textFill="WHITE">
+      <Button layoutX="129.0" layoutY="220.0" mnemonicParsing="false" onAction="#reactionBoutonRecommencer" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Recommencer" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -27,7 +27,7 @@
             <Insets bottom="8.0" top="8.0" />
          </padding>
       </Button>
-      <Button fx:id="boutonMenu" layoutX="129.0" layoutY="284.0" mnemonicParsing="false" onAction="#reactionBoutonRevenirAuMenu" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Menu" textFill="WHITE">
+      <Button layoutX="129.0" layoutY="284.0" mnemonicParsing="false" onAction="#reactionBoutonRevenirAuMenu" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Menu" textFill="WHITE">
          <font>
             <Font name="Lato Black Italic" size="20.0" />
          </font>
@@ -35,7 +35,7 @@
             <Insets bottom="8.0" top="8.0" />
          </padding>
       </Button>
-      <Button fx:id="boutonQuitter" layoutX="131.0" layoutY="345.0" mnemonicParsing="false" onAction="#reactionBoutonQuitter" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Quitter" textFill="WHITE">
+      <Button layoutX="131.0" layoutY="345.0" mnemonicParsing="false" onAction="#reactionBoutonQuitter" prefHeight="46.0" prefWidth="392.0" styleClass="boutonMenu" text="Quitter" textFill="WHITE">
          <font>
             <Font name="Lato Black Italic" size="20.0" />
          </font>

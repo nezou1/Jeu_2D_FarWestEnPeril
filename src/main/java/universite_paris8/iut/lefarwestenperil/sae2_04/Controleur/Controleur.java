@@ -115,14 +115,25 @@ public class Controleur implements Initializable{
     @FXML
     private void gererTouchePressee(KeyEvent event) {
 //        System.out.println("Touche pressée: " + event.getCode());
-        if (gererDeplacement(event.getCode()) || gererAction(event.getCode())) {
+        if (gererAction(event.getCode())) {
+            linkVue.updateImage(link.getDirection(),link.getArmeActuelle());
             miseAJourZoom();
             verifierRencontreGardien();
         }
     }
 
-    private boolean gererDeplacement(KeyCode code) {
-        boolean deplacementEffectue = switch (code) {
+    @FXML
+    private void keyReleased(KeyEvent keyEvent) {
+        link.noWalking();
+    }
+
+    /**
+     * Cette méthode s'occupe les actions du joueur (déplacements, attaque, changement d'arme, etc.)
+     * @param code
+     * @return boolean
+     */
+    private boolean gererAction(KeyCode code) {
+        return switch (code) {
             case Z -> {
                 link.deplacerHaut();
                 yield true;
@@ -139,25 +150,6 @@ public class Controleur implements Initializable{
                 link.deplacerDroite();
                 yield true;
             }
-            default -> false;
-        };
-        if (deplacementEffectue)
-            linkVue.updateImage(link.getDirection(),link.getArme());
-        return deplacementEffectue;
-    }
-
-    @FXML
-    private void keyReleased(KeyEvent keyEvent) {
-        link.noWalking();
-    }
-
-    /**
-     * Cette méthode s'occupe les actions spécifiques du joueur (attaque, changement d'arme, etc.)
-     * {@param code}
-     * {@return }
-     */
-    private boolean gererAction(KeyCode code) {
-        return switch (code) {
             case I -> {
                 gererAttaque();
                 yield true;
@@ -283,7 +275,6 @@ public class Controleur implements Initializable{
         pauseStage.showAndWait();
         resumeGame();
     }
-
 
     private void pauseGame() {
         gameLoop.pause();

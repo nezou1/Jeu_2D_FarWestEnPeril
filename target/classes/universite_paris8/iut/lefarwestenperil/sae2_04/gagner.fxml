@@ -10,7 +10,7 @@
     <children>
         <HBox layoutX="28.0" layoutY="27.0" prefHeight="100.0" prefWidth="526.0" spacing="25.0">
             <children>
-                <Button fx:id="boutonRecommencer" mnemonicParsing="false" onAction="#reactionBoutonRecommencer" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" stylesheets="@menu.css" text="Recommencer" textFill="#6f2013">
+                <Button mnemonicParsing="false" onAction="#reactionBoutonRecommencer" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" stylesheets="@menu.css" text="Recommencer" textFill="#6f2013">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -21,7 +21,7 @@
                         <Font name="Agency FB Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="boutonMenu" mnemonicParsing="false" onAction="#reactionBoutonRevenirAuMenu" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" text="Menu" textFill="#6f2013">
+                <Button mnemonicParsing="false" onAction="#reactionBoutonRevenirAuMenu" prefHeight="41.0" prefWidth="167.0" styleClass="boutonGagne" text="Menu" textFill="#6f2013">
                     <padding>
                         <Insets bottom="8.0" top="8.0" />
                     </padding>

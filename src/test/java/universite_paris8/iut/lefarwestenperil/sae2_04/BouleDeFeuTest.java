@@ -17,7 +17,7 @@ public class BouleDeFeuTest {
     @BeforeEach
     public void setUp() {
         Environnement env = new Environnement();
-        link = Environnement.getLink2();
+        link = env.getLink2();
         bouleDeFeu = new BouleDeFeu(20, 20, Direction.BAS, env);//va vers le bas
     }
 

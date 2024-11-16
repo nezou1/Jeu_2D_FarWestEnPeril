@@ -15,7 +15,6 @@ class LinkTest {
 
     @BeforeEach
     void setUp() {
-//        new Environnement2();
         terrain = new Terrain(); // Créez un terrain de test, par exemple 20x20
         link = new Link(new Environnement());
     }

@@ -27,7 +27,7 @@ class EnvironnementTest  {
     void setUp() {
         environnement = new Environnement();
         terrain = environnement.getTerrain(); // Supposons que le terrain est 20x20
-        link = Environnement.getLink2();
+        link = environnement.getLink2();
     }
 
     @Test
@@ -91,7 +91,7 @@ class EnvironnementTest  {
     void testVerifierVictoire() {
         link.setX(32);
         link.setY(32);
-        terrain.getTab()[1][1] = 12;
+        terrain.getDonneeTerrain()[1][1] = 12;
         assertTrue(environnement.verifierVictoire());
     }
 }
