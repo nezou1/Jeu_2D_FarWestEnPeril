@@ -23,8 +23,8 @@ public class BouleDeFeuTest {
 
     @Test
     public void testBouleDeFeuInitialisation() {
-        assertEquals(0, bouleDeFeu.getX());
-        assertEquals(0, bouleDeFeu.getY());
+        assertEquals(20, bouleDeFeu.getX());
+        assertEquals(20, bouleDeFeu.getY());
     }
 
     @Test
