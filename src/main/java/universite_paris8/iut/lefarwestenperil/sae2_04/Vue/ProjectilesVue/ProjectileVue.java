@@ -5,9 +5,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.AudioManager;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import java.net.URL;
@@ -35,9 +34,7 @@ import java.net.URL;
 public abstract class ProjectileVue {
 
     private final URL urlImage;
-    private final URL urlSon;
-
-    private Clip clip;
+    private final Clip clip;
 
     private final Pane pane;
     private final Projectile projectile;
@@ -46,7 +43,7 @@ public abstract class ProjectileVue {
         this.pane = pane;
         this.projectile = projectile;
         this.urlImage = urlImage;
-        this.urlSon = urlSon;
+        clip = AudioManager.initClip(urlSon.getPath(),false);
     }
 
     public Pane getPane() {
@@ -65,16 +62,6 @@ public abstract class ProjectileVue {
     public void creerSprite(){
         ImageView imageVue = new ImageView(new Image(String.valueOf(urlImage)));
         initSprite(imageVue);
-    }
-
-    public void lancerSon(){
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(urlSon);
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void initSprite(ImageView imageVue) {

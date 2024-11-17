@@ -49,7 +49,6 @@ public class ListObsProjectiles implements ListChangeListener<Projectile> {
             for (Projectile p : change.getAddedSubList()) {
                 projVue = initProjectileVue(p);
                 projVue.creerSprite();
-                projVue.lancerSon();
             }
             for (Projectile p : change.getRemoved()) {
                 projVue = initProjectileVue(p);

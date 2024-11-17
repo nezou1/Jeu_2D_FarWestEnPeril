@@ -7,7 +7,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 
-import javax.sound.sampled.Clip;
+import java.util.Objects;
 
 /**
  * Classe FlecheVue:
@@ -19,9 +19,12 @@ import javax.sound.sampled.Clip;
 public class FlecheVue extends ProjectileVue {
 
     public FlecheVue(Pane pane, Projectile projectile) {
-        super(pane, projectile,
+        super(
+                pane,
+                projectile,
                 Main.class.getResource("fleche.png"),
-                Main.class.getResource("fleche (2).wav"));
+                Objects.requireNonNull(Main.class.getResource("sonFleche.wav"))
+        );
     }
 
     @Override
@@ -29,20 +32,7 @@ public class FlecheVue extends ProjectileVue {
         Direction dir = getProjectile().getDirection();
         ImageView flecheImageView = initializeImageView(dir);
         initSprite(flecheImageView);
-        // lance le clip
-        if (getClip() != null) {
-            getClip().setFramePosition(0); // Rewind to the beginning
-            getClip().loop(Clip.LOOP_CONTINUOUSLY); // Play in loop
-        }
-    }
-
-    @Override
-    public void supprimerSprite(Projectile projectile) {
-        super.supprimerSprite(projectile);
-        // Arrêter le son de la flèche
-        if (getClip() != null) {
-            getClip().stop();
-        }
+        getClip().start();
     }
 
     /**
@@ -67,5 +57,13 @@ public class FlecheVue extends ProjectileVue {
                 break;
         }
         return flecheImageView;
+    }
+
+    @Override
+    public void supprimerSprite(Projectile projectile) {
+        super.supprimerSprite(projectile);
+        if (getClip() != null) {
+            getClip().stop();
+        }
     }
 }

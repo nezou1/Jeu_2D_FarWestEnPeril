@@ -14,7 +14,7 @@ public class AudioManager {
     private static Clip clipDefaite;
 
     // Méthode générique pour jouer une musique
-    private static Clip playMusic(String location, boolean loop) {
+    public static Clip initClip(String location, boolean loop) {
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(location))) {
             DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream.getFormat());
             Clip clip = (Clip) AudioSystem.getLine(info);
@@ -22,7 +22,6 @@ public class AudioManager {
             if (loop) {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
-            clip.start();
             return clip;
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             throw new RuntimeException(e);
@@ -30,25 +29,28 @@ public class AudioManager {
     }
 
     public static void playMusicFond() {
-        clipFond = playMusic(
+        clipFond = initClip(
                 Objects.requireNonNull(Main.class.getResource("sonFond.wav")).getPath(),
                 true
         );
+        clipFond.start();
     }
     public static void playMusicVictoire() {
-        clipVictoire = playMusic(
+        clipVictoire = initClip(
                 Objects.requireNonNull(Main.class.getResource("sonVictoire.wav")).getPath(),
                 false
         );
+        clipVictoire.start();
     }
     public static void playMusicDefaite() {
-        clipDefaite = playMusic(
+        clipDefaite = initClip(
                 Objects.requireNonNull(Main.class.getResource("sonPerdue.wav")).getPath(),
                 false
         );
+        clipDefaite.start();
     }
 
-    private static void stopMusic(Clip clip) {
+    public static void stopMusic(Clip clip) {
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();

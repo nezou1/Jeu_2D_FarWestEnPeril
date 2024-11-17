@@ -27,9 +27,6 @@ public abstract class ExplosifVue extends ProjectileVue{
         this.urlExplosion = urlExplosion;
     }
 
-    public URL getUrlExplosion() {
-        return urlExplosion;
-    }
 
     @Override
     public void supprimerSprite(Projectile projectile){
@@ -53,7 +50,7 @@ public abstract class ExplosifVue extends ProjectileVue{
     }
 
     private ImageView initImageFinale(Projectile projectile){
-        Image imageExplosion = new Image(String.valueOf(getUrlExplosion()));
+        Image imageExplosion = new Image(String.valueOf(urlExplosion));
         ImageView explosionImageView = new ImageView(imageExplosion);
 
         double explosionWidth = imageExplosion.getWidth();
