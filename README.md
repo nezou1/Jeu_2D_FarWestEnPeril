@@ -22,5 +22,5 @@ Pour survivre, le joueur peut répondre à des quêtes secondaires qui lui perme
 ### Installation
 1. Clonez le dépôt :
    ```bash
-   git clone [https://github.com/votre-nom-utilisateur/LeFarWestEnPeril.git](https://github.com/nezou1/Jeu_2D_FarWestEnPeril.git)
+   git clone https://github.com/nezou1/Jeu_2D_FarWestEnPeril.git
    cd Jeu_2D_FarWestEnPeril
