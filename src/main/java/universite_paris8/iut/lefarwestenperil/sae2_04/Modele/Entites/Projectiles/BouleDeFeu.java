@@ -56,7 +56,7 @@ public class BouleDeFeu extends Projectile {
     @Override
     public void infligerDegats(Personnage cible) {
         super.infligerDegats(cible);
-        cible.setEtat(new EtatBrulure());
+        cible.ajoutEtat(new EtatBrulure());
     }
 
     /**

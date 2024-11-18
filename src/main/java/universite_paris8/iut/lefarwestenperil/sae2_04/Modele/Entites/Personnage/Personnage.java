@@ -4,6 +4,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.ActeurMobile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.Etat;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.EtatComposite;
 
 /**
  * Classe Personnage:
@@ -17,13 +18,13 @@ public abstract class Personnage extends ActeurMobile {
 
     private int pointVie;
     private final int pointDef;
-    private Etat etat;
+    private EtatComposite etat;
 
     public Personnage(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int def) {
         super(id,x, y, direction, vitesse, env);
         this.pointVie = pv;
         this.pointDef = def;
-        etat = null;
+        etat = new EtatComposite();
     }
 
     public int getPointVie() {
@@ -40,9 +41,8 @@ public abstract class Personnage extends ActeurMobile {
     public Etat getEtat() {
         return etat;
     }
-    public void setEtat(Etat etat) {
-        if (this.etat == null)
-            this.etat = etat;
+    public void ajoutEtat(Etat etat) {
+        this.etat.ajouterEtat(etat);
     }
 
     public void seBlesse(int ptsDegats) {
@@ -66,10 +66,12 @@ public abstract class Personnage extends ActeurMobile {
     }
 
     public void appliquerEtat() {
-        if(etat != null){
-            etat.apply(this);
-            if (etat.isFinish())
-                etat = null;
+        if(!this.etat.isVide()) {
+            this.etat.apply(this);
         }
+    }
+
+    public void appliquerEtat(EtatComposite etat) {
+
     }
 }

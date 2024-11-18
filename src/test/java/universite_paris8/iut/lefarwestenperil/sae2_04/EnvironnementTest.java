@@ -83,7 +83,7 @@ class EnvironnementTest  {
 
     @Test
     void testAjouterBrulure() {
-        link.setEtat(new EtatBrulure());
+        link.ajoutEtat(new EtatBrulure());
         assertTrue(link.getEtat().isActive());
     }
 

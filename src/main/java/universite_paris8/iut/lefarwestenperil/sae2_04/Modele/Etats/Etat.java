@@ -7,6 +7,7 @@ public abstract class Etat {
     private boolean active;
     private int duree;
 
+
     public Etat(int duree) {
         this.duree = duree;
         this.active = true;
