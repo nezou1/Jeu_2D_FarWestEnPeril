@@ -1,6 +1,7 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites;
 
 import javafx.beans.property.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 /**
  * BarreDeVie permet de suivre et de gérer visuellement l'état de santé d'un personnage, d'un objet,
@@ -17,8 +18,8 @@ public class BarreDeVie extends Entite {
     private final double vieMax;
 
 
-    public BarreDeVie(int x, int y, int vie) {
-        super("BarreDeVie");
+    public BarreDeVie(int x, int y, int vie, Environnement environnement) {
+        super("BarreDeVie",environnement);
         this.x = new SimpleIntegerProperty(x - 5);
         this.y = new SimpleIntegerProperty(y - 5);
         this.vieActuelle = vie;

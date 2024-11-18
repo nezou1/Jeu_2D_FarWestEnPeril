@@ -86,9 +86,4 @@ public class Gardien extends PNJ {
         }
 
     }
-
-    @Override
-    public void agit() {
-
-    }
 }

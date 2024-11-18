@@ -1,9 +1,10 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Acteur;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Entite;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
-public abstract class PNJ extends Acteur {
+public abstract class PNJ extends Entite {
 
     private final int x;
     private final int y;

@@ -11,15 +11,8 @@ public abstract class Acteur extends Entite{
  *      Elle agit dans l'environnement
 */
 
-    private final Environnement environnement;
-
     public Acteur(String id, Environnement environnement) {
-        super(id);
-        this.environnement = environnement;
-    }
-
-    public Environnement getEnv() {
-        return environnement;
+        super(id,environnement);
     }
 
     public abstract void agit();

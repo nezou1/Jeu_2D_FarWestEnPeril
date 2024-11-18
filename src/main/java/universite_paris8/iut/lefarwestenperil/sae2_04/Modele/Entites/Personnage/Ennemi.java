@@ -28,7 +28,7 @@ public abstract class Ennemi extends Guerrier{
 
     public Ennemi(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int pointDef, StrategieAttaque arme, int hauteurI, int largeurI, int portee, int tempsAttente, boolean peutTraverserObstacles) {
         super(id, x, y, direction, vitesse, env, pv, pointDef, arme);
-        this.barreDeVie = new BarreDeVie(x, y, pv);
+        this.barreDeVie = new BarreDeVie(x, y, pv,env);
         bfs = new BFS();
         this.hauteurI = hauteurI;
         this.largeurI = largeurI;
