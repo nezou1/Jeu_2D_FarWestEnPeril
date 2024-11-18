@@ -10,7 +10,7 @@ public class Arc extends AttaqueADistance {
     public Arc() {}
 
     @Override
-    public Projectile getInstance(int x, int y, Direction direction, Environnement environnement) {
+    public Projectile creerProjectile(int x, int y, Direction direction, Environnement environnement) {
         return new Fleche(x, y, direction, environnement);
     }
 

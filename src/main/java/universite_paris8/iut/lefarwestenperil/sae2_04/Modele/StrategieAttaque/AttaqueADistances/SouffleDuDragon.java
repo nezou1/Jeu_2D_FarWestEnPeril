@@ -8,7 +8,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 public class SouffleDuDragon extends AttaqueADistance {
 
     @Override
-    public Projectile getInstance(int x, int y, Direction direction, Environnement environnement) {
+    public Projectile creerProjectile(int x, int y, Direction direction, Environnement environnement) {
         return new BouleDeFeu(x,y,direction,environnement);
     }
 

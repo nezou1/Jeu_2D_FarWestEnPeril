@@ -9,7 +9,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 public class LanceurDeBombes extends AttaqueADistance {
 
     @Override
-    public Projectile getInstance(int x, int y, Direction direction, Environnement environnement) {
+    public Projectile creerProjectile(int x, int y, Direction direction, Environnement environnement) {
         return new Bombe(x, y, direction, environnement);
     }
 
