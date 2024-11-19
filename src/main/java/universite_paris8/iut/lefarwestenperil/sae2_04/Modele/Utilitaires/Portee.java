@@ -5,7 +5,7 @@ public class Portee {
     /**
      * Classe Portee:
      * <p>
-     *     Cette classe s'occupe des constantes de portée
+     * Cette classe s'occupe des constantes de portée
      * </p>
      */
 

@@ -23,9 +23,9 @@ public class Tomahawk implements StrategieAttaque {
 
     private boolean recevoirDirection(Direction direction, int attaquantX, int attaquantY, int cibleX, int cibleY) {
         return switch (direction) {
-            case DROIT -> (cibleX > attaquantX) && (Math.abs(cibleY - attaquantY)< PORTEETOMAHAWK);
+            case DROIT -> (cibleX > attaquantX) && (Math.abs(cibleY - attaquantY) < PORTEETOMAHAWK);
             case GAUCHE -> (cibleY > attaquantX) && (Math.abs(cibleX - attaquantY) < PORTEETOMAHAWK);
-            case BAS -> (cibleX < attaquantX) && (Math.abs(cibleY -attaquantY) < PORTEETOMAHAWK);
+            case BAS -> (cibleX < attaquantX) && (Math.abs(cibleY - attaquantY) < PORTEETOMAHAWK);
             case HAUT -> (cibleY < attaquantY) && (Math.abs(cibleX - attaquantX) < PORTEETOMAHAWK);
             default -> false;
         };

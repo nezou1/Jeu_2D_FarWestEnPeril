@@ -15,10 +15,9 @@ import java.util.List;
 
 public class Terrain {
 
-    private final int tailleTuile = 32;
-
-    private int [][] donneeTerrain;
     private static final Logger LOGGER = LogManager.getLogger(Terrain.class);
+    private final int tailleTuile = 32;
+    private int[][] donneeTerrain;
 
     public Terrain() {
         chargerTerrain();
@@ -36,7 +35,7 @@ public class Terrain {
                     ligneTab[i] = Integer.parseInt(valeurs[i].trim());
                 }
                 lignes.add(ligneTab);
-                ligne= reader.readLine();
+                ligne = reader.readLine();
             }
             donneeTerrain = lignes.toArray(new int[0][]);
 
@@ -46,7 +45,7 @@ public class Terrain {
         //System.out.println(donneeTerrain.length+"  "+ donneeTerrain[0].length);
     }
 
-    
+
     public int[][] getDonneeTerrain() {
         return this.donneeTerrain;
     }

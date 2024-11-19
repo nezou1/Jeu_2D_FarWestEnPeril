@@ -37,6 +37,7 @@ public class FlecheVue extends ProjectileVue {
 
     /**
      * Cette méthode initialise l'image et oriente l'image par rapport à la direction de la flèche
+     *
      * @param direction {@link Direction}
      * @return {@link ImageView}
      */

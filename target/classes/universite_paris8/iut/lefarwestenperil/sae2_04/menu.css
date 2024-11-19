@@ -1,69 +1,74 @@
 .fondImage {
-    -fx-background-image : url("imageMenu.jpeg");
+    -fx-background-image: url("imageMenu.jpeg");
 }
 
 .boutonMenu {
-    -fx-background-color : black;
+    -fx-background-color: black;
 }
+
 .fondEcran {
-    -fx-background-image : url("sable.jpg");
+    -fx-background-image: url("sable.jpg");
 }
+
 .fondHbox {
-    -fx-background-image : url("clavierCommandes.png");
+    -fx-background-image: url("clavierCommandes.png");
 }
 
 .avancerImage {
-    -fx-background-image : url("z.png");
-    -fx-background-size : 80%;
- }
+    -fx-background-image: url("z.png");
+    -fx-background-size: 80%;
+}
 
- .droiteImage {
-     -fx-background-image : url("d.png");
-     -fx-background-size : 80%;
- }
+.droiteImage {
+    -fx-background-image: url("d.png");
+    -fx-background-size: 80%;
+}
 
- .gaucheImage {
-     -fx-background-image : url("q.png");
-     -fx-background-size : 80%;
- }
+.gaucheImage {
+    -fx-background-image: url("q.png");
+    -fx-background-size: 80%;
+}
 
- .reculerImage {
-     -fx-background-image : url("s.png");
-     -fx-background-size : 80%;
- }
+.reculerImage {
+    -fx-background-image: url("s.png");
+    -fx-background-size: 80%;
+}
 
- .tirerImage {
-     -fx-background-image : url("tirer.png");
-     -fx-background-size : 90%;
- }
+.tirerImage {
+    -fx-background-image: url("tirer.png");
+    -fx-background-size: 90%;
+}
 
 .fondGameOver {
-    -fx-background-image : url("arrierePlan.jpeg");
-    -fx-background-size : 100%;
+    -fx-background-image: url("arrierePlan.jpeg");
+    -fx-background-size: 100%;
 }
 
 .imageLink {
-    -fx-background-image : url("linkReelle.png");
-    -fx-background-size : 100%
+    -fx-background-image: url("linkReelle.png");
+    -fx-background-size: 100%
 }
 
 .imagePereLink {
-    -fx-background-image : url("pereDeLink.png");
-    -fx-background-size : 120%
+    -fx-background-image: url("pereDeLink.png");
+    -fx-background-size: 120%
 }
 
 .objectif {
-    -fx-background-image : url("objectif.png");
-    -fx-background-size : 100%
+    -fx-background-image: url("objectif.png");
+    -fx-background-size: 100%
 
 }
+
 .fondAnchorPane {
-    -fx-background-image : url("sable.jpg");
+    -fx-background-image: url("sable.jpg");
 }
+
 .imageGagne {
     -fx-background-image: url("Gagner.jpeg");
     -fx-background-size: 100%;
 }
+
 .contourConfettis {
     -fx-background-image: url("confettis.png");
     -fx-background-size: 100%;
@@ -71,9 +76,9 @@
 
 .boutonGagne {
     -fx-background-color: #fffd7c;
-     -fx-background-radius:30px;
-    -fx-border-style:solid;
+    -fx-background-radius: 30px;
+    -fx-border-style: solid;
     -fx-border-width: 450%;
-    -fx-border-color:#6f2013;
+    -fx-border-color: #6f2013;
     -fx-border-radius: 30px;
 }

@@ -1,9 +1,9 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
+
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
 
 public class EtatComposite extends Etat {
 
@@ -15,7 +15,7 @@ public class EtatComposite extends Etat {
     }
 
     public void ajouterEtat(Etat etat) {
-        if(!etatExistant(etat)) {
+        if (!etatExistant(etat)) {
             etats.add(etat);
         }
     }
@@ -36,8 +36,8 @@ public class EtatComposite extends Etat {
     }
 
     public boolean etatExistant(Etat etat) {
-        for(Etat e : etats) {
-            if(e.getClass().equals(etat.getClass())) {
+        for (Etat e : etats) {
+            if (e.getClass().equals(etat.getClass())) {
                 return true;
             }
         }

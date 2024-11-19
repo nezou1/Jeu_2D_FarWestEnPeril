@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.ActionFXML;
 
 
-public  class ControleurPause {
+public class ControleurPause {
 
     @FXML
     public void reactionBoutonContinuer(ActionEvent actionEvent) {

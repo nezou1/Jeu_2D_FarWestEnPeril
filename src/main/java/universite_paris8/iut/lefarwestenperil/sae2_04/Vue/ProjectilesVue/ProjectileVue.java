@@ -3,12 +3,10 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.ProjectilesVue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.AudioManager;
 
 import javax.sound.sampled.Clip;
-
 import java.net.URL;
 
 /**
@@ -28,7 +26,7 @@ import java.net.URL;
  *     <li>la création des sprite</li>
  *     <li>les effets sonores</li>
  *     <li>la suppression des sprites</li>
- *</ul>
+ * </ul>
  */
 
 public abstract class ProjectileVue {
@@ -43,23 +41,26 @@ public abstract class ProjectileVue {
         this.pane = pane;
         this.projectile = projectile;
         this.urlImage = urlImage;
-        clip = AudioManager.initClip(urlSon.getPath(),false);
+        clip = AudioManager.initClip(urlSon.getPath(), false);
     }
 
     public Pane getPane() {
         return pane;
     }
+
     public Projectile getProjectile() {
         return projectile;
     }
+
     public URL getURLImage() {
         return urlImage;
     }
-    public Clip getClip(){
+
+    public Clip getClip() {
         return clip;
     }
 
-    public void creerSprite(){
+    public void creerSprite() {
         ImageView imageVue = new ImageView(new Image(String.valueOf(urlImage)));
         initSprite(imageVue);
     }

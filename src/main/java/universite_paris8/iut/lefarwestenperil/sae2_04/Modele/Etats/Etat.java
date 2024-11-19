@@ -16,6 +16,7 @@ public abstract class Etat {
     public boolean isActive() {
         return active;
     }
+
     public void deactivate() {
         this.active = false;
     }
@@ -23,12 +24,14 @@ public abstract class Etat {
     public int getDuree() {
         return duree;
     }
-    public boolean isFinish(){
+
+    public boolean isFinish() {
         return duree == 0;
     }
+
     public void decreaseDuree() {
         int val = duree > 0 ? 1 : 0;
-        this.duree-=val;
+        this.duree -= val;
     }
 
     public abstract void apply(Personnage personnage);

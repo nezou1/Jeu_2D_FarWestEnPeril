@@ -1,6 +1,9 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites;
 
-import javafx.beans.property.*;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 /**
@@ -14,12 +17,12 @@ public class BarreDeVie extends Entite {
     private final IntegerProperty y;
 
     private final DoubleProperty vieRestante;
-    private double vieActuelle;
     private final double vieMax;
+    private double vieActuelle;
 
 
     public BarreDeVie(int x, int y, int vie, Environnement environnement) {
-        super("BarreDeVie",environnement);
+        super("BarreDeVie", environnement);
         this.x = new SimpleIntegerProperty(x - 5);
         this.y = new SimpleIntegerProperty(y - 5);
         this.vieActuelle = vie;
@@ -33,8 +36,16 @@ public class BarreDeVie extends Entite {
         return this.xProperty().getValue();
     }
 
+    public final void setX(int x) {
+        this.xProperty().setValue(x - 5);
+    }
+
     public final int getY() {
         return this.yProperty().getValue();
+    }
+
+    public final void setY(int y) {
+        this.yProperty().setValue(y - 13);
     }
 
     public IntegerProperty xProperty() {
@@ -45,22 +56,14 @@ public class BarreDeVie extends Entite {
         return y;
     }
 
+    // === SETTERS ===
+
     public double getVieRestante() {
         return vieRestante.getValue();
     }
 
     public DoubleProperty vieRestanteProperty() {
         return vieRestante;
-    }
-
-    // === SETTERS ===
-
-    public final void setX(int x) {
-        this.xProperty().setValue(x - 5);
-    }
-
-    public final void setY(int y) {
-        this.yProperty().setValue(y - 13);
     }
 
     public void setVieActuelle(double vieActuelle) {

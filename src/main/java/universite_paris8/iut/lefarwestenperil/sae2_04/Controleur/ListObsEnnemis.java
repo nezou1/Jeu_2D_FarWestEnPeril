@@ -9,7 +9,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.EnnemiVu
 
 public class ListObsEnnemis implements ListChangeListener<Ennemi> {
 
-    private EnnemiVue ennemisVue;
+    private final EnnemiVue ennemisVue;
 
     public ListObsEnnemis(Pane PanneauJeu) {
         ennemisVue = new EnnemiVue(PanneauJeu);

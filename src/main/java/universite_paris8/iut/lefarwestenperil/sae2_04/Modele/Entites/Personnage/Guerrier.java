@@ -1,8 +1,8 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage;
 
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 
 public abstract class Guerrier extends Personnage {
 
@@ -17,7 +17,7 @@ public abstract class Guerrier extends Personnage {
         return arme;
     }
 
-    public void attaquer(){
+    public void attaquer() {
         arme.attaquer(this);
     }
 

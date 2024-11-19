@@ -2,8 +2,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.SouffleDuDragon;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee;
 
 public class Dragon extends Ennemi {
 

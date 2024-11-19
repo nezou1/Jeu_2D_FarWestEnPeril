@@ -9,10 +9,11 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
  */
 public class BarreDeVieVue {
     // Panneau de jeu où les barres de vie seront affichées
-    private Pane panneauJeu;
+    private final Pane panneauJeu;
 
     /**
      * Constructeur pour initialiser BarreDeVieVue avec le panneau de jeu donné.
+     *
      * @param panneauJeu le panneau de jeu où les barres de vie seront affichées
      */
     public BarreDeVieVue(Pane panneauJeu) {
@@ -21,6 +22,7 @@ public class BarreDeVieVue {
 
     /**
      * Affiche une barre de vie sur le panneau de jeu.
+     *
      * @param barre l'objet BarreDeVie à afficher
      */
     public void afficherBarreVie(BarreDeVie barre) {

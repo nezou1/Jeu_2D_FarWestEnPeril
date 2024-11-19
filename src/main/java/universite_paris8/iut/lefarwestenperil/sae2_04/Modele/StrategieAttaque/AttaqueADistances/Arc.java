@@ -7,7 +7,8 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
 public class Arc extends AttaqueADistance {
 
-    public Arc() {}
+    public Arc() {
+    }
 
     @Override
     public Projectile creerProjectile(int x, int y, Direction direction, Environnement environnement) {
@@ -15,7 +16,7 @@ public class Arc extends AttaqueADistance {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Tir à l'arc : " + super.toString();
     }
 }

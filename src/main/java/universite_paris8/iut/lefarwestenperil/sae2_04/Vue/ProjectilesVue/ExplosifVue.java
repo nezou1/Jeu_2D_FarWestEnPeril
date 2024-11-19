@@ -18,7 +18,7 @@ import java.net.URL;
  * Elle gère principalement l'{@code animation de fin de vie} des projectiles
  */
 
-public abstract class ExplosifVue extends ProjectileVue{
+public abstract class ExplosifVue extends ProjectileVue {
 
     private final URL urlExplosion;
 
@@ -29,12 +29,12 @@ public abstract class ExplosifVue extends ProjectileVue{
 
 
     @Override
-    public void supprimerSprite(Projectile projectile){
+    public void supprimerSprite(Projectile projectile) {
         super.supprimerSprite(projectile);
         animationFinale(projectile);
     }
 
-    private void animationFinale(Projectile projectile){
+    private void animationFinale(Projectile projectile) {
         ImageView explosionImageView = initImageFinale(projectile);
         getPane().getChildren().add(explosionImageView);
 
@@ -49,7 +49,7 @@ public abstract class ExplosifVue extends ProjectileVue{
         delay.play();
     }
 
-    private ImageView initImageFinale(Projectile projectile){
+    private ImageView initImageFinale(Projectile projectile) {
         Image imageExplosion = new Image(String.valueOf(urlExplosion));
         ImageView explosionImageView = new ImageView(imageExplosion);
 

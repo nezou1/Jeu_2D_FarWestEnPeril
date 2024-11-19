@@ -2,8 +2,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 import javafx.collections.ObservableList;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Gestionnaire.GestionEnnemi;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Classe Environnement :
  * <p>
- *     Cette classe se charge de la gestion de tous les éléments du jeu intéragissant entre eux.
+ * Cette classe se charge de la gestion de tous les éléments du jeu intéragissant entre eux.
  * </p>
  * Elle possède :
  * <ul>
@@ -58,49 +58,53 @@ public class Environnement {
     }
 
 
-    public void ajouterEnnemisAleatoirement(int nbEnnemi){
+    public void ajouterEnnemisAleatoirement(int nbEnnemi) {
 
         gestionEnnemi.ajouterEnnemisAleatoirement(nbEnnemi);
     }
-    public void ajouterProjectile(Projectile projectile){
+
+    public void ajouterProjectile(Projectile projectile) {
         gestionProjectile.ajouterProjectile(projectile);
     }
+
     public void ajouterGardien(Gardien gardien) {
         gestionGardien.ajouterGardien(gardien);
     }
+
     public void ajouterQuestionGardien() {
         gestionGardien.ajouterQuestionGardien();
     }
 
 
-    public Gardien verifierRencontreLinkGardien(){
+    public Gardien verifierRencontreLinkGardien() {
         return gestionGardien.verifierRencontreLinkGardien();
     }
 
     public boolean estMarchable(int x, int y) {
-        return terrain.estMarchable(x,y);
+        return terrain.estMarchable(x, y);
     }
 
     public boolean verifierVictoire() {
-        int x = link.getX()/32;
-        int y = link.getY()/32;
-        return getTerrain().getDonneeTerrain()[y][x] == 12 ;
+        int x = link.getX() / 32;
+        int y = link.getY() / 32;
+        return getTerrain().getDonneeTerrain()[y][x] == 12;
     }
 
     // GETTERS
 
-    public Terrain getTerrain(){
+    public Terrain getTerrain() {
         return terrain;
     }
 
-    public int getHauteur(){
+    public int getHauteur() {
         return terrain.getHauteur();
     }
-    public int getLargeur(){
+
+    public int getLargeur() {
         return terrain.getLargeur();
     }
 
-    public Link getLink2(){
+    public Link getLink2() {
         return link;
     }
 
@@ -108,14 +112,17 @@ public class Environnement {
 
         return gestionEnnemi.getEnnemis();
     }
+
     public List<Ennemi> getEnnemisDansRayon(int x, int y, int rayon) {
-        return gestionEnnemi.getEnnemisDansRayon(x,y,rayon);
+        return gestionEnnemi.getEnnemisDansRayon(x, y, rayon);
     }
+
     public ObservableList<BarreDeVie> getBarreDeVies() {
 
         return gestionEnnemi.getBarreDeVies();
     }
-    public ObservableList<Projectile> getProjectiles(){
+
+    public ObservableList<Projectile> getProjectiles() {
 
         return gestionProjectile.getProjectiles();
     }

@@ -5,12 +5,12 @@ import javafx.scene.image.ImageView;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 
 public class CoeurVue {
-    private ImageView imageView;
-    private Image coeurVide;
-    private Image coeurQuart;
-    private Image coeurDemi;
-    private Image coeurTroisQuarts;
-    private Image coeurPlein;
+    private final ImageView imageView;
+    private final Image coeurVide;
+    private final Image coeurQuart;
+    private final Image coeurDemi;
+    private final Image coeurTroisQuarts;
+    private final Image coeurPlein;
 
 
     public CoeurVue() {

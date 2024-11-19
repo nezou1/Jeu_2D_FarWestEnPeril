@@ -2,8 +2,8 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
 
 import java.util.List;
 
@@ -21,14 +21,13 @@ public class Gardien extends PNJ {
 
     private final String messageReussite;
     private final String messageEchec;
-
+    private final int recompense;
     private boolean repondu;
     private long dernierInterrogatoire;
-    private final int recompense;
 
 
     public Gardien(int x, int y, String question, List<String> choix, String bonneReponse, String messageReussite, int recompense, Environnement env) {
-        super("Gardien",env,x,y);
+        super("Gardien", env, x, y);
         this.question = question;
         this.choix = choix;
         this.bonneReponse = bonneReponse;
@@ -62,6 +61,7 @@ public class Gardien extends PNJ {
     public boolean isRepondu() {
         return repondu;
     }
+
     public void setRepondu(boolean repondu) {
         this.repondu = repondu;
     }
@@ -81,7 +81,7 @@ public class Gardien extends PNJ {
                 break;
 
             case 1:
-                link.setPointVie(PointDeVie.PVLINK +4);
+                link.setPointVie(PointDeVie.PVLINK + 4);
                 break;
         }
 

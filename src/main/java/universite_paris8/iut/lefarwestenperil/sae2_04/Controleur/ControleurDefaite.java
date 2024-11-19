@@ -5,7 +5,7 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.AudioMa
 
 import java.io.IOException;
 
-public class ControleurDefaite extends ControleurEcranDeFin{
+public class ControleurDefaite extends ControleurEcranDeFin {
 
     @FXML
     public void reactionBoutonRecommencer(javafx.event.ActionEvent actionEvent) throws IOException {

@@ -1,16 +1,17 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.Portee;
 
 import java.util.ArrayList;
 
-/**<p>
+/**
+ * <p>
  * Classe  {@code Bombe}:
  * <p>
- *     Cette classe est une sous-classe de  {@code Projectile} qui s'occupe de la gestion des  {@code bombes}
+ * Cette classe est une sous-classe de  {@code Projectile} qui s'occupe de la gestion des  {@code bombes}
  * </p>
  * Elle a:
  * <ul>
@@ -26,10 +27,11 @@ public class Bombe extends Projectile {
 
 
     public Bombe(int x, int y, Direction direction, Environnement env) {
-        super("Bomb",x,y,direction,15,env,7,20);
+        super("Bomb", x, y, direction, 15, env, 7, 20);
     }
 
-    /**<p>
+    /**
+     * <p>
      * Cette méthode définit l'action d'une bombe dans la partie:
      * <ol>
      *     <li>Elle vérifie si une autre bombe est en cours ( {@link #isActive} )</li>
@@ -52,7 +54,9 @@ public class Bombe extends Projectile {
         seDegrade();
         ralentit();
     }
-    /**<p>
+
+    /**
+     * <p>
      * Cette méthode cherche des {@link Ennemi} dans l'{@link Environnement}:
      * <ol>
      *     <li>Elle compare la distance entre elle et les ennemis</li>
@@ -60,13 +64,13 @@ public class Bombe extends Projectile {
      *     <li>Si sa liste est vide elle retounre rien, Sinon elle retourne sa liste d'ennemis</li>
      * </ol>
      */
-    private ArrayList<Ennemi> chercheEnnemis(){
+    private ArrayList<Ennemi> chercheEnnemis() {
         ArrayList<Ennemi> ennemisProches = new ArrayList<>();
         for (Ennemi e : getEnv().getEnnemis()) {
             assert false;
             double centreCibleX = e.getX() + (double) e.getLargeurImage() / 2;
             double centreCibleY = e.getY() + (double) e.getHauteurImage() / 2;
-            if (distanceAvec(centreCibleX,centreCibleY) <= Portee.PORTEEBOMBE)
+            if (distanceAvec(centreCibleX, centreCibleY) <= Portee.PORTEEBOMBE)
                 ennemisProches.add(e);
         }
         return ennemisProches;
@@ -85,7 +89,7 @@ public class Bombe extends Projectile {
     /**
      * Cette méthode décrémente la vitesse de déplacement de la bombe
      */
-    private void ralentit(){
+    private void ralentit() {
         int val = getVitesse() > 0 ? 2 : 0;
         setVitesse(getVitesse() - val);
     }

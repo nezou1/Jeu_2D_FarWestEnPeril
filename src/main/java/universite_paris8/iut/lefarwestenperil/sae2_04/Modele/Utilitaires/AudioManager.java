@@ -35,6 +35,7 @@ public class AudioManager {
         );
         clipFond.start();
     }
+
     public static void playMusicVictoire() {
         clipVictoire = initClip(
                 Objects.requireNonNull(Main.class.getResource("sonVictoire.wav")).getPath(),
@@ -42,6 +43,7 @@ public class AudioManager {
         );
         clipVictoire.start();
     }
+
     public static void playMusicDefaite() {
         clipDefaite = initClip(
                 Objects.requireNonNull(Main.class.getResource("sonPerdue.wav")).getPath(),
@@ -60,9 +62,11 @@ public class AudioManager {
     public static void stopMusicFond() {
         stopMusic(clipFond);
     }
+
     public static void stopMusicVictoire() {
         stopMusic(clipVictoire);
     }
+
     public static void stopMusicDefaite() {
         stopMusic(clipDefaite);
     }

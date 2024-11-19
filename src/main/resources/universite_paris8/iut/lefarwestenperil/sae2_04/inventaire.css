@@ -1,8 +1,9 @@
-.inventaireImage{
- -fx-background-color:blue;
- }
- .boutonBombe{
- -fx-background-image:url("bombe.png");
-  -fx-background-color:black;
+.inventaireImage {
+    -fx-background-color: blue;
+}
 
- }
+.boutonBombe {
+    -fx-background-image: url("bombe.png");
+    -fx-background-color: black;
+
+}

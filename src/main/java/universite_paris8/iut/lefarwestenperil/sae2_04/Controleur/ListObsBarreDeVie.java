@@ -11,13 +11,14 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.BarreDeVieVue;
  */
 public class ListObsBarreDeVie implements ListChangeListener<BarreDeVie> {
 
-    // Panneau sur lequel les barres de vie seront affichées
-    private Pane panneauDeJeu;
     // Vue utilisée pour afficher les barres de vie
     private final BarreDeVieVue barreDeVieVue;
+    // Panneau sur lequel les barres de vie seront affichées
+    private final Pane panneauDeJeu;
 
     /**
      * Constructeur pour initialiser ListObsBarreDeVie avec le panneau de jeu donné.
+     *
      * @param PanneauJeu le panneau de jeu où les barres de vie seront affichées
      */
     public ListObsBarreDeVie(Pane PanneauJeu) {
@@ -27,6 +28,7 @@ public class ListObsBarreDeVie implements ListChangeListener<BarreDeVie> {
 
     /**
      * Méthode appelée lorsqu'il y a des changements dans la liste de barres de vie.
+     *
      * @param change un objet Change décrivant les changements survenus
      */
     @Override

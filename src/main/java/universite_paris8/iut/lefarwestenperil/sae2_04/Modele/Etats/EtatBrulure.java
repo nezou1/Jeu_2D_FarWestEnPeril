@@ -10,7 +10,7 @@ public class EtatBrulure extends Etat {
 
     @Override
     public void apply(Personnage personnage) {
-        if (getDuree()%10 == 0) {
+        if (getDuree() % 10 == 0) {
             personnage.seBlesse(1);
             if (isFinish())
                 deactivate();

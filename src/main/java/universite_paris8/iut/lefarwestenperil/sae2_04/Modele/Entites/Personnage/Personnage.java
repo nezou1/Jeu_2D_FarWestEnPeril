@@ -9,19 +9,19 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Etats.EtatComposite
 /**
  * Classe Personnage:
  * <p>
- *      Cette classe est une sous-classe de {@link ActeurMobile} qui  s'occupe de la gestion des acteurs {@code vivants} de notre jeu.
+ * Cette classe est une sous-classe de {@link ActeurMobile} qui  s'occupe de la gestion des acteurs {@code vivants} de notre jeu.
  * </p>
- *      Elle possède des {@code points de vie}.
+ * Elle possède des {@code points de vie}.
  */
 
 public abstract class Personnage extends ActeurMobile {
 
-    private int pointVie;
     private final int pointDef;
-    private EtatComposite etat;
+    private int pointVie;
+    private final EtatComposite etat;
 
     public Personnage(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int def) {
-        super(id,x, y, direction, vitesse, env);
+        super(id, x, y, direction, vitesse, env);
         this.pointVie = pv;
         this.pointDef = def;
         etat = new EtatComposite();
@@ -30,6 +30,7 @@ public abstract class Personnage extends ActeurMobile {
     public int getPointVie() {
         return pointVie;
     }
+
     public void setPointVie(int pointVie) {
         this.pointVie = pointVie;
     }
@@ -41,6 +42,7 @@ public abstract class Personnage extends ActeurMobile {
     public Etat getEtat() {
         return etat;
     }
+
     public void ajoutEtat(Etat etat) {
         this.etat.ajouterEtat(etat);
     }
@@ -48,14 +50,16 @@ public abstract class Personnage extends ActeurMobile {
     public void seBlesse(int ptsDegats) {
         this.pointVie -= ptsDegats;
     }
+
     public boolean estVivant() {
         return this.pointVie > 0;
     }
-    public void meurt(){
+
+    public void meurt() {
         this.pointVie = 0;
     }
 
-    public void encaisseDegats(int ptsDegats){
+    public void encaisseDegats(int ptsDegats) {
         int degatReel = ptsDegats - pointDef;
         if (degatReel > 0) {
             if (getPointVie() >= degatReel)
@@ -66,7 +70,7 @@ public abstract class Personnage extends ActeurMobile {
     }
 
     public void appliquerEtat() {
-        if(!this.etat.isVide()) {
+        if (!this.etat.isVide()) {
             this.etat.apply(this);
         }
     }

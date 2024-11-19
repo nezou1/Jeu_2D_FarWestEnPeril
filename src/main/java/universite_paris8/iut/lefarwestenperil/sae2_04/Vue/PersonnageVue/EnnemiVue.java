@@ -9,10 +9,10 @@ import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.
 
 import java.net.URL;
 
-public class EnnemiVue extends PersonnageVue{
+public class EnnemiVue extends PersonnageVue {
 
-    private Image imageDra ;
-    private Image imageCb ;
+    private final Image imageDra;
+    private final Image imageCb;
     private ImageView iv2;
 
 
@@ -25,7 +25,7 @@ public class EnnemiVue extends PersonnageVue{
     }
 
     public void creerEnnemi(Ennemi ennemi) {
-        if (ennemi instanceof Dragon){
+        if (ennemi instanceof Dragon) {
             iv2 = new ImageView(imageDra);
             iv2.setId(ennemi.getId());
 
@@ -40,10 +40,10 @@ public class EnnemiVue extends PersonnageVue{
         getPanneauDeJeu().getChildren().add(iv2);
     }
 
-    public void supprimerEnnemi(Ennemi ennemi){
+    public void supprimerEnnemi(Ennemi ennemi) {
         System.out.println(ennemi.getId());
-        getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#"+ ennemi.getId()));
-        getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#"+ ennemi.getBarreDeVie().getId()));
+        getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#" + ennemi.getId()));
+        getPanneauDeJeu().getChildren().remove(getPanneauDeJeu().lookup("#" + ennemi.getBarreDeVie().getId()));
     }
 
 

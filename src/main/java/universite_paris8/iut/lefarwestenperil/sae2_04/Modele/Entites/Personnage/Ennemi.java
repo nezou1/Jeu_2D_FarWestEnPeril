@@ -1,34 +1,30 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage;
 
 import universite_paris8.iut.lefarwestenperil.sae2_04.BFS.BFS;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
 
+import java.awt.*;
 import java.util.List;
-import java.awt.Point;
 
-public abstract class Ennemi extends Guerrier{
+public abstract class Ennemi extends Guerrier {
 
     private final int hauteurI;
     private final int largeurI;
-    private BFS bfs;
+    private final int portee;
+    private final int tempsAttente;
+    private final BarreDeVie barreDeVie;
+    private final BFS bfs;
     private List<Point> chemin;
     private int pixelsParcourus;
-
-    private final int portee;
-
-    private final int tempsAttente;
     private int compteur;
-
     private boolean peutTraverserObstacles;
-
-    private final BarreDeVie barreDeVie;
 
     public Ennemi(String id, int x, int y, Direction direction, int vitesse, Environnement env, int pv, int pointDef, StrategieAttaque arme, int hauteurI, int largeurI, int portee, int tempsAttente, boolean peutTraverserObstacles) {
         super(id, x, y, direction, vitesse, env, pv, pointDef, arme);
-        this.barreDeVie = new BarreDeVie(x, y, pv,env);
+        this.barreDeVie = new BarreDeVie(x, y, pv, env);
         bfs = new BFS();
         this.hauteurI = hauteurI;
         this.largeurI = largeurI;
@@ -56,6 +52,7 @@ public abstract class Ennemi extends Guerrier{
 
     /**
      * Retourne la hauteur de l'image de l'ennemi.
+     *
      * @return int
      */
     public int getHauteurImage() {
@@ -74,7 +71,7 @@ public abstract class Ennemi extends Guerrier{
         this.peutTraverserObstacles = peutTraverserObstacles;
     }
 
-    public void parcoursBFS(){
+    public void parcoursBFS() {
         if (chemin.isEmpty()) {
             return;
         }
@@ -139,8 +136,8 @@ public abstract class Ennemi extends Guerrier{
     @Override
     public void seDeplace() {
         // Calcule la nouvelle position en fonction de la direction actuelle
-        int newX = getX() + getVitesse()*getDx();
-        int newY = getY() + getVitesse()*getDy();
+        int newX = getX() + getVitesse() * getDx();
+        int newY = getY() + getVitesse() * getDy();
 
         // Calcule les cases correspondantes à la nouvelle position
 
@@ -148,7 +145,7 @@ public abstract class Ennemi extends Guerrier{
         int caseY2 = newY + hauteurI - 1;
 
         // Vérifie si la nouvelle position est marchable pour toute la zone occupée par l'image
-        if (getEnv().estMarchable(newX,newY) && getEnv().estMarchable(caseX2,caseY2)) {
+        if (getEnv().estMarchable(newX, newY) && getEnv().estMarchable(caseX2, caseY2)) {
             setX(newX);
             setY(newY);
             pixelsParcourus += getVitesse();
@@ -169,7 +166,7 @@ public abstract class Ennemi extends Guerrier{
     public void agit() {
         Link link = getEnv().getLink2();
         if (linkACote()) {
-            initChemin(link.getX(),link.getY());
+            initChemin(link.getX(), link.getY());
             parcoursBFS();
             if (getEnv().getTours() - compteur >= tempsAttente) {
                 getArme().attaquer(this);
@@ -180,35 +177,35 @@ public abstract class Ennemi extends Guerrier{
         }
     }
 
-    private boolean verifieMarchabilite(int x, int y){
+    private boolean verifieMarchabilite(int x, int y) {
         if (peutTraverserObstacles)
             return true;
-        int caseX2 = (x + largeurI - 1) ;
-        int caseY2 = (y + hauteurI - 1) ;
+        int caseX2 = (x + largeurI - 1);
+        int caseY2 = (y + hauteurI - 1);
         return getEnv().estMarchable(x, y) && getEnv().estMarchable(caseX2, caseY2);
     }
 
     private boolean linkACote() {
         Link link = getEnv().getLink2();
-        return distanceAvec(link.getX(),link.getY()) <= portee;
+        return distanceAvec(link.getX(), link.getY()) <= portee;
     }
 
     private void initChemin(int cibleX, int cibleY) {
         int[][] tab = getEnv().getTerrain().getDonneeTerrain();
-        int newX = (getX()+8) / 32;
-        int newY = (getY()+8) / 32;
-        int newLinkX = cibleX/ 32;
+        int newX = (getX() + 8) / 32;
+        int newY = (getY() + 8) / 32;
+        int newLinkX = cibleX / 32;
         int newLinkY = cibleY / 32;
         this.chemin = BFS.bfs(tab, new Point(newX, newY), new Point(newLinkX, newLinkY));
     }
 
-    private void updateDir(){
-         switch (getDirection()) {
-             case HAUT, NULL -> setDirection(Direction.DROIT);
-             case DROIT -> setDirection(Direction.BAS);
-             case BAS -> setDirection(Direction.GAUCHE);
-             case GAUCHE -> setDirection(Direction.HAUT);
-         }
+    private void updateDir() {
+        switch (getDirection()) {
+            case HAUT, NULL -> setDirection(Direction.DROIT);
+            case DROIT -> setDirection(Direction.BAS);
+            case BAS -> setDirection(Direction.GAUCHE);
+            case GAUCHE -> setDirection(Direction.HAUT);
+        }
     }
 
 }

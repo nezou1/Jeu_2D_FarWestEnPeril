@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -20,33 +20,28 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.BarreDeVie;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs.Gardien;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Ennemi;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Projectiles.Projectile;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.*;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.LanceurDeBombes;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Tomahawk;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.ActionFXML;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.AudioManager;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.*;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.MessageVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue.LinkVue;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.TerrainVue;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Vue.VieVue.ListCoeurVue;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controleur implements Initializable{
-
-    @FXML
-    private Pane panneauDeJeu;
-    @FXML
-    private TilePane tuile;
-    private Scale scaleTransform;
-    @FXML
-    private HBox vieBox;
+public class Controleur implements Initializable {
 
     @FXML
     public Button boutonRecommencer;
@@ -54,7 +49,13 @@ public class Controleur implements Initializable{
     public Button boutonPrecedent;
     @FXML
     public Button boutonPause;
-
+    @FXML
+    private Pane panneauDeJeu;
+    @FXML
+    private TilePane tuile;
+    private Scale scaleTransform;
+    @FXML
+    private HBox vieBox;
     private Timeline gameLoop;
     private Environnement env;
     private Link link;
@@ -103,8 +104,8 @@ public class Controleur implements Initializable{
         scaleTransform = new Scale();
         panneauDeJeu.getTransforms().add(scaleTransform);
 
-        scaleTransform.setPivotX(link.getX()-200);
-        scaleTransform.setPivotY(link.getY()-200);
+        scaleTransform.setPivotX(link.getX() - 200);
+        scaleTransform.setPivotY(link.getY() - 200);
 
         coeurVue = new ListCoeurVue(link, vieBox);
 
@@ -116,7 +117,7 @@ public class Controleur implements Initializable{
     private void gererTouchePressee(KeyEvent event) {
 //        System.out.println("Touche pressée: " + event.getCode());
         if (gererAction(event.getCode())) {
-            linkVue.updateImage(link.getDirection(),link.getArmeActuelle());
+            linkVue.updateImage(link.getDirection(), link.getArmeActuelle());
             miseAJourZoom();
             verifierRencontreGardien();
         }
@@ -129,6 +130,7 @@ public class Controleur implements Initializable{
 
     /**
      * Cette méthode s'occupe les actions du joueur (déplacements, attaque, changement d'arme, etc.)
+     *
      * @param code
      * @return boolean
      */
@@ -186,7 +188,7 @@ public class Controleur implements Initializable{
         link.setArmeActuelle(armeTemporaire);
     }
 
-    private void miseAJourZoom(){
+    private void miseAJourZoom() {
         double paneWidth = panneauDeJeu.getWidth();
         double paneHeight = panneauDeJeu.getHeight();
         double linkX = link.getX();
@@ -226,7 +228,7 @@ public class Controleur implements Initializable{
             afficherEcranVictoire();
     }
 
-    private void afficherEcran(URL chemin, String titre){
+    private void afficherEcran(URL chemin, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader(chemin);
             Parent root = loader.load();
@@ -242,7 +244,8 @@ public class Controleur implements Initializable{
 
             AudioManager.stopMusicFond();
             gameLoop.stop();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 
     private void afficherEcranGameOver() {
@@ -279,13 +282,14 @@ public class Controleur implements Initializable{
     private void pauseGame() {
         gameLoop.pause();
     }
+
     // Méthode pour reprendre le jeu
     private void resumeGame() {
         gameLoop.play();
     }
 
     @FXML
-    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws IOException{
+    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws IOException {
         ActionFXML.menu(actionEvent);
     }
 

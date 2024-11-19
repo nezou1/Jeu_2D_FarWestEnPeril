@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Arsenal implements StrategieAttaque {
 
-    private StrategieAttaque armeActuelle;
     private final ArrayList<StrategieAttaque> armes;
+    private StrategieAttaque armeActuelle;
 
     public Arsenal() {
         armes = new ArrayList<>();
@@ -16,12 +16,14 @@ public class Arsenal implements StrategieAttaque {
     public ArrayList<StrategieAttaque> getArmes() {
         return armes;
     }
+
     public StrategieAttaque getArmeActuelle() {
         return armeActuelle;
     }
+
     public void setArmeActuelle(StrategieAttaque arme) {
-        for (StrategieAttaque ar : armes){
-            if (ar.getClass().equals(arme.getClass())){
+        for (StrategieAttaque ar : armes) {
+            if (ar.getClass().equals(arme.getClass())) {
                 armeActuelle = ar;
                 break;
             }
@@ -34,16 +36,17 @@ public class Arsenal implements StrategieAttaque {
             armeActuelle = arme;
     }
 
-    public void armeSuivante(){
+    public void armeSuivante() {
         changerArmeActuel(1);
         afficherInformations("suivante");
     }
+
     public void armePrecedente() {
         changerArmeActuel(-1);
         afficherInformations("précédente");
     }
 
-    private int indexArmeActuelle(){
+    private int indexArmeActuelle() {
         return armes.indexOf(armeActuelle);
     }
 

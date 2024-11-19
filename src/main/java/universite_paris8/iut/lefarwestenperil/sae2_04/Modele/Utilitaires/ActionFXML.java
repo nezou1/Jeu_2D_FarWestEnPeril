@@ -28,7 +28,7 @@ public class ActionFXML {
         ActionFXML.initStage(
                 actionEvent,
                 Main.class.getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vue1.fxml"),
-                1025,800
+                1025, 800
         );
     }
 
@@ -36,7 +36,7 @@ public class ActionFXML {
         ActionFXML.initStage(
                 actionEvent,
                 Main.class.getResource("/universite_paris8/iut/lefarwestenperil/sae2_04/vueMenu.fxml"),
-                1000,800
+                1000, 800
         );
     }
 
@@ -44,7 +44,7 @@ public class ActionFXML {
         ActionFXML.initStage(
                 actionEvent,
                 chemin,
-                600,561
+                600, 561
         );
     }
 

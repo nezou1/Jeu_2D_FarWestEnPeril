@@ -1,12 +1,12 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Arsenal;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Arsenal;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.PointDeVie;
 
-public class Link extends Guerrier{
+public class Link extends Guerrier {
 
     private boolean move;
 
@@ -24,42 +24,48 @@ public class Link extends Guerrier{
         move = true;
         setDirection(Direction.HAUT);
     }
+
     public void deplacerBas() {
         move = true;
         setDirection(Direction.BAS);
     }
+
     public void deplacerGauche() {
         move = true;
         setDirection(Direction.GAUCHE);
     }
+
     public void deplacerDroite() {
         move = true;
         setDirection(Direction.DROIT);
     }
+
     public void noWalking() {
         move = false;
     }
 
-    public StrategieAttaque getArmeActuelle(){
-        return ((Arsenal)getArme()).getArmeActuelle();
-    }
-    public void setArmeActuelle(StrategieAttaque arme){
-        ((Arsenal)getArme()).setArmeActuelle(arme);
+    public StrategieAttaque getArmeActuelle() {
+        return ((Arsenal) getArme()).getArmeActuelle();
     }
 
-    public void ajouterArme(StrategieAttaque arme){
-        ((Arsenal)getArme()).ajouterArme(arme);
+    public void setArmeActuelle(StrategieAttaque arme) {
+        ((Arsenal) getArme()).setArmeActuelle(arme);
+    }
+
+    public void ajouterArme(StrategieAttaque arme) {
+        ((Arsenal) getArme()).ajouterArme(arme);
     }
 
     public void changerArmeSuivante() {
-        ((Arsenal)getArme()).armeSuivante();
+        ((Arsenal) getArme()).armeSuivante();
     }
+
     public void changerArmePrecedente() {
-        ((Arsenal)getArme()).armePrecedente();
+        ((Arsenal) getArme()).armePrecedente();
     }
 
     @Override
-    public void seDeplace(){
+    public void seDeplace() {
         if (move)
             super.seDeplace();
     }
@@ -69,6 +75,7 @@ public class Link extends Guerrier{
         appliquerEtat();
         this.seDeplace();
     }
+
     @Override
     public String toString() {
         return "Link : ";

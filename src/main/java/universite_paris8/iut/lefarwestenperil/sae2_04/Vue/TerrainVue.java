@@ -1,8 +1,8 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue;
 
-import javafx.scene.layout.TilePane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.TilePane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
@@ -10,8 +10,8 @@ import java.net.URL;
 
 public class TerrainVue {
 
-    private TilePane tuile;
-    private Terrain terrain;
+    private final TilePane tuile;
+    private final Terrain terrain;
 
     public TerrainVue(Terrain terrain, TilePane tuile) {
         this.terrain = terrain;
@@ -61,7 +61,6 @@ public class TerrainVue {
         Image imageArcATerre = new Image(String.valueOf(urlImageGardienC));
 
 
-
         for (int i = 0; i < terrain.getDonneeTerrain().length; i++) {
             for (int j = 0; j < terrain.getDonneeTerrain()[i].length; j++) {
 
@@ -86,22 +85,22 @@ public class TerrainVue {
                 } else if (terrain.getDonneeTerrain()[i][j] == 7) {
                     ImageView iv7 = new ImageView(imageChateau);
                     this.tuile.getChildren().add(iv7);
-                } else  if (terrain.getDonneeTerrain()[i][j] == 8){
+                } else if (terrain.getDonneeTerrain()[i][j] == 8) {
                     ImageView iv8 = new ImageView(imageGardienA);
                     this.tuile.getChildren().add(iv8);
-                } else if (terrain.getDonneeTerrain()[i][j] == 9){
+                } else if (terrain.getDonneeTerrain()[i][j] == 9) {
                     ImageView iv9 = new ImageView(imageGardienB);
                     this.tuile.getChildren().add(iv9);
-                }else if (terrain.getDonneeTerrain()[i][j] == 13){
+                } else if (terrain.getDonneeTerrain()[i][j] == 13) {
                     ImageView iv10 = new ImageView(imageGardienC);
                     this.tuile.getChildren().add(iv10);
-                }else if (terrain.getDonneeTerrain()[i][j] == 10){
+                } else if (terrain.getDonneeTerrain()[i][j] == 10) {
                     ImageView iv11 = new ImageView(imageBombeATerre);
                     this.tuile.getChildren().add(iv11);
-                }else if (terrain.getDonneeTerrain()[i][j] == 11){
+                } else if (terrain.getDonneeTerrain()[i][j] == 11) {
                     ImageView iv12 = new ImageView(imageArcATerre);
                     this.tuile.getChildren().add(iv12);
-                }else if (terrain.getDonneeTerrain()[i][j] == 12){
+                } else if (terrain.getDonneeTerrain()[i][j] == 12) {
                     ImageView iv13 = new ImageView(imagePapa);
                     this.tuile.getChildren().add(iv13);
                 }

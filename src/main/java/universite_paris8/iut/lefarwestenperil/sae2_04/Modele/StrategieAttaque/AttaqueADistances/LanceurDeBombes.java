@@ -15,6 +15,6 @@ public class LanceurDeBombes extends AttaqueADistance {
 
     @Override
     public String toString() {
-        return "LanceurDeBombes : "+super.toString();
+        return "LanceurDeBombes : " + super.toString();
     }
 }

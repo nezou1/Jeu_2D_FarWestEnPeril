@@ -11,7 +11,7 @@ public abstract class AttaqueADistance implements StrategieAttaque {
 
     @Override
     public void attaquer(Personnage proprietaite) {
-        Projectile projectile = creerProjectile(proprietaite.getX(), proprietaite.getY(), proprietaite.getDirection(),proprietaite.getEnv());
+        Projectile projectile = creerProjectile(proprietaite.getX(), proprietaite.getY(), proprietaite.getDirection(), proprietaite.getEnv());
         proprietaite.getEnv().ajouterProjectile(projectile);
         projectile.seDeplace();
     }

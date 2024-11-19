@@ -1,18 +1,18 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Vue.PersonnageVue;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Main;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Direction;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
-import javafx.embed.swing.SwingFXUtils;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Personnage;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.AttaqueADistances.Arc;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.Marteau;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.StrategieAttaque.StrategieAttaque;
 
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class LinkVue extends PersonnageVue {
 
     private String direction;
 
-    public LinkVue(Pane panneauDeJeu){
+    public LinkVue(Pane panneauDeJeu) {
         super(panneauDeJeu);
         URL urlImageGaucheA = Main.class.getResource("linkArcGauche.png");
         URL urlImageHautA = Main.class.getResource("linkDos.png");
@@ -67,40 +67,6 @@ public class LinkVue extends PersonnageVue {
         direction = "DROITE";
     }
 
-    public void creerLink(Personnage personnage) {
-        iv3 = new ImageView(imageLinkDroite);
-        iv3.translateXProperty().bind(personnage.xProperty());
-        iv3.translateYProperty().bind(personnage.yProperty());
-        getPanneauDeJeu().getChildren().add(iv3);
-    }
-
-    public void updateImage(Direction direction, StrategieAttaque arme) {
-        Image image = null;
-        boolean estUnArc = arme instanceof Arc;
-        boolean estUnMarteau = arme instanceof Marteau;
-        switch (direction) {
-            case DROIT:
-                image = estUnArc ? imageLinkDroiteA :(estUnMarteau ? imageLinkDroiteM :imageLinkDroite);
-                this.direction = "DROITE";
-                break;
-            case GAUCHE:
-                image = estUnArc ? imageLinkGaucheA :(estUnMarteau ? imageLinkGaucheM :imageLinkGauche);
-                this.direction = "GAUCHE";
-                break;
-            case HAUT:
-                image = estUnArc ? imageLinkHautA : (estUnMarteau ? imageLinkHautM :imageLinkHaut);
-                break;
-            case BAS:
-                image = estUnArc ?
-                            ((this.direction.equals("GAUCHE")) ? imageLinkGaucheA :imageLinkDroiteA)
-                        : (this.direction.equals("GAUCHE")) ?
-                                (estUnMarteau ? imageLinkGaucheM :imageLinkGauche)
-                          : (estUnMarteau ? imageLinkDroiteM :imageLinkDroite);
-                break;
-        }
-        iv3.setImage(image);
-    }
-
     private static Image createMirrorImage(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -114,5 +80,39 @@ public class LinkVue extends PersonnageVue {
         g2d.dispose();
 
         return SwingFXUtils.toFXImage(mirroredImage, null);
+    }
+
+    public void creerLink(Personnage personnage) {
+        iv3 = new ImageView(imageLinkDroite);
+        iv3.translateXProperty().bind(personnage.xProperty());
+        iv3.translateYProperty().bind(personnage.yProperty());
+        getPanneauDeJeu().getChildren().add(iv3);
+    }
+
+    public void updateImage(Direction direction, StrategieAttaque arme) {
+        Image image = null;
+        boolean estUnArc = arme instanceof Arc;
+        boolean estUnMarteau = arme instanceof Marteau;
+        switch (direction) {
+            case DROIT:
+                image = estUnArc ? imageLinkDroiteA : (estUnMarteau ? imageLinkDroiteM : imageLinkDroite);
+                this.direction = "DROITE";
+                break;
+            case GAUCHE:
+                image = estUnArc ? imageLinkGaucheA : (estUnMarteau ? imageLinkGaucheM : imageLinkGauche);
+                this.direction = "GAUCHE";
+                break;
+            case HAUT:
+                image = estUnArc ? imageLinkHautA : (estUnMarteau ? imageLinkHautM : imageLinkHaut);
+                break;
+            case BAS:
+                image = estUnArc ?
+                        ((this.direction.equals("GAUCHE")) ? imageLinkGaucheA : imageLinkDroiteA)
+                        : (this.direction.equals("GAUCHE")) ?
+                        (estUnMarteau ? imageLinkGaucheM : imageLinkGauche)
+                        : (estUnMarteau ? imageLinkDroiteM : imageLinkDroite);
+                break;
+        }
+        iv3.setImage(image);
     }
 }

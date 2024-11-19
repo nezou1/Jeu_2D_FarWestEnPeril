@@ -3,11 +3,11 @@ package universite_paris8.iut.lefarwestenperil.sae2_04;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Personnage.Link;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
+import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Terrain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LinkTest {
     private Terrain terrain;
@@ -67,13 +67,13 @@ class LinkTest {
 
         // Déplacez Link vers le bas et à droite pour vérifier les limites
 
-        for (int i =0 ; i < 4 ; i++){
+        for (int i = 0; i < 4; i++) {
             link.deplacerDroite();
             link.seDeplace();
         }
         assertEquals(210, link.getX());
 
-        for (int i =0 ; i < 4 ; i++){
+        for (int i = 0; i < 4; i++) {
             link.deplacerBas();
             link.seDeplace();
         }

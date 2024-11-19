@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="fondEcran" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.lefarwestenperil.sae2_04.Controleur.ControleurMenu">
-   <children>
-      <Label layoutX="101.0" layoutY="227.0" prefHeight="24.0" prefWidth="26.0" styleClass="reculerImage" />
-      <Label layoutX="101.0" layoutY="173.0" prefHeight="24.0" prefWidth="26.0" styleClass="gaucheImage" />
-      <Label layoutX="25.0" layoutY="295.0" prefHeight="16.0" prefWidth="54.0" text="Tirer">
-         <font>
-            <Font name="Lato Black" size="16.0" />
-         </font></Label>
-      <Label layoutX="192.0" layoutY="6.0" text="Comment jouer ?">
-         <font>
-            <Font name="Lato Black Italic" size="30.0" />
-         </font>
-      </Label>
-      <HBox layoutX="199.0" layoutY="163.0" prefHeight="100.0" prefWidth="387.0" styleClass="fondHbox" />
-      <Label layoutX="22.0" layoutY="61.0" text="Avancer">
-         <font>
-            <Font name="Lato Black" size="16.0" />
-         </font></Label>
-      <Label layoutX="22.0" layoutY="115.0" text="Droite">
-         <font>
-            <Font name="Lato Black" size="16.0" />
-         </font></Label>
-      <Label layoutX="25.0" layoutY="175.0" text="Gauche">
-         <font>
-            <Font name="Lato Black" size="16.0" />
-         </font></Label>
-      <Label layoutX="25.0" layoutY="229.0" text="Reculer">
-         <font>
-            <Font name="Lato Black" size="16.0" />
-         </font></Label>
-      <Label layoutX="101.0" layoutY="59.0" prefHeight="24.0" prefWidth="26.0" styleClass="avancerImage" />
-      <Label layoutX="101.0" layoutY="113.0" prefHeight="24.0" prefWidth="26.0" styleClass="droiteImage" />
-      <Label layoutX="87.0" layoutY="293.0" prefHeight="25.0" prefWidth="54.0" styleClass="tirerImage" />
-      <Button fx:id="boutonPrecedent" layoutX="425.0" layoutY="353.0" mnemonicParsing="false" onAction="#reactionBoutonPrecedent" prefHeight="41.0" prefWidth="167.0" styleClass="boutonMenu" text="Précédent" textFill="WHITE">
-         <font>
-            <Font name="Lato Black Italic" size="20.0" />
-         </font>
-         <padding>
-            <Insets bottom="8.0" top="8.0" />
-         </padding>
-      </Button>
-   </children>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" styleClass="fondEcran"
+            stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.40"
+            fx:controller="universite_paris8.iut.lefarwestenperil.sae2_04.Controleur.ControleurMenu">
+    <children>
+        <Label layoutX="101.0" layoutY="227.0" prefHeight="24.0" prefWidth="26.0" styleClass="reculerImage"/>
+        <Label layoutX="101.0" layoutY="173.0" prefHeight="24.0" prefWidth="26.0" styleClass="gaucheImage"/>
+        <Label layoutX="25.0" layoutY="295.0" prefHeight="16.0" prefWidth="54.0" text="Tirer">
+            <font>
+                <Font name="Lato Black" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="192.0" layoutY="6.0" text="Comment jouer ?">
+            <font>
+                <Font name="Lato Black Italic" size="30.0"/>
+            </font>
+        </Label>
+        <HBox layoutX="199.0" layoutY="163.0" prefHeight="100.0" prefWidth="387.0" styleClass="fondHbox"/>
+        <Label layoutX="22.0" layoutY="61.0" text="Avancer">
+            <font>
+                <Font name="Lato Black" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="22.0" layoutY="115.0" text="Droite">
+            <font>
+                <Font name="Lato Black" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="175.0" text="Gauche">
+            <font>
+                <Font name="Lato Black" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="229.0" text="Reculer">
+            <font>
+                <Font name="Lato Black" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="101.0" layoutY="59.0" prefHeight="24.0" prefWidth="26.0" styleClass="avancerImage"/>
+        <Label layoutX="101.0" layoutY="113.0" prefHeight="24.0" prefWidth="26.0" styleClass="droiteImage"/>
+        <Label layoutX="87.0" layoutY="293.0" prefHeight="25.0" prefWidth="54.0" styleClass="tirerImage"/>
+        <Button fx:id="boutonPrecedent" layoutX="425.0" layoutY="353.0" mnemonicParsing="false"
+                onAction="#reactionBoutonPrecedent" prefHeight="41.0" prefWidth="167.0" styleClass="boutonMenu"
+                text="Précédent" textFill="WHITE">
+            <font>
+                <Font name="Lato Black Italic" size="20.0"/>
+            </font>
+            <padding>
+                <Insets bottom="8.0" top="8.0"/>
+            </padding>
+        </Button>
+    </children>
 </AnchorPane>

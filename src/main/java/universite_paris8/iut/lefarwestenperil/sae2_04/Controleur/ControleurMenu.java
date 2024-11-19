@@ -2,13 +2,12 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Controleur;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Utilitaires.ActionFXML;
 
 import java.io.IOException;
 
-public class ControleurMenu{
+public class ControleurMenu {
 
 
     public Button boutonJouer;
@@ -29,8 +28,9 @@ public class ControleurMenu{
     public void reactionBoutonJouer(ActionEvent actionEvent) throws IOException {
         ActionFXML.jouer(actionEvent);
     }
+
     @FXML
-    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws  IOException{
+    public void reactionBoutonPrecedent(ActionEvent actionEvent) throws IOException {
         ActionFXML.menu(actionEvent);
     }
 

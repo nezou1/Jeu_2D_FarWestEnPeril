@@ -2,7 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
 
 /**
  * <p>
- *     Enumerateur Direction:
+ * Enumerateur Direction:
  * </p>
  * <p>
  * Cette énumérateur s'occupe de la gestion des directions
@@ -20,10 +20,10 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele;
  * </ul>
  */
 public enum Direction {
-    NULL(0,0),
-    HAUT(0,-1), BAS(0,1), GAUCHE(-1,0), DROIT(1,0),
+    NULL(0, 0),
+    HAUT(0, -1), BAS(0, 1), GAUCHE(-1, 0), DROIT(1, 0),
 
-    HAUT_GAUCHE(-1,-1), HAUT_DROIT(1,-1), BAS_GAUCHE(-1,1), BAS_DROIT(1,1);
+    HAUT_GAUCHE(-1, -1), HAUT_DROIT(1, -1), BAS_GAUCHE(-1, 1), BAS_DROIT(1, 1);
 
     private final int dx;
     private final int dy;
@@ -36,6 +36,7 @@ public enum Direction {
     public int getDx() {
         return dx;
     }
+
     public int getDy() {
         return dy;
     }

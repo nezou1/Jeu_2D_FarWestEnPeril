@@ -9,11 +9,11 @@ public class SouffleDuDragon extends AttaqueADistance {
 
     @Override
     public Projectile creerProjectile(int x, int y, Direction direction, Environnement environnement) {
-        return new BouleDeFeu(x,y,direction,environnement);
+        return new BouleDeFeu(x, y, direction, environnement);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Souffle du Dragon : " + super.toString();
     }
 }

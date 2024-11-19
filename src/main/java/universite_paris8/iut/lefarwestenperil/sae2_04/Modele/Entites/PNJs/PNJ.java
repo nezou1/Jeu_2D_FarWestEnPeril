@@ -1,6 +1,5 @@
 package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.PNJs;
 
-import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Acteur;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Entites.Entite;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
 
@@ -10,7 +9,7 @@ public abstract class PNJ extends Entite {
     private final int y;
 
     public PNJ(String id, Environnement env, int x, int y) {
-        super(id,env);
+        super(id, env);
         this.x = x;
         this.y = y;
     }
@@ -18,6 +17,7 @@ public abstract class PNJ extends Entite {
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }
